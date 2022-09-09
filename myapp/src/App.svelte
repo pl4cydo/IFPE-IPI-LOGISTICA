@@ -9,7 +9,6 @@ onMount(()=>{
   canvas.height = 500;
   const c = canvas.getContext('2d');
   c.fillRect(0,0, canvas.width, canvas.height);
-
   class teste {
   constructor({position, velocity}){
     this.position = position;
@@ -21,7 +20,9 @@ onMount(()=>{
   }
   update(){
     this.draw();
-    this.position.y += 10;
+    this.position.x += this.position.x
+    this.position.y += this.position.y
+
   }
 }
 
@@ -36,12 +37,39 @@ const Player = new teste({
     }
   
   });//iscopu player
-  
-  function corno(){
-    window.requestAnimationFrame(corno)
+  document.addEventListener('click', pClick, true);
+  function pClick(e){
+    window.requestAnimationFrame(pClick)
+    click = {x:e.pageX, y:e.pageY};
+    console.log(click)
+    if(Player.velocity.x >= click.x){
+	    bolea.x = false
+	}else{
+	    bolea.x = true
+}
+//teste eixo y de lado
+	if(Player.velocity.y >= click.y){
+	    bolea.y = false
+	}else{
+	    bolea.y = true
+}
+//xxxx
+    if(Player.velocity.x < click.x && bolea.x == true ){
+		  Player.velocity.x = 5;
+
+		 } else if(click.x < Player.velocity.x && bolea.x == false){
+			 Player.velocity.x = -5;
+		 }
+//yyyyy
+  if(Player.velocity.y < click.y && bolea.y == true){
+			 Player.velocity.y = 5;
+					 
+		 }else if(click.y < Player.velocity.y && bolea.y == false){
+			 Player.velocity.y = -5;	 
+		 }
     Player.update();
+    console.log("xxxx",Player.velocity.x,"YYY", Player.velocity.y)
   }
-  corno()
 })//iscopu onMount
 
 </script>
