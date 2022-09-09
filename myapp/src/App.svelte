@@ -3,6 +3,7 @@ import { onMount } from 'svelte';
 let canvas;
 
 onMount(()=>{
+  //variavies e propieadades do canvas
   var click;
   var bolea = {x:false,y:false};
   canvas.width = 500;
@@ -46,7 +47,7 @@ onMount(()=>{
       window.requestAnimationFrame(animate)
       c.fillStyle = 'black'
       c.fillRect(0, 0, canvas.width, canvas.height)
-
+      //adicao no eixo x
       if(player.velocity.x < valor.x && bolea.x == true){
         valor.s += 2
         player.velocity.x = valor.s
@@ -55,7 +56,7 @@ onMount(()=>{
         valor.s -= 2
         player.velocity.x = valor.s
       }
-      
+      //adicao no eixo y
       if(player.velocity.y < valor.y && bolea.y == true){
         valor.m += 2
         player.velocity.y = valor.m
@@ -73,7 +74,7 @@ onMount(()=>{
     click = {x:e.pageX, y:e.pageY}
     valor.x = click.x
     valor.y = click.y
-
+    //indentificar se vai para esquera ou direita
     if(player.velocity.x >= click.x){
 	  bolea.x = false
 	  console.log("Xmaior ou igual")
@@ -81,7 +82,7 @@ onMount(()=>{
 	  bolea.x = true
 	  console.log("Xmenor ou igual")
   }
-//teste eixo y de lado
+//indentificar se vai para baixo ou cima
 	  if(player.velocity.y >= click.y){
 	  bolea.y = false
 	  console.log("Ymaior ou igual")
