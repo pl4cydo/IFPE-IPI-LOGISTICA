@@ -3,13 +3,12 @@ import { onMount } from 'svelte';
 let canvas;
 
 onMount(()=>{
-  //variavies e propieadades do canvas
   var click;
   var bolea = {x:false,y:false};
   canvas.width = 500;
   canvas.height = 500;
-  const c = canvas.getContext('2d');
-  c.fillRect(0,0, canvas.width, canvas.height);
+  const context = canvas.getContext('2d');
+  context.fillRect(0,0, canvas.width, canvas.height);
   var valor = {x:0, y:0,s:0,m:0};
 
   class teste {
@@ -19,8 +18,8 @@ onMount(()=>{
     }
 
    draw(){
-    c.fillStyle = 'red'
-    c.fillRect(this.position.x, this.position.y, 50, 50)
+    context.fillStyle = 'red'
+    context.fillRect(this.position.x, this.position.y, 50,50)
    }
     update(){
     this.draw();
@@ -41,13 +40,13 @@ onMount(()=>{
         y:0
       }
     
-    });//iscopu player
+    });//escopo do player
 
    function animate(){
       window.requestAnimationFrame(animate)
-      c.fillStyle = 'black'
-      c.fillRect(0, 0, canvas.width, canvas.height)
-      //adicao no eixo x
+      context.fillStyle = 'black'
+      context.fillRect(0, 0 ,canvas.width, canvas.height)
+
       if(player.velocity.x < valor.x && bolea.x == true){
         valor.s += 2
         player.velocity.x = valor.s
@@ -56,7 +55,7 @@ onMount(()=>{
         valor.s -= 2
         player.velocity.x = valor.s
       }
-      //adicao no eixo y
+      
       if(player.velocity.y < valor.y && bolea.y == true){
         valor.m += 2
         player.velocity.y = valor.m
@@ -65,6 +64,7 @@ onMount(()=>{
         valor.m -= 2
         player.velocity.y = valor.m
       }
+      console.log(player.position)
       player.update()
     }
     
@@ -72,9 +72,21 @@ onMount(()=>{
 
     window.addEventListener('click', (e) =>{
     click = {x:e.pageX, y:e.pageY}
-    valor.x = click.x
-    valor.y = click.y
-    //indentificar se vai para esquera ou direita
+    if(click.x > canvas.width){
+      valor.x = canvas.width - 50
+    }
+    else{
+      valor.x = click.x
+
+    }
+    if(click.y > canvas.height){
+      valor.y = canvas.height - 50
+    }
+    else{
+      valor.y = click.y
+
+    }
+
     if(player.velocity.x >= click.x){
 	  bolea.x = false
 	  console.log("Xmaior ou igual")
@@ -82,7 +94,7 @@ onMount(()=>{
 	  bolea.x = true
 	  console.log("Xmenor ou igual")
   }
-//indentificar se vai para baixo ou cima
+//teste eixo y de lado
 	  if(player.velocity.y >= click.y){
 	  bolea.y = false
 	  console.log("Ymaior ou igual")
@@ -93,7 +105,7 @@ onMount(()=>{
     })
 
 
-})//iscopu onMount
+})//escopo do onMount
 
 
 
