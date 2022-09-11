@@ -1,0 +1,88 @@
+{
+    "activeFile": "Gameassets/barrier.tsx",
+    "expandedProjectPaths": [
+        ".",
+        "Assets do game"
+    ],
+    "exportAsImage.useCurrentScale": true,
+    "fileStates": {
+        "Assets do game/agua.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Assets do game/block.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "Assets do game/grass.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "Assets do game/grassblock.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 5.5
+        },
+        "Assets do game/mapa.png": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 3964,
+                "y": -20
+            }
+        },
+        "Assets do game/mapa.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 726.5,
+                "y": 222.5
+            }
+        },
+        "Gameassets/agua.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Gameassets/barrier.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Gameassets/bloco.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Gameassets/map.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1686,
+                "y": 777.3333333333333
+            }
+        }
+    },
+    "last.imagePath": "C:/Users/a/Documents/IFPE-IPI-LOGISTICA/myapp/Gameassets",
+    "openFiles": [
+        "Gameassets/map.tmx",
+        "Gameassets/bloco.tsx",
+        "Gameassets/agua.tsx",
+        "Gameassets/barrier.tsx"
+    ],
+    "project": "sem título.tiled-project",
+    "recentFiles": [
+        "Gameassets/map.tmx",
+        "Gameassets/bloco.tsx",
+        "Gameassets/agua.tsx",
+        "Gameassets/barrier.tsx",
+        "Assets do game/mapa.tmx",
+        "Assets do game/agua.tsx",
+        "Assets do game/block.tsx",
+        "Assets do game/grass.tsx",
+        "Assets do game/mapa.png",
+        "Assets do game/grassblock.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 128,
+        "width": 111
+    }
+}
