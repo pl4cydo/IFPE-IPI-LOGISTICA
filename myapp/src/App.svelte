@@ -1,42 +1,39 @@
 <script>
   import { onMount } from 'svelte';
   import collisions from './collisions'
-let canvas;
+  let canvas;
 
 onMount(()=>{
   var click;
-  var bolea = {x:false,y:false, o:false};
-  canvas.width = 1080;
+  var bolea = {x:false,y:false, Cx:false, Cy:false};
+  canvas.width = 1000;
   canvas.height = 900;
   const context = canvas.getContext('2d');
   var valor = {x:0, y:0,s:0,m:0};
- 
-
+  
   class teste {
-    
     constructor({position, velocity}){
-    this.position = position;
-    this.velocity = velocity;
-    
+      this.position = position;
+      this.velocity = velocity; 
+      this.width = 50
+      this.height = 50
     }
-
-   draw(){
-    context.fillStyle = 'red'
-    context.fillRect(this.position.x, this.position.y, 50,50)
-    
-   }
+    draw(){
+      context.fillStyle = 'red'
+      context.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
     update(){
-    this.draw();
-    this.position.x = this.velocity.x
-    this.position.y = this.velocity.y
-   
+      this.draw();
+      this.position.x = this.velocity.x
+      this.position.y = this.velocity.y   
+      
     }
-
+    
   }
- 
-  class outro{
+  
+  class arrayColi{
     static largura (){
-        return 44
+      return 44
     } 
     static altura (){
       return 44
@@ -45,17 +42,20 @@ onMount(()=>{
       this.position = position
       this.altura = 44
       this.largura = 44
-
     }
-    drau(){
+    draw(){
       context.fillStyle = 'green'
       context.fillRect(this.position.x, this.position.y, this.largura, this.altura)
     }
   }
 
+  const image = new Image()
+  image.src = './Gameassets/map.png'
+  
   const colisaoMapa = []
   for(let i = 0; i < collisions.length; i += 35){
     colisaoMapa.push(collisions.slice(i, 35 + i))
+    console.log("a")
   }
   
   const guardColis = []
@@ -63,20 +63,17 @@ onMount(()=>{
     linha.forEach((sim, j) => {
       if(sim === 3)
       guardColis.push(
-        new outro ({
+        new arrayColi ({
           position:{
-            x:j * outro.largura(),
-            y:i * outro.altura()
+            x:j * arrayColi.largura(),
+            y:i * arrayColi.altura()
           }
         })
-      )
+        )
+      })
     })
-  })
 
-  const image = new Image()
-  image.src = './Gameassets/map.png'
-
-  const player = new teste({
+    const player = new teste({
       position:{
         x:0,
         y:0
@@ -85,40 +82,43 @@ onMount(()=>{
         x:0,
         y:0
       }
-    
     });//escopo do player
 
    function animate(){
       window.requestAnimationFrame(animate)
       context.drawImage(image,-750,-200)
-      guardColis.forEach(outro => {
-        outro.drau()
+     guardColis.forEach(arrayColi => {
+        arrayColi.draw()// xaray 176 y 528
       })
 
-      if(player.velocity.x < valor.x && bolea.x == true){
+      if(player.velocity.x < valor.x && bolea.x == true && bolea.Cx == false){
         valor.s += 2
         player.velocity.x = valor.s
         
-      }else if(valor.x < player.velocity.x && bolea.x == false){
+      }else if(valor.x < player.velocity.x && bolea.x == false && bolea.Cx == false){
         valor.s -= 2
         player.velocity.x = valor.s
       }
       
-      if(player.velocity.y < valor.y && bolea.y == true){
+      if(player.velocity.y < valor.y && bolea.y == true && bolea.Cy == false){
         valor.m += 2
         player.velocity.y = valor.m
         
-      }else if(valor.y < player.velocity.y && bolea.y == false){
+      }else if(valor.y < player.velocity.y && bolea.y == false && bolea.Cy == false){
         valor.m -= 2
         player.velocity.y = valor.m
       }
       player.update()
+      colizaum()
     }
     
     animate()
 
     window.addEventListener('click', (e) =>{
+      //bolea.Cx = false
+      //bolea.Cy = false
     click = {x:e.pageX, y:e.pageY}
+
     if(click.x > canvas.width){
       valor.x = canvas.width - 50
     }
@@ -136,31 +136,42 @@ onMount(()=>{
 
     if(player.velocity.x >= click.x){
 	  bolea.x = false
-	  console.log("Xmaior ou igual")
+    bolea.Cx = false
+    console.log("esquerda")
 	  }else{
 	  bolea.x = true
-	  console.log("Xmenor ou igual")
   }
 //teste eixo y de lado
 	  if(player.velocity.y >= click.y){
 	  bolea.y = false
-	  console.log("Ymaior ou igual")
+    bolea.Cy = false
 	  }else{
   	bolea.y = true
-	  console.log("Ymenor ou igual")
   }
     })//escopo do click
 
+  function colizaum(){
+    guardColis.forEach(arrayColi => {
+        let quaXy = {Catx:player.position.x - arrayColi.position.x, Caty:player.position.y - arrayColi.position.y}
+        let sumXy = {w:player.width + 50, h:player.height + 50}
+        if(Math.abs(quaXy.Catx) < sumXy.w && Math.abs(quaXy.Caty) < sumXy.h ){
+        let tudoX = (player.width + 50) - Math.abs(quaXy.Catx)
+        let tudoY = (player.height + 50) - Math.abs(quaXy.Caty) 
+        if (player.position.x < arrayColi.position.x + 50 &&
+             player.position.x + player.width > arrayColi.position.x && bolea.Cx == false 
+             && bolea.x == true) {
+             console.log("colisao feita x")
+             player.velocity.x = tudoX + 75
+             bolea.Cx = true
+    }
+}
+  })
+}
 
 })//escopo do onMount
 
-function barrar(){
-
-}
-
 </script>
+
 <canvas
 	bind:this={canvas}
-	width={0}
-	height={0}
 ></canvas>
