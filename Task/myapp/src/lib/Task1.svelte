@@ -1,56 +1,58 @@
+<svelte:head>
+    <link rel="stylesheet" href="./styles/Task1.css">
+</svelte:head>
 <script>
+    let clickLocker = true
+    let Box
 
+    function openStorage(){
+        let storage = document.getElementById("storage")
+        storage.style.visibility = 'visible'
+        console.log("aoba")
+    }
+    function closeStorage(){
+        let storage = document.getElementById("storage")
+        storage.style.visibility = "hidden"
+    }
+    function selectBox(){
+        if(clickLocker == true){
+            Box = this
+            console.log(Box)
+            clickLocker = false
+
+        }
+        else{
+            console.log('caixa ja selecionada')
+        }
+        
+    }
 </script>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&family=Press+Start+2P&family=Roboto&display=swap');
-    .container{
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100vw;
-        height: 100vh;
-        background-color: gray;
-    }
-    .taskScreen{
-        position: absolute;
-        background: #e0d479;
-        width: 80%;
-        height: 80%;
-        border: solid 2px black;
-    }
-    .dialogueBox{
-        padding: 10px;
-        bottom: 0;
-        width: 100%;
-        height: 150px;
-        border-top:2px solid black;
-        background-color: #dc0e0e ;
-        position: absolute;
-    }
-    #worker{
-        position: absolute;
-        max-width: 250px;
-        bottom: 120px;
-        right: 0;
+    
 
-    }
-    .dialogueBox > p{
-        position: absolute;
-        color: white;
-        font-size: 16pt;
-        font-family: 'Press Start 2P', cursive;
-    }
-</style>
 
 <div class="container">
     <div class="taskScreen">
-        <img id="worker" src="./images/worker.png" alt="worker">
-        <div class="dialogueBox">
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium libero corrupti, deserunt a ipsum assumenda voluptatum veritatis, sint omnis ratione explicabo! Laborum exercitationem amet tenetur dolorem incidunt doloribus dolor explicabo!</p>
-
+        <img on:click={openStorage} id="Ground_box" src="/images/boxes2.png" alt="Boxes">
+        <div id="taskPallet">
+            
         </div>
-
+        <div id="storage">
+            <div on:click={closeStorage} id="closeBtn">X</div>
+            <div class="boxContainer">
+                <div on:click={selectBox} class="boxCont"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} class="boxCont"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} class="boxCont"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} class="boxCont"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} class="boxCont"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} class="boxCont"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} class="boxCont"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} class="boxCont"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} class="boxCont"><img src="/images/box2.png" alt="box"></div>
+            </div>
+        </div>
     </div>
+</div>
+<div class="dialogueBox">
+    <img id="worker" src="./images/worker.png" alt="worker">
+
 </div>

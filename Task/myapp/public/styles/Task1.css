@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&family=Press+Start+2P&family=Roboto&display=swap');
+    .container{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: gray;
+    }
+    .taskScreen{
+        display: flex;
+        position: absolute;
+        background: #e0d479;
+        width: 80%;
+        height: 80%;
+        border: solid 2px black;
+    }
+    #Ground_box{
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        max-width: 250px;
+        
+    }
+
+    #taskPallet{
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        width: 40%;
+        height: 100%;
+        background-color: red;
+    }
+    #storage{
+        border: ridge 8px white;
+        padding: 20px;
+        position: absolute;
+        visibility: hidden;
+        position: absolute;
+        right: 0;
+        background: green;
+        width: 40%;
+        height: 100%;
+    }
+    #closeBtn{ 
+        background-color: red;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        border: ridge 3px white;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+    }
+    .boxContainer{
+        width: 90%;
+
+        position: absolute;
+        display: grid;
+        grid-template-columns:repeat(3,auto);
+    }
+
+    .boxCont > img{
+        background-color: red;
+        max-width: 100px;
+        cursor: pointer;
+    }
+    #Boxes{
+        position: absolute;
+        bottom: 49px;
+        width: 60%;
+
+    }
+
+    #Pallet{
+        position: absolute;
+        bottom: 0;
+        border: solid blue 2px;
+        max-width: 300px;
+    }
+    .dialogueBox{
+        display: none;
+        padding: 10px;
+        bottom: 0;
+        width: 100%;
+        height: 150px;
+        border-top:2px solid black;
+        background-color: #dc0e0e ;
+        position: absolute;
+    }
+
+    #worker{
+        position: absolute;
+        max-width: 250px;
+        bottom: 120px;
+        right: 0;
+
+    }
+    .dialogueBox > p{
+        position: absolute;
+        color: white;
+        font-size: 16pt;
+        font-family: 'Press Start 2P', cursive;
+    }
