@@ -14,8 +14,18 @@
         const image = new Image();
         image.src= './images/MapaAlpha2.png'    
 
+        const player = new Image();
+        player.width = '300px'
+        player.height = '300px'
+        player.src = './images/engineer-idle.png'
+
         image.onload = () => {
             ctx.drawImage(image, canvas.width/8, canvas.height/8)
+            ctx.drawImage(
+                player,
+                canvas.width/2 - player.width/2,
+                canvas.height/2
+                )
         }
 
 	})
