@@ -17,10 +17,45 @@
         const imagePlayer = new Image(); 
         imagePlayer.src = './images/redSprite.png'
 
-        imageMap.onload = () => { // essa função serve para que toda vez a que a pag seja recarregada a imagem seja desenhada
-            ctx.drawImage(imageMap, +200, -600) // aqui estamos desenhando a imagem do mapa no canvas, chamando o objeto do mapa que já tem os tamanhos, então só é preciso dizer onde o x e o y estão
+        class Sprite {
+            constructor({position,velocity, image}){
+                this.position = position;
+                this.image = image;
+            }
+
+            draw(){
+                ctx.drawImage(this.image, this.position.x, this.position.y) // aqui estamos desenhando a imagem do mapa no canvas, chamando o objeto do mapa que já tem os tamanhos, então só é preciso dizer onde o x e o y estão    
+            }
+        }
+
+        const background = new Sprite({
+            position: {
+                x: +200,
+                y: -600
+            }, 
+            image: imageMap
+        })
+
+        const keys = {
+            w: {
+                pressed: false
+            },
+            a: {
+                pressed: false
+            },
+            s: {
+                pressed: false
+            },
+            d: {
+                pressed: false
+            },
+        }
+
+        function animate(){ // função que anima as imagens que fica redesenhando em recursão 
+            window.requestAnimationFrame(animate)
+            background.draw() // chamando objeto background que contem o mapa
             ctx.drawImage( // Declarando os Sprite do personagem com varias funções a mais
-                imagePlayer, // o obejto
+                imagePlayer, // o objeto
                 0, //onde o corte da imagem no eixo X começa
                 0, //onde o corte da imagem no eixo Y começa
                 imagePlayer.width / 4, //onde o corte da imagem no eixo X termina 
@@ -30,26 +65,53 @@
                 imagePlayer.width / 4,
                 imagePlayer.height / 4, // meio confuso esses ultimos 4
                 )
-        }
+            if (keys.w.pressed) {
+                background.position.y += 3
+            } else if (keys.s.pressed) {
+                background.position.y -= 3
+            }
+            if (keys.a.pressed) {
+                background.position.x += 3
+            } else if (keys.d.pressed) {
+                background.position.x -= 3
+            }    
 
-        function animate(){
-            console.log('animate')
+            
         }
         animate()
 
         window.addEventListener('keydown', (e) => { // essa função faz com que toda vez que a seta para baixo seja apertada chama a arrow function
                 switch (e.key) { // pelo que parece o uso aqui é facultativo, eu tentei com if e funcionou
-                    case 'w': console.log("pressed w key")
-                    break
+                    case 'w': 
+                        keys.w.pressed = true
+                        break
+                    case 'a':
+                        keys.a.pressed = true
+                        break
+                    case 's': 
+                        keys.s.pressed = true
+                        break
+                    case 'd': 
+                        keys.d.pressed = true
+                        break
+                }
+        })
 
-                    case 'a': console.log("pressed a key")
-                    break
-
-                    case 's': console.log("pressed s key")
-                    break
-
-                    case 'd': console.log("pressed d key")
-                    break
+        window.addEventListener('keyup', (e) => { 
+                switch (e.key) { 
+                    
+                    case 'w': 
+                        keys.w.pressed = false
+                        break
+                    case 'a':
+                        keys.a.pressed = false
+                        break
+                    case 's': 
+                        keys.s.pressed = false
+                        break
+                    case 'd': 
+                        keys.d.pressed = false
+                        break
                 }
         })
 
