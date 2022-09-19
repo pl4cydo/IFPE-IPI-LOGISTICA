@@ -12,7 +12,7 @@
 		ctx.fillRect(0,0,canvas.width, canvas.height); // fillRect é a declaração do retangulo, os dois primeiro zeros são os pontos iniciais da tela onde o senho do fillStyle vai começar 
 
         const imageMap = new Image(); // declarando uma constante para criar um novo objeto da classe Image
-        imageMap.src= './images/mapa1.png' // aqui está chamando um dos topicos do objeto e declarando o caminho, muito parecido como o CSS sendo chamado pelo JS
+        imageMap.src= './images/ProjetoMapa.png' // aqui está chamando um dos topicos do objeto e declarando o caminho, muito parecido como o CSS sendo chamado pelo JS
 
         const imagePlayer = new Image(); 
         imagePlayer.src = './images/redSprite.png'
@@ -29,7 +29,7 @@
         }
 
         const background = new Sprite({ // novo objeto de background contendo a imagem do mapa e o local onde ele vai aparecer
-            position: {x: +200,y: -600}, 
+            position: {x: -650,y: -1050}, 
             image: imageMap
         })
 
