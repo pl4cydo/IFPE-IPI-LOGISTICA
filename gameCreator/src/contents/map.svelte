@@ -17,7 +17,7 @@
         const imagePlayer = new Image(); 
         imagePlayer.src = './images/redSprite.png'
 
-        class Sprite {
+        class Sprite { // criando um objeto que recebe os paremetros para se desenhar e mover no canvas
             constructor({position,velocity, image}){
                 this.position = position;
                 this.image = image;
@@ -28,15 +28,12 @@
             }
         }
 
-        const background = new Sprite({
-            position: {
-                x: +200,
-                y: -600
-            }, 
+        const background = new Sprite({ // novo objeto de background contendo a imagem do mapa e o local onde ele vai aparecer
+            position: {x: +200,y: -600}, 
             image: imageMap
         })
 
-        const keys = {
+        const keys = { // objeto que declara os botões de movimentação como false para que eles só se movimentem quando realmente estiver pressionado
             w: {
                 pressed: false
             },
@@ -65,14 +62,17 @@
                 imagePlayer.width / 4,
                 imagePlayer.height / 4, // meio confuso esses ultimos 4
                 )
-            if (keys.w.pressed) {
+
+            if (keys.w.pressed && lastKey === 'w') {
                 background.position.y += 3
-            } else if (keys.s.pressed) {
+            }
+            if (keys.s.pressed && lastKey === 's') {
                 background.position.y -= 3
             }
-            if (keys.a.pressed) {
+            if (keys.a.pressed && lastKey === 'a') {
                 background.position.x += 3
-            } else if (keys.d.pressed) {
+            }
+            if (keys.d.pressed && lastKey === 'd') {
                 background.position.x -= 3
             }    
 
@@ -80,26 +80,31 @@
         }
         animate()
 
+        let lastKey = '' // funciona como uma verificação para qual a ultima tecla pressionada
+
         window.addEventListener('keydown', (e) => { // essa função faz com que toda vez que a seta para baixo seja apertada chama a arrow function
                 switch (e.key) { // pelo que parece o uso aqui é facultativo, eu tentei com if e funcionou
                     case 'w': 
                         keys.w.pressed = true
+                        lastKey = 'w'
                         break
                     case 'a':
                         keys.a.pressed = true
+                        lastKey = 'a'                        
                         break
                     case 's': 
                         keys.s.pressed = true
+                        lastKey = 's'
                         break
                     case 'd': 
                         keys.d.pressed = true
+                        lastKey = 'd'
                         break
                 }
         })
 
         window.addEventListener('keyup', (e) => { 
                 switch (e.key) { 
-                    
                     case 'w': 
                         keys.w.pressed = false
                         break
