@@ -5,14 +5,14 @@
 	
 	onMount(() => { // chamando a função onde o canvas vai ser posto
         canvas.width = 1024; // tamanho da largura do canvas
-        canvas.height = 576; // tamanho da altura do canvas
+        canvas.height = 720; // tamanho da altura do canvas
 		const ctx = canvas.getContext('2d'); // criando uma variavel e chamando o canvas para declarar o contexto 2D
 		
 		ctx.fillStyle = 'white'; //  o fillStyle serve para declarar a cor da pintura do canvas, nesse em especifico é para a tela
 		ctx.fillRect(0,0,canvas.width, canvas.height); // fillRect é a declaração do retangulo, os dois primeiro zeros são os pontos iniciais da tela onde o senho do fillStyle vai começar 
 
         const imageMap = new Image(); // declarando uma constante para criar um novo objeto da classe Image
-        imageMap.src= './images/ProjetoMapa.png' // aqui está chamando um dos topicos do objeto e declarando o caminho, muito parecido como o CSS sendo chamado pelo JS
+        imageMap.src= './images/mini-mapa.png' // aqui está chamando um dos topicos do objeto e declarando o caminho, muito parecido como o CSS sendo chamado pelo JS
 
         const imagePlayer = new Image(); 
         imagePlayer.src = './images/redSprite.png'
@@ -29,7 +29,7 @@
         }
 
         const background = new Sprite({ // novo objeto de background contendo a imagem do mapa e o local onde ele vai aparecer
-            position: {x: -650,y: -1050}, 
+            position: {x: -540,y: -320}, 
             image: imageMap
         })
 
@@ -124,24 +124,27 @@
 	
 
 </script>
-<main>
-    <body>
-        <canvas bind:this={canvas} id="desenho"></canvas> <!-- Chamar a tag canvas dentro html e dizer que essa tag vai ser referente as mudanças da tag canvas do JS -->
 
-    </body>
+<main>
+    <div id="desenho">
+        <canvas bind:this={canvas}></canvas> <!-- Chamar a tag canvas dentro html e dizer que essa tag vai ser referente as mudanças da tag canvas do JS -->
+    </div>    
 </main>
 
 <style>
-	body {
-		/* display: flex;
-        flex-direction: row;
+    * {
+        padding: 0;
+        margin: 0;
+    }
+	main {
+        width: 100vw;
+        height: 100vh;
+		display: flex; 
 		justify-content: center;
-		align-items: center; */
+		align-items: center;
 		
 	}
-	canvas {
-        /* position: absolute;  */
-		border: 1px solid black;
-		/* transform: perspective(400px) rotateX(20deg); */
+	#desenho {
+        position: absolute; 
 	}
 </style>
