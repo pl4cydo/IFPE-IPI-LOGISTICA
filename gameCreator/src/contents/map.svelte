@@ -42,14 +42,11 @@
 		const c = canvas.getContext('2d'); // criando uma variavel e chamando o canvas para declarar o contexto 2D
 
         class Boundary {
-            // static width = 38.4;
-            // static height = 38.4;
             constructor({position}){
                 this.position = position;
                 this.width = 38.4;
                 this.height = 38.4;
             }
-
             draw(){
              c.fillStyle = 'red'
              c.fillRect(this.position.x, this.position.y, this.width, this.height)
@@ -61,6 +58,11 @@
         const offset = {
             x: -635,
             y: -370
+        }
+
+        let test = {
+            x: 0,
+            y: 0
         }
 
         collisionsMap.forEach((row, i) => {
@@ -79,9 +81,6 @@
         })
 
         // console.log(boundaries)
-
-		// c.fillStyle = 'white'; //  o fillStyle serve para declarar a cor da pintura do canvas, nesse em especifico é para a tela
-		// c.fillRect(0,0,canvas.width, canvas.height); // fillRect é a declaração do retangulo, os dois primeiro zeros são os pontos iniciais da tela onde o senho do fillStyle vai começar 
 
         const imageMap = new Image(); // declarando uma constante para criar um novo objeto da classe Image
         imageMap.src= './images/mini-mapa.png' // aqui está chamando um dos topicos do objeto e declarando o caminho, muito parecido como o CSS sendo chamado pelo JS
@@ -120,13 +119,21 @@
             },
         }
 
+        const testBoundary = new Boundary({
+            position: {
+                x: 210,
+                y: 250
+            }
+        })
+
         function animate(){ // função que anima as imagens que fica redesenhando em recursão 
             window.requestAnimationFrame(animate)
             background.draw() // chamando objeto background que contem o mapa
-            boundaries.forEach(limitz => { // gerar o array de fronteiras
-                limitz.draw()
-                console.log(limitz)
-            })
+            // boundaries.forEach(limitz => { // gerar o array de fronteiras
+            //     limitz.draw()
+            //     // console.log(limitz)
+            // })
+            testBoundary.draw()
             c.drawImage( // Declarando os Sprite do personagem com varias funções a mais
                 imagePlayer, // o objeto
                 0, //onde o corte da imagem no eixo X começa
@@ -139,17 +146,37 @@
                 imagePlayer.height / 4, // meio confuso esses ultimos 4
                 )
 
+            const movablesW = [background, testBoundary]    
+            const movablesS = [background, testBoundary]
+            const movablesA = [background, testBoundary]
+            const movablesD = [background, testBoundary]
             if (keys.w.pressed && lastKey === 'w') {
-                background.position.y += 3
+                movablesW.forEach(jorge => {
+                    jorge.position.y += 3
+                })
+                // background.position.y += 3 
+                // testBoundary.position.y += 3 
             }
             if (keys.s.pressed && lastKey === 's') {
-                background.position.y -= 3
+                movablesS.forEach(jorge => {
+                    jorge.position.y -= 3
+                })
+                // background.position.y -= 3
+                // testBoundary.position.y -= 3
             }
             if (keys.a.pressed && lastKey === 'a') {
-                background.position.x += 3
+                movablesA.forEach(jorge => {
+                    jorge.position.x += 3
+                })
+                // background.position.x += 3
+                // testBoundary.position.x += 3
             }
             if (keys.d.pressed && lastKey === 'd') {
-                background.position.x -= 3
+                movablesD.forEach(jorge => {
+                    jorge.position.x -= 3
+                })
+                // background.position.x -= 3
+                // testBoundary.position.x -= 3
             }    
 
             
