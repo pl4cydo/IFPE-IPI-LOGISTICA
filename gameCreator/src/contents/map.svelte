@@ -82,49 +82,77 @@
 
         // console.log(boundaries)
 
-        const imageMap = new Image(); // declarando uma constante para criar um novo objeto da classe Image
-        imageMap.src= './images/mini-mapa.png' // aqui está chamando um dos topicos do objeto e declarando o caminho, muito parecido como o CSS sendo chamado pelo JS
-
+        const imageMap = new Image();
+        imageMap.src= './images/mini-mapa.png' 
         const imagePlayer = new Image(); 
         imagePlayer.src = './images/redSprite.png'
 
-        class Sprite { // criando um objeto que recebe os paremetros para se desenhar e mover no canvas
-            constructor({position,velocity, image}){
+        class Sprite { 
+            constructor({position,velocity, image, frames = {max: 1}}){
                 this.position = position;
                 this.image = image;
+                this.frames = frames;
+
+                this.image.onload = () => {
+                    this.width = this.image.width / this.frames.max
+                    this.height = this.image.height / this.frames.max
+                    // console.log(this.width);
+                    // console.log(this.height);
+                }
             }
 
             draw(){
-             c.drawImage(this.image, this.position.x, this.position.y) // aqui estamos desenhando a imagem do mapa no canvas, chamando o objeto do mapa que já tem os tamanhos, então só é preciso dizer onde o x e o y estão    
+             c.drawImage(
+                this.image,
+                0, 
+                0, 
+                this.image.width / this.frames.max, 
+                this.image.height / this.frames.max,
+                this.position.x,
+                this.position.y,
+                this.image.width / this.frames.max,
+                this.image.height / this.frames.max, 
+                )
             }
         }
 
+        // canvas.width/2 - this.image.width/4,
+        // canvas.height/2 - this.image.height/4,
+
+        const player = new Sprite({
+            position: {
+                x: canvas.width/2 - 256/4,
+                y: canvas.height/2 - 256/4
+            },
+            image: imagePlayer,
+            frames: {
+                max: 4
+            }
+
+        })
+
         const background = new Sprite({ // novo objeto de background contendo a imagem do mapa e o local onde ele vai aparecer
-            position: {x: offset.x,y: offset.y}, 
+            position: {
+                x: offset.x,
+                y: offset.y
+            }, 
             image: imageMap
         })
 
         const keys = { // objeto que declara os botões de movimentação como false para que eles só se movimentem quando realmente estiver pressionado
-            w: {
-                pressed: false
-            },
-            a: {
-                pressed: false
-            },
-            s: {
-                pressed: false
-            },
-            d: {
-                pressed: false
-            },
+            w: {pressed: false},
+            a: {pressed: false},
+            s: {pressed: false},
+            d: {pressed: false}
         }
 
         const testBoundary = new Boundary({
             position: {
-                x: 210,
+                x: 517,
                 y: 250
             }
         })
+        const movables = [background, testBoundary]    
 
         function animate(){ // função que anima as imagens que fica redesenhando em recursão 
             window.requestAnimationFrame(animate)
@@ -134,49 +162,28 @@
             //     // console.log(limitz)
             // })
             testBoundary.draw()
-            c.drawImage( // Declarando os Sprite do personagem com varias funções a mais
-                imagePlayer, // o objeto
-                0, //onde o corte da imagem no eixo X começa
-                0, //onde o corte da imagem no eixo Y começa
-                imagePlayer.width / 4, //onde o corte da imagem no eixo X termina 
-                imagePlayer.height / 4, //onde o corte da imagem no eixo Y termina 
-                canvas.width/2 - imagePlayer.width/4, // esses aqui tem a ver com a localização no mapa, porém ainda um pouco confusos
-                canvas.height/2 - imagePlayer.height/4,
-                imagePlayer.width / 4,
-                imagePlayer.height / 4, // meio confuso esses ultimos 4
-                )
+            player.draw()
+            
+            if (player.position.x + player.width >= testBoundary.position.x && player.position.x + player.width <= testBoundary.position.x + testBoundary.width) {
+                console.log('colidiu porra!!!')
+            } 
 
-            const movablesW = [background, testBoundary]    
-            const movablesS = [background, testBoundary]
-            const movablesA = [background, testBoundary]
-            const movablesD = [background, testBoundary]
             if (keys.w.pressed && lastKey === 'w') {
-                movablesW.forEach(jorge => {
+                movables.forEach(jorge => {
                     jorge.position.y += 3
                 })
-                // background.position.y += 3 
-                // testBoundary.position.y += 3 
-            }
-            if (keys.s.pressed && lastKey === 's') {
-                movablesS.forEach(jorge => {
+            } else if (keys.s.pressed && lastKey === 's') {
+                movables.forEach(jorge => {
                     jorge.position.y -= 3
                 })
-                // background.position.y -= 3
-                // testBoundary.position.y -= 3
-            }
-            if (keys.a.pressed && lastKey === 'a') {
-                movablesA.forEach(jorge => {
+            } else if (keys.a.pressed && lastKey === 'a') {
+                movables.forEach(jorge => {
                     jorge.position.x += 3
                 })
-                // background.position.x += 3
-                // testBoundary.position.x += 3
-            }
-            if (keys.d.pressed && lastKey === 'd') {
-                movablesD.forEach(jorge => {
+            } else if (keys.d.pressed && lastKey === 'd') {
+                movables.forEach(jorge => {
                     jorge.position.x -= 3
                 })
-                // background.position.x -= 3
-                // testBoundary.position.x -= 3
             }    
 
             
