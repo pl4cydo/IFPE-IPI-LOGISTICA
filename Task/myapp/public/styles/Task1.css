@@ -6,13 +6,7 @@
     pointer-events:none;
     cursor: none;
 }
-.teste{
-    background-color: blueviolet;
-    display: grid;
-    grid-template-columns: repeat(3,auto);
-    max-width: 80%;
-    max-height: 80%;
-}
+
 .container{
     position: relative;
     display: flex;
@@ -51,7 +45,6 @@
 }
 
 #palletBoxes{
-    animation: Prokrl 3s infinite ease;
     position: absolute;
     display: flex;
     align-items: center;
@@ -62,21 +55,29 @@
     width: 75%;
     height: 60%;
 }
-
-#palletTask{
-    width: 80%;
+.boxes{
+    background-color: blueviolet;
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    max-width: 80%;
+    max-height: 80%;
 }
 
-.bx{
+.box{
     width: 100%;
     height: 100%;
     border: solid 1px white;
     cursor: pointer;
 }
+
 .boxImage{
     visibility: hidden;
     height: 100%;
     width: 100%;
+}
+
+#palletTask{
+    width: 80%;
 }
 
 #storage{
@@ -106,19 +107,19 @@
     right: 0;
 }
 
-.boxContainer{
+.storageBoxes{
     width: 90%;
     position: absolute;
     display: grid;
     grid-template-columns:repeat(3,auto);
 }
 
-.boxCont > img{
+.storageBox > img{
     background-color: red;
     max-width: 75%;
     cursor: pointer;
 }
-.boxCont > img:hover{
+.storageBox > img:hover{
     transform: scale(1.1);
 }
 
@@ -145,17 +146,4 @@
     color: white;
     font-size: 16pt;
     font-family: 'Press Start 2P', cursive;
-}
-@keyframes Prokrl {
-    0%{
-        bottom: 0;
-    }
-    50%{
-        bottom: 50px;
-    }
-    100%{
-        bottom: 0;
-    }
-
-    
 }
