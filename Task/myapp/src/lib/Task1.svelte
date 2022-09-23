@@ -11,7 +11,7 @@
 
     function openStorage(){
         let storage = document.getElementById("storage")
-        storage.style.visibility = 'visible'
+        storage.style.visibility = "visible"
     }
 
     function closeStorage(){
@@ -20,26 +20,30 @@
     }
 
     function selectBox(){
-        if(clickLock == true){
+        if(clickLock){     
             selectedBox = this
             clickLock = false
             areaLock = true
-        }        
+            console.log("Tipo da caixa:", selectedBox.dataset.type)       
+        } 
     }
 
     function selectArea(){
-        selectedArea = this        
-        checkMatch()
+        if(areaLock){
+            selectedArea = this 
+            checkMatch()
+        }
     }
 
     function checkMatch(){
-        if(areaLock){
-            var ImG = selectedArea.children[0]
-            if(selectedArea.dataset.Type == selectedBox.dataset.Type){
-                selectedArea.classList.add("clickLock")
-                selectedBox.style.display = "none"
-                ImG.style.visibility= "visible"
-            }
+        var ImG = selectedArea.children[0]
+        if(selectedArea.dataset.type === selectedBox.dataset.type){
+            selectedArea.classList.add("clickLock")
+            selectedBox.style.display = "none"
+            ImG.style.visibility= "visible"
+        }
+        else{
+            console.log("Caixa não correspondente")
         }
         clickLock = true
         areaLock = false
@@ -50,46 +54,44 @@
 </script>
     
 
-
 <div class="container">
     <div class="taskScreen">
         <img on:click={openStorage} id="Ground_box" src="/images/boxes2.png" alt="Boxes">
         <div id="taskPallet">
             <div id="palletBoxes">
-                <div class="teste">
-                    <div on:click={selectArea} class="bx" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="bx" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="bx" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="bx" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="bx" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="bx" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="bx" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="bx" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="bx" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                <div class="boxes">
+                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
                 </div>
                 <img id="palletTask" src="./images/pallet-250px.png" alt="">
             </div>
-
         </div> <!--taskpallet-->>
         
         <div id="storage">
             <div on:click={closeStorage} id="closeBtn">X</div>
-            <div class="boxContainer">
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="boxCont"><img src="/images/rect80px.png" alt="box"></div>
+            <div class="storageBoxes">
+                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
+                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
             </div>
         </div> <!--storage-->
     </div>
