@@ -2,16 +2,11 @@ const context = document.getElementById('window').getContext('2d');
 context.canvas.width = 800
 context.canvas.height = 500
 var click;
-var bolea = { x: null, y: null, Tx: null, P:false }
+var bolea = { x: null, y: null, Tx: null}
 var SumXY = { x: 0, y: 0, Cx: 0, Cy: 0 }
 
 class repo {
-    static Largura() {
-        return 50;
-      }
-      static Altura() {
-        return 50;
-      }
+ 
     constructor({ position, velocity, image }) {
         this.position = position
         this.velocity = velocity
@@ -27,8 +22,8 @@ class repo {
     }
 }
 
-const corno = new Image()
-corno.src = './mapa1.png'
+const mapJ = new Image()
+mapJ.src = './mapa1.png'
 const player = new Image()
 player.src = './pikomon.png'
 const map = new repo({
@@ -39,7 +34,7 @@ const map = new repo({
         x: 0,
         y: 0
     },
-    image: corno
+    image: mapJ
 })
 const block = new repo({
     position: {
@@ -56,22 +51,22 @@ var render = function () {
     map.update()
     context.drawImage(player, context.canvas.width / 2.45, context.canvas.height / 2, 80, 60)
 
-    if (bolea.x == true && map.velocity.x > SumXY.Cx && bolea.P == false) {//direita
+    if (bolea.x == true && map.velocity.x > SumXY.Cx ) {//direita
         SumXY.x += 2 * (-1)
         map.velocity.x = SumXY.x
     }
-    else if (bolea.x == false && map.velocity.x < SumXY.Cx && bolea.P == false) {//esquerda
+    else if (bolea.x == false && map.velocity.x < SumXY.Cx ) {//esquerda
         SumXY.x -= 2 * (-1)
         map.velocity.x = SumXY.x
     } else {
         Tx = true
     }
 
-    if (bolea.y == true && map.velocity.y > SumXY.Cy && Tx == true && bolea.P == false) {
+    if (bolea.y == true && map.velocity.y > SumXY.Cy && Tx == true) {
         SumXY.y += 2 * (-1)
         map.velocity.y = SumXY.y
     }
-    else if (bolea.y == false && map.velocity.y < SumXY.Cy && Tx == true && bolea.P == false) {
+    else if (bolea.y == false && map.velocity.y < SumXY.Cy && Tx == true) {
         SumXY.y -= 2 * (-1)
         map.velocity.y = SumXY.y
     } else {
