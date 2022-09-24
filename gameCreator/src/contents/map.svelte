@@ -1,4 +1,6 @@
 <script>
+    // TO DO: resolver movimentaçaõ com capslock
+
 	import { onMount } from 'svelte'; // importando a função onMount da biblioteca do svelte para poder usar o canvas
    
 	let canvas; // declarando uma variavel para o canvas
@@ -41,51 +43,19 @@
         canvas.height = 720; // tamanho da altura do canvas
 		const c = canvas.getContext('2d'); // criando uma variavel e chamando o canvas para declarar o contexto 2D
 
-        class Boundary {
-            constructor({position}){
-                this.position = position;
-                this.width = 38.4;
-                this.height = 38.4;
-            }
-            draw(){
-             c.fillStyle = 'red'
-             c.fillRect(this.position.x, this.position.y, this.width, this.height)
-            }
-        }
+        const imageMap = new Image();
+        imageMap.src= './images/mini-mapa.png' 
+        const imagePlayer = new Image(); 
+        imagePlayer.src = './images/redSprite.png'
 
-        const boundaries = [];
+        const boundariesObjets = [];
 
         const offset = {
             x: -635,
             y: -370
         }
 
-        let test = {
-            x: 0,
-            y: 0
-        }
-
-        collisionsMap.forEach((row, i) => {
-            row.forEach((symbol, j) => {
-                if(symbol == 5){
-                    boundaries.push(
-                        new Boundary({
-                            position: {
-                                x: j * 38.4 + offset.x,
-                                y: i * 38.4 + offset.y
-                            }
-                        })
-                    )
-                }
-            })
-        })
-
-        // console.log(boundaries)
-
-        const imageMap = new Image();
-        imageMap.src= './images/mini-mapa.png' 
-        const imagePlayer = new Image(); 
-        imagePlayer.src = './images/redSprite.png'
+        let lastKey = ''
 
         class Sprite { 
             constructor({position,velocity, image, frames = {max: 1}}){
@@ -116,8 +86,34 @@
             }
         }
 
-        // canvas.width/2 - this.image.width/4,
-        // canvas.height/2 - this.image.height/4,
+        class Boundary {
+            constructor({position}){
+                this.position = position;
+                this.width = 38.4;
+                this.height = 38.4;
+            }
+            draw(){
+             c.fillStyle = 'red'
+             c.fillRect(this.position.x, this.position.y, this.width, this.height)
+            }
+        }
+
+        collisionsMap.forEach((row, i) => {
+            row.forEach((symbol, j) => {
+                if(symbol == 5){
+                    boundariesObjets.push(
+                        new Boundary({
+                            position: {
+                                x: j * 38.4 + offset.x,
+                                y: i * 38.4 + offset.y
+                            }
+                        })
+                    )
+                }
+            })
+        })
+
+        // console.log(boundariesObjets)
 
         const player = new Sprite({
             position: {
@@ -131,7 +127,7 @@
 
         })
 
-        const background = new Sprite({ // novo objeto de background contendo a imagem do mapa e o local onde ele vai aparecer
+        const background = new Sprite({ 
             position: {
                 x: offset.x,
                 y: offset.y
@@ -139,34 +135,45 @@
             image: imageMap
         })
 
-        const keys = { // objeto que declara os botões de movimentação como false para que eles só se movimentem quando realmente estiver pressionado
+        // const testBoundary = new Boundary({
+        //     position: {
+        //         x: 517,
+        //         y: 250
+        //     }
+        // })
+
+        const keys = {
             w: {pressed: false},
             a: {pressed: false},
             s: {pressed: false},
             d: {pressed: false}
         }
 
-        const testBoundary = new Boundary({
-            position: {
-                x: 517,
-                y: 250
-            }
-        })
-        const movables = [background, testBoundary]    
+        const movables = [background, ...boundariesObjets]    
 
-        function animate(){ // função que anima as imagens que fica redesenhando em recursão 
+        function retangularCollision({rectangle1, rectangle2}) {
+            return (
+                    rectangle1.position.x + rectangle1.width - 17 >= rectangle2.position.x 
+                    && rectangle1.position.x + 17 <= rectangle2.position.x + rectangle2.width 
+                    && rectangle1.position.y + rectangle1.height - 5 >= rectangle2.position.y 
+                    && rectangle1.position.y + 13 <= rectangle2.position.y + rectangle2.height
+                    )
+        }
+
+        function animate(){ 
             window.requestAnimationFrame(animate)
-            background.draw() // chamando objeto background que contem o mapa
-            // boundaries.forEach(limitz => { // gerar o array de fronteiras
-            //     limitz.draw()
-            //     // console.log(limitz)
-            // })
-            testBoundary.draw()
+            background.draw() 
+            boundariesObjets.forEach(limitz => { // gerar o array de fronteiras
+                limitz.draw()
+                // console.log(limitz)
+                if (retangularCollision({rectangle1: player, rectangle2: limitz})) {
+                        console.log('colidiu porra!!!')
+                } 
+            })
+            // testBoundary.draw()
             player.draw()
             
-            if (player.position.x + player.width >= testBoundary.position.x && player.position.x + player.width <= testBoundary.position.x + testBoundary.width) {
-                console.log('colidiu porra!!!')
-            } 
+           
 
             if (keys.w.pressed && lastKey === 'w') {
                 movables.forEach(jorge => {
@@ -188,9 +195,7 @@
 
             
         }
-        animate()
-
-        let lastKey = '' // funciona como uma verificação para qual a ultima tecla pressionada
+        animate() 
 
         window.addEventListener('keydown', (e) => { // essa função faz com que toda vez que a seta para baixo seja apertada chama a arrow function
                 switch (e.key) { // pelo que parece o uso aqui é facultativo, eu tentei com if e funcionou
@@ -232,12 +237,11 @@
 
 	})
 	
-
 </script>
 
 <main>
     <div id="desenho">
-        <canvas bind:this={canvas}></canvas> <!-- Chamar a tag canvas dentro html e dizer que essa tag vai ser referente as mudanças da tag canvas do JS -->
+        <canvas bind:this={canvas}></canvas> 
     </div>    
 </main>
 
