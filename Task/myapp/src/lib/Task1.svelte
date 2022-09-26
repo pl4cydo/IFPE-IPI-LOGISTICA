@@ -2,12 +2,40 @@
     <link rel="stylesheet" href="./styles/Task1.css">
 </svelte:head>
 <script>
+    const storageBoxes = [
+        {sClass: "storageBox", sData:"squareBox", sSrc: "/images/box2.png"},
+        {sClass: "storageBox", sData:"squareBox", sSrc: "/images/box2.png"},
+        {sClass: "storageBox", sData:"squareBox", sSrc: "/images/box2.png"},
+        {sClass: "storageBox", sData:"squareBox", sSrc: "/images/box2.png"},
+        {sClass: "storageBox", sData:"squareBox", sSrc: "/images/box2.png"},
+        {sClass: "storageBox", sData:"squareBox", sSrc: "/images/box2.png"},
+        {sClass: "storageBox", sData:"squareBox", sSrc: "/images/box2.png"},
+        {sClass: "storageBox", sData:"squareBox", sSrc: "/images/box2.png"},
+        {sClass: "storageBox", sData:"squareBox", sSrc: "/images/box2.png"},
+        {sClass: "storageBox", sData:"rectBox", sSrc: "/images/rect80px.png"},
+        {sClass: "storageBox", sData:"rectBox", sSrc: "/images/rect80px.png"},
+        {sClass: "storageBox", sData:"rectBox", sSrc: "/images/rect80px.png"},
+        {sClass: "storageBox", sData:"rectBox", sSrc: "/images/rect80px.png"},
+        {sClass: "storageBox", sData:"rectBox", sSrc: "/images/rect80px.png"},
+        {sClass: "storageBox", sData:"rectBox", sSrc: "/images/rect80px.png"}
+
+    ]
+    const areaBoxes =[
+        {areaClass:"box", areaData:"squareBox", imgSrc: "/images/box2.png", imgClass:"boxImage"},
+        {areaClass:"box", areaData:"squareBox", imgSrc: "/images/box2.png", imgClass:"boxImage"},
+        {areaClass:"box", areaData:"squareBox", imgSrc: "/images/box2.png", imgClass:"boxImage"},
+        {areaClass:"box", areaData:"squareBox", imgSrc: "/images/box2.png", imgClass:"boxImage"},
+        {areaClass:"box", areaData:"squareBox", imgSrc: "/images/box2.png", imgClass:"boxImage"},
+        {areaClass:"box", areaData:"squareBox", imgSrc: "/images/box2.png", imgClass:"boxImage"},
+        {areaClass:"box", areaData:"squareBox", imgSrc: "/images/box2.png", imgClass:"boxImage"},
+        {areaClass:"box", areaData:"squareBox", imgSrc: "/images/box2.png", imgClass:"boxImage"},
+        {areaClass:"box", areaData:"squareBox", imgSrc: "/images/box2.png", imgClass:"boxImage"}
+    ]
+    
     let areaLock = false
     let clickLock = true
     let selectedBox
     let selectedArea
-
-    
 
     function openStorage(){
         let storage = document.getElementById("storage")
@@ -60,15 +88,9 @@
         <div id="taskPallet">
             <div id="palletBoxes">
                 <div class="boxes">
-                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
-                    <div on:click={selectArea} class="box" data-Type="squareBox"><img class="boxImage" src="/images/box2.png" alt=""></div>
+                    {#each areaBoxes as {areaClass, areaData, imgSrc, imgClass} }
+                        <div on:click={selectArea} class={areaClass} data-Type={areaData}><img class={imgClass} src={imgSrc} alt="box"></div>
+                    {/each}
                 </div>
                 <img id="palletTask" src="./images/pallet-250px.png" alt="">
             </div>
@@ -77,21 +99,9 @@
         <div id="storage">
             <div on:click={closeStorage} id="closeBtn">X</div>
             <div class="storageBoxes">
-                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="squareBox" class="storageBox"><img src="/images/box2.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
-                <div on:click={selectBox} data-Type="rectBox" class="storageBox"><img src="/images/rect80px.png" alt="box"></div>
+                {#each storageBoxes as {sClass,sData,sSrc} }
+                <div on:click={selectBox} data-Type={sData} class={sClass}><img src={sSrc} alt="box"></div>
+                {/each}
             </div>
         </div> <!--storage-->
     </div>
