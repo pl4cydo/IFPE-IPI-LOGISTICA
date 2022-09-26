@@ -2,7 +2,6 @@
     // TO DO: resolver movimentaçaõ com capslock
 
 	import { onMount } from 'svelte'; // importando a função onMount da biblioteca do svelte para poder usar o canvas
-   
 	let canvas; // declarando uma variavel para o canvas
 	
     const collisionsMap = [
@@ -135,13 +134,6 @@
             image: imageMap
         })
 
-        // const testBoundary = new Boundary({
-        //     position: {
-        //         x: 517,
-        //         y: 250
-        //     }
-        // })
-
         const keys = {
             w: {pressed: false},
             a: {pressed: false},
@@ -166,31 +158,113 @@
             boundariesObjets.forEach(limitz => { // gerar o array de fronteiras
                 limitz.draw()
                 // console.log(limitz)
-                if (retangularCollision({rectangle1: player, rectangle2: limitz})) {
-                        console.log('colidiu porra!!!')
-                } 
+               
             })
             // testBoundary.draw()
             player.draw()
             
            
-
+            let moving = true
             if (keys.w.pressed && lastKey === 'w') {
-                movables.forEach(jorge => {
+                for (let i = 0; i < boundariesObjets.length; i++){
+                    const limitz = boundariesObjets[i]
+                    if (
+                        retangularCollision({
+                            rectangle1: player,
+                            rectangle2: {
+                                ...limitz,
+                                position: {
+                                    x: limitz.position.x,
+                                    y: limitz.position.y
+                                }
+                            }
+                        })
+                    ) {
+                    console.log('colidiu porra!!!')
+                    moving = false
+                    break
+                } 
+                }
+                if(moving) {
+                    movables.forEach(jorge => {
                     jorge.position.y += 3
                 })
+                }
             } else if (keys.s.pressed && lastKey === 's') {
-                movables.forEach(jorge => {
-                    jorge.position.y -= 3
-                })
+                for (let i = 0; i < boundariesObjets.length; i++){
+                    const limitz = boundariesObjets[i]
+                    if (
+                        retangularCollision({
+                            rectangle1: player,
+                            rectangle2: {
+                                ...limitz,
+                                position: {
+                                    x: limitz.position.x,
+                                    y: limitz.position.y
+                                }
+                            }
+                        })
+                    ) {
+                    console.log('colidiu porra!!!')
+                    moving = false
+                    break
+                } 
+                }
+                if(moving) {
+                    movables.forEach(jorge => {
+                        jorge.position.y -= 3
+                    })
+                }
             } else if (keys.a.pressed && lastKey === 'a') {
-                movables.forEach(jorge => {
-                    jorge.position.x += 3
-                })
+                for (let i = 0; i < boundariesObjets.length; i++){
+                    const limitz = boundariesObjets[i]
+                    if (
+                        retangularCollision({
+                            rectangle1: player,
+                            rectangle2: {
+                                ...limitz,
+                                position: {
+                                    x: limitz.position.x,
+                                    y: limitz.position.y
+                                }
+                            }
+                        })
+                    ) {
+                    console.log('colidiu porra!!!')
+                    moving = false
+                    break
+                } 
+                }
+                if(moving) {
+                    movables.forEach(jorge => {
+                        jorge.position.x += 3
+                    })
+                }
             } else if (keys.d.pressed && lastKey === 'd') {
-                movables.forEach(jorge => {
-                    jorge.position.x -= 3
-                })
+                for (let i = 0; i < boundariesObjets.length; i++){
+                    const limitz = boundariesObjets[i]
+                    if (
+                        retangularCollision({
+                            rectangle1: player,
+                            rectangle2: {
+                                ...limitz,
+                                position: {
+                                    x: limitz.position.x,
+                                    y: limitz.position.y
+                                }
+                            }
+                        })
+                    ) {
+                    console.log('colidiu porra!!!')
+                    moving = false
+                    break
+                } 
+                }
+                if(moving) {
+                    movables.forEach(jorge => {
+                        jorge.position.x -= 3
+                    })
+                }
             }    
 
             
