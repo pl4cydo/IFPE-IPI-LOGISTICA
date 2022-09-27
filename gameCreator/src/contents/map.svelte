@@ -45,7 +45,7 @@
         const imageMap = new Image();
         imageMap.src= './images/mini-mapa.png' 
         const imagePlayer = new Image(); 
-        imagePlayer.src = './images/redSprite.png'
+        imagePlayer.src = './images/redSpriteDOWN.png'
 
         const boundariesObjets = [];
 
@@ -57,31 +57,44 @@
         let lastKey = ''
 
         class Sprite { 
-            constructor({position,velocity, image, frames = {max: 1}}){
+            constructor({position, velocity, image, frames = {max: 1}}){
                 this.position = position;
                 this.image = image;
-                this.frames = frames;
-
+                this.frames = { 
+                            ...frames,
+                            val: 0,
+                            elapsed: 0
+                            };
                 this.image.onload = () => {
                     this.width = this.image.width / this.frames.max
-                    this.height = this.image.height / this.frames.max
-                    // console.log(this.width);
-                    // console.log(this.height);
+                    this.height = this.image.height
                 }
+                this.moving = false 
             }
 
             draw(){
-             c.drawImage(
-                this.image,
-                0, 
-                0, 
-                this.image.width / this.frames.max, 
-                this.image.height / this.frames.max,
-                this.position.x,
-                this.position.y,
-                this.image.width / this.frames.max,
-                this.image.height / this.frames.max, 
+                c.drawImage(
+                    this.image,
+                    this.frames.val * this.width, 
+                    0, 
+                    this.image.width / this.frames.max, 
+                    this.image.height,
+                    this.position.x,
+                    this.position.y,
+                    this.image.width / this.frames.max,
+                    this.image.height, 
                 )
+
+                if (this.moving) {
+                    if ( this.frames.max > 1) {
+                        this.frames.elapsed++
+                    }
+
+                    if  ( this.frames.elapsed % 10 == 0) {
+                        if (this.frames.val < this.frames.max - 1) this.frames.val++
+                        else this.frames.val = 0
+                    }
+                }
             }
         }
 
@@ -92,7 +105,7 @@
                 this.height = 38.4;
             }
             draw(){
-             c.fillStyle = 'red'
+             c.fillStyle = 'rgba(255, 0, 0, 0.1)'
              c.fillRect(this.position.x, this.position.y, this.width, this.height)
             }
         }
@@ -143,11 +156,11 @@
 
         const movables = [background, ...boundariesObjets]    
 
-        function retangularCollision({rectangle1, rectangle2}) {
+        function rectangularCollision({rectangle1, rectangle2}) {
             return (
                     rectangle1.position.x + rectangle1.width - 17 >= rectangle2.position.x 
                     && rectangle1.position.x + 17 <= rectangle2.position.x + rectangle2.width 
-                    && rectangle1.position.y + rectangle1.height - 5 >= rectangle2.position.y 
+                    && rectangle1.position.y + rectangle1.height >= rectangle2.position.y 
                     && rectangle1.position.y + 13 <= rectangle2.position.y + rectangle2.height
                     )
         }
@@ -158,57 +171,55 @@
             boundariesObjets.forEach(limitz => { // gerar o array de fronteiras
                 limitz.draw()
                 // console.log(limitz)
-               
+                
             })
             // testBoundary.draw()
             player.draw()
             
-           
+            
             let moving = true
             if (keys.w.pressed && lastKey === 'w') {
                 for (let i = 0; i < boundariesObjets.length; i++){
                     const limitz = boundariesObjets[i]
                     if (
-                        retangularCollision({
+                        rectangularCollision({
                             rectangle1: player,
                             rectangle2: {
                                 ...limitz,
                                 position: {
                                     x: limitz.position.x,
-                                    y: limitz.position.y
+                                    y: limitz.position.y + 3
                                 }
                             }
                         })
                     ) {
-                    console.log('colidiu porra!!!')
-                    moving = false
-                    break
-                } 
+                        moving = false
+                        break
+                    } 
                 }
                 if(moving) {
                     movables.forEach(jorge => {
-                    jorge.position.y += 3
-                })
+                        jorge.position.y += 3
+                    })
                 }
             } else if (keys.s.pressed && lastKey === 's') {
                 for (let i = 0; i < boundariesObjets.length; i++){
                     const limitz = boundariesObjets[i]
                     if (
-                        retangularCollision({
+                        rectangularCollision({
                             rectangle1: player,
                             rectangle2: {
                                 ...limitz,
                                 position: {
                                     x: limitz.position.x,
-                                    y: limitz.position.y
+                                    y: limitz.position.y - 3 
                                 }
                             }
                         })
                     ) {
-                    console.log('colidiu porra!!!')
-                    moving = false
-                    break
-                } 
+                        moving = false
+                        break
+                    } 
                 }
                 if(moving) {
                     movables.forEach(jorge => {
@@ -219,21 +230,20 @@
                 for (let i = 0; i < boundariesObjets.length; i++){
                     const limitz = boundariesObjets[i]
                     if (
-                        retangularCollision({
+                        rectangularCollision({
                             rectangle1: player,
                             rectangle2: {
                                 ...limitz,
                                 position: {
-                                    x: limitz.position.x,
-                                    y: limitz.position.y
+                                    x: limitz.position.x + 3,
+                                    y: limitz.position.y 
                                 }
                             }
                         })
                     ) {
-                    console.log('colidiu porra!!!')
-                    moving = false
-                    break
-                } 
+                        moving = false
+                        break
+                    } 
                 }
                 if(moving) {
                     movables.forEach(jorge => {
@@ -244,21 +254,20 @@
                 for (let i = 0; i < boundariesObjets.length; i++){
                     const limitz = boundariesObjets[i]
                     if (
-                        retangularCollision({
+                        rectangularCollision({
                             rectangle1: player,
                             rectangle2: {
                                 ...limitz,
                                 position: {
-                                    x: limitz.position.x,
+                                    x: limitz.position.x - 3,
                                     y: limitz.position.y
                                 }
                             }
                         })
                     ) {
-                    console.log('colidiu porra!!!')
-                    moving = false
-                    break
-                } 
+                        moving = false
+                        break
+                    } 
                 }
                 if(moving) {
                     movables.forEach(jorge => {
