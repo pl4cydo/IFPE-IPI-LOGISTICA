@@ -11,8 +11,8 @@
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 0, 5, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 5, 5, 5, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0],
@@ -22,8 +22,8 @@
     [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 5, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 5, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 5, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 5, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 5, 0, 5, 5, 5, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 5, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 5, 0, 0, 5, 5, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 5, 5, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0],
@@ -36,8 +36,6 @@
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
-
-    const arrayPlayerImage = ['./images/redSpriteDOWN.png', './images/redSpriteLEFT.png', './images/redSpriteUP.png', './images/redSpriteRIGTH.png']
 
 	onMount(() => { // chamando a função onde o canvas vai ser posto
         canvas.width = 1024; // tamanho da largura do canvas
@@ -62,6 +60,7 @@
         imageRIGHTPlayer.src = './images/redSpriteRIGHT.png'
 
         const boundariesObjets = [];
+        const tasksObjects = [];
 
         const offset = {
             x: -635,
@@ -118,7 +117,7 @@
                 this.height = 38.4;
             }
             draw(){
-             c.fillStyle = 'rgba(255, 0, 0, 0)'
+             c.fillStyle = 'rgba(255, 0, 0, 0.2)'
              c.fillRect(this.position.x, this.position.y, this.width, this.height)
             }
         }
@@ -138,6 +137,36 @@
             })
         })
 
+        class Tasks {
+            constructor({position}) {
+                this.position = position;
+                this.width = 38.4;
+                this.height = 38.4;
+            }
+            draw() {
+                c.fillStyle = 'rgba(0, 0, 255, 0.5)'
+                c.fillRect(this.position.x, this.position.y, this.width, this.height)
+            }
+            toVivo() {
+                console.log('to vivo')
+            }
+        }
+
+        collisionsMap.forEach((jorge, i) => {
+            jorge.forEach((vasco, j) => {
+                if (vasco == 4) {
+                    console.log(vasco)
+                    tasksObjects.push(
+                        new Tasks({
+                            position: {
+                                x: j * 38.4 + offset.x,
+                                y: i * 38.4 + offset.y
+                            }
+                        }) 
+                )
+                }
+            })
+        })
         // console.log(boundariesObjets)
 
         const player = new Sprite({
@@ -172,7 +201,7 @@
             d: {pressed: false}
         }
 
-        const movables = [background, ...boundariesObjets]    
+        const movables = [background, ...boundariesObjets, ...tasksObjects]    
 
         function rectangularCollision({rectangle1, rectangle2}) {
             return (
@@ -188,12 +217,12 @@
             background.draw() 
             boundariesObjets.forEach(limitz => { // gerar o array de fronteiras
                 limitz.draw()
-                // console.log(limitz)
-                
             })
-            // testBoundary.draw()
+            tasksObjects.forEach(jorge => {
+                jorge.draw()
+            })
+
             player.draw()
-            
             
             let moving = true
             player.moving = false
