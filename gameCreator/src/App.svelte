@@ -1,10 +1,10 @@
 <script>
-	import Map from './contents/map.svelte'
-  import MapTest from './mapa1.svelte'
+	import MapTest from './backup/mapTest.svelte'
+  import Map from './contents/map.svelte'
 </script>
 
 <main>
   <!-- <Array/> -->
-  <Map/>
-  <!-- <MapTest/> -->
+  <!-- <Map/> -->
+  <MapTest/>
 </main>

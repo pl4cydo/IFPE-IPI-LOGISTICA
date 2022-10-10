@@ -20,7 +20,7 @@
     [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 5, 5, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 5, 5, 5, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 5, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 5, 0, 0, 5, 5, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 5, 0, 0, 0, 0],
@@ -68,6 +68,11 @@
         const offset = {
             x: -635,
             y: -370
+        }
+
+        const life = {
+            base: 100,
+            realTime: 100
         }
 
         //classes das imagens para gerar os movimentos
@@ -120,7 +125,7 @@
                 this.height = 38.4;
             }
             draw(){
-             c.fillStyle = 'rgba(255, 0, 0, 0.2)'
+             c.fillStyle = 'rgba(255, 0, 0, 0)'
              c.fillRect(this.position.x, this.position.y, this.width, this.height)
             }
         }
@@ -145,13 +150,11 @@
                 this.position = position;
                 this.width = 38.4;
                 this.height = 38.4;
+                this.contato = false;
             }
             draw() {
-                c.fillStyle = 'rgba(0, 0, 255, 0.5)'
+                c.fillStyle = 'rgba(0, 255, 0, 0.5)'
                 c.fillRect(this.position.x, this.position.y, this.width, this.height)
-            }
-            toVivo() {
-                console.log('to vivo')
             }
         }
 
@@ -200,8 +203,10 @@
             w: {pressed: false},
             a: {pressed: false},
             s: {pressed: false},
-            d: {pressed: false}
+            d: {pressed: false},
+            o: {pressed: false}
         }
+
 
         const movables = [background, ...boundariesObjets, ...tasksObjects]    
 
@@ -215,6 +220,7 @@
         }
 
         function animate(){ 
+            
             window.requestAnimationFrame(animate)
             background.draw() 
             boundariesObjets.forEach(limitz => { // gerar o array de fronteiras
@@ -226,6 +232,25 @@
 
             player.draw()
             
+            function taskColid(){
+                for(let i = 0; i < tasksObjects.length; i++){
+                    const jorge = tasksObjects[i];
+                    if(rectangularCollision({
+                        rectangle1: player,
+                        rectangle2: jorge
+                        })) {
+                        if(keys.o.pressed){
+                            console.log("deu certo")
+                            
+                        }
+                        life.realTime -= 1
+                        console.log(life.realTime)
+                        if( life.realTime <= 0) life.realTime = life.base
+                    }
+                }  
+            }
+
+
             let moving = true
             player.moving = false
             if (keys.w.pressed && lastKey === 'w') {
@@ -245,15 +270,21 @@
                             }
                         })
                     ) {
+                        
                         moving = false
                         break
+
                     } 
                 }
                 if(moving) {
-                    movables.forEach(jorge => {
-                        jorge.position.y += 1.7
+                    movables.forEach(movi => {
+                        taskColid()
+                        movi.position.y += 1.7
                     })
                 }
+
+                
+
             } else if (keys.s.pressed && lastKey === 's') {
                 player.moving = true
                 player.image = player.sprites.down
@@ -271,15 +302,18 @@
                             }
                         })
                     ) {
+                        
                         moving = false
                         break
                     } 
                 }
                 if(moving) {
                     movables.forEach(jorge => {
+                        taskColid()
                         jorge.position.y -= 1.7
                     })
                 }
+                
             } else if (keys.a.pressed && lastKey === 'a') {
                 player.moving = true
                 player.image = player.sprites.left
@@ -304,8 +338,11 @@
                 if(moving) {
                     movables.forEach(jorge => {
                         jorge.position.x += 1.7
+                        taskColid()
                     })
                 }
+                
+                
             } else if (keys.d.pressed && lastKey === 'd') {
                 player.moving = true
                 player.image = player.sprites.right
@@ -330,13 +367,13 @@
                 if(moving) {
                     movables.forEach(jorge => {
                         jorge.position.x -= 1.7
+                        taskColid()
                     })
                 }
             }    
-
-            
         }
         animate() 
+
 
         window.addEventListener('keydown', (e) => { // essa função faz com que toda vez que a seta para baixo seja apertada chama a arrow function
                 switch (e.key) { // pelo que parece o uso aqui é facultativo, eu tentei com if e funcionou
@@ -356,6 +393,9 @@
                         keys.d.pressed = true
                         lastKey = 'd'
                         break
+                    case ' ':
+                        keys.o.pressed = true
+                        break
                 }
         })
 
@@ -372,6 +412,9 @@
                         break
                     case 'd': 
                         keys.d.pressed = false
+                        break
+                    case ' ':
+                        keys.o.pressed = false
                         break
                 }
         })
