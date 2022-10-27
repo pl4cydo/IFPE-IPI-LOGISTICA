@@ -1,7 +1,8 @@
 <script>
-    import Task1 from "./lib/Task1.svelte";
+  import EpiTask from "./lib/EpiTask.svelte";
+  import Task1 from "./lib/Task1.svelte";
 </script>
 <main>
-  <Task1/>
+  <EpiTask/>
 
 </main>
