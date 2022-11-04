@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+div#recContainer{
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    width: 100vw;
+    height: 100vh;
+}
+div#recScreen{
+    position: relative;
+    background: #574f4f;
+    background-image: url("/images/doca768.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border: solid black 5px;
+    height: 80%;
+    width: 60%;
+}
+div#blackScreen{
+    display: none;
+    opacity: 0%;
+    position: absolute;
+    width: 60%;
+    height: 80%;
+    background-color: #000000;
+}
+#dialogueArea{
+    display: flex;
+    font-family: 'VT323', monospace;
+    width: 100%;
+    height: 25%;
+    position: absolute;
+    bottom: 0;
+    background: white;
+    border-top: solid black 2px;
+    font-size: 1.5em;
+}
+#dialogueBox{
+    display: flex;
+    width: 80%;
+    height: 25%;
+    padding: 15px;
+}
+
+#btnArea{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+#skipBtn{
+    cursor: pointer;
+    padding: 5px;
+}
+
+.opacityAnimation{
+    animation: darkAnimation 4s ease-in-out forwards;
+}
+
+@keyframes darkAnimation {
+    0%{ opacity: 0% ;}
+    50%{ opacity: 100%; }
+    100%{ opacity: 0%; }
+}
+
+@media (max-width:768px){  
+    #recScreen{
+        background-size: auto;
+    } 
+    #dialogueBox{
+        font-size: 1em;
+        
+    } 
+  
+    div#recContainer{
+        background-color: red;
+    }
+}

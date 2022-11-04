@@ -154,6 +154,10 @@
     function taskFInished(){
         if(worker.helmet && worker.glasses && worker.colete && worker.glove){
             console.log("tudo equipado")
+            setInterval(() => {
+                document.getElementById("epiContainer").style.display = "none"
+                
+            }, 2500);
         }
     }
 </script>
