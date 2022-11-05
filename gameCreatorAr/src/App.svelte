@@ -1,15 +1,15 @@
 <script>
   import MapTest from "./backup/mapTest.svelte";
-  import Map from "./contents/map.svelte";
+  var tela = {x:window.screen.width, y:window.screen.height}
   var estado;
   var arrow = 0;
-  console.log(estado)
 </script>
-<div class="container">
+{#if tela.x < 1020 || tela.y < 800}
+<div><p style="text-align:center; font-family:'VT323', monospace; font-size:100px; color:gray">A TELA NAO E COMPATIVEL</p></div>
+{:else}
   <header>
     <nav>
       <div class="nav-container">
-        <h1 id="title">LOGÍSTICA</h1>
         <img id="logo" src="./images/worker.png" alt="trabaiador" />
         <ul>
           <li on:click={()=> estado = "Ranking"}>Ranking Global</li>
@@ -19,14 +19,17 @@
       </div>
     </nav>
   </header>
-  <div id="task">
-    <h1>ATIVIDADES A FAZER</h1>
-  </div>
 
-  <main>
+<div id="task">
+  <h1>ATIVIDADES A FAZER</h1>
+</div>
+
+<main>
     {#if estado === undefined}
-    <button id="jogar"on:click={()=> estado = "Jogar"}>JOGAR</button>
-    <button id="menu"on:click={()=> estado = "Menu"}>MENU</button>
+    <div id="buttonList">
+      <button id="jogar"on:click={()=> estado = "Jogar"}>JOGAR</button>
+      <button id="menu"on:click={()=> estado = "Menu"}>MENU</button>
+    </div>
     {:else if estado === "Ranking"}
       <div id="rank">
         <h1 id="titulo">RANK (TURMA)</h1>
@@ -57,8 +60,8 @@
           <li>3:50</li> 
         </ol>
       </div>
-    {:else if estado === "comoJogar"}
-    <div id="comoJogar">
+      {:else if estado === "comoJogar"}
+      <div id="comoJogar">
       {#if arrow == 0}
       <p id="teste">Controles</p>
       {:else if arrow === 1}
@@ -76,30 +79,11 @@
     {:else if estado === "Jogar"}
       <MapTest/>
     {/if}
-  </main>
-</div>
-
+</main>
+{/if}
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=VT323&display=swap');
-
-  .container {
-    max-width: 1920px;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  #title{
-    position: relative;
-    color: #666;
-    left: 44%;
-    line-height: 100px;
-    margin: 0 0;
-    font-size: 60px;
-    width: 0px;
-    height: 0px;
-    font-family:'VT323', monospace;
-  }
 
   header {
     position: absolute;
@@ -125,11 +109,9 @@
   }
 
   .nav-container {
-    max-width: 1900px;
+    max-width: 1800px;
     width: 100%;
-    position: relative;
-    margin-right: auto;
-    margin-left: auto;
+    height: 100%;
   }
 
   #logo {
@@ -171,18 +153,18 @@
     color: #fff;
     font-family: 'VT323', monospace;
   }
-
+  #buttonList{
+    width: 375px;
+    height:auto;
+  }
   main {
-    padding: 0;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    position: absolute;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   }
 
   #rank {
@@ -193,7 +175,6 @@
     max-height: 720px;
     background-color: gray;
     display: flex;
-    overflow: hidden;
   }
 
   #titulo {
@@ -204,19 +185,8 @@
     font-family: 'VT323', monospace;
     white-space: nowrap;
   }
-
-  #menu{
-    font-size: 80px;
-    color: #000;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(43, 43, 167);
-    font-size: 180px;
-    font-family: 'VT323', monospace;
-    position: absolute;
-    top: 60%;
-  }
-
+  
+  
   .listRank{
     position: relative;
     text-align: center;
@@ -235,16 +205,16 @@
     top: 20%;
     left: 30%;
   }
-
+  
   #turma {
     top: 20%;
     left: 45%;
   }
-
+  
   #rank ol li {
     font-size: 30px;
   }
-
+  
   #comoJogar{
     position: relative;
     width: 100%;
@@ -261,7 +231,6 @@
     left: 45%;
     max-height: 0;
     margin: 0;
-    overflow-x: visible;
   }
 
   #jogar{
@@ -271,6 +240,17 @@
     background-color: green;
     font-size: 180px;
     font-family: 'VT323', monospace;
+  }
+  
+  #menu{ 
+    position: relative; 
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(43, 43, 167);
+    font-size: 180px;
+    font-family: 'VT323', monospace;
+    left: 35px;
   }
 
   #esq{

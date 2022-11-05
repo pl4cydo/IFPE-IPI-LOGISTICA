@@ -35,7 +35,7 @@
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
-
+    
 	onMount(() => { // chamando a função onde o canvas vai ser posto
         canvas.width = 1024; // tamanho da largura do canvas
         canvas.height = 720; // tamanho da altura do canvas

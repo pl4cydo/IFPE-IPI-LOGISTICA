@@ -386,7 +386,6 @@
             } else if (keys.s.pressed && lastKey === "s") {
                 player.moving = true;
                 player.image = player.sprites.down;
-                console.log("ssssss");
                 for (let i = 0; i < boundariesObjets.length; i++) {
                     const limitz = boundariesObjets[i];
                     if (
@@ -524,7 +523,6 @@
         window.addEventListener("keydown", (e) => {
             console.log(e.key);
             if (e.key === "Tab") {
-                console.log("fresco");
                 galopa = true;
             }
             if (e.key === "y") {
@@ -549,7 +547,6 @@
                 keys.a.pressed = true;
                 lastKey = "a";
                 background.position.x += 1;
-                console.log("viadop");
             } else if (!bolea.Tx && galopa) {
                 keys.a.pressed = false;
                 keys.d.pressed = false;
@@ -615,13 +612,12 @@
 </div>
 
 <style>
-    * {
-        padding: 0;
-        margin: 0;
-    }
+   
     #desenho {
-        position: static;
-        width: 1024px;
-        height: 720px;
+        position: absolute;
+        max-width: 1024px;
+        max-height: 720px;
+        height: 100%;
+        width: 100%;
     }
 </style>
