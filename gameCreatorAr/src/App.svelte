@@ -3,14 +3,24 @@
   var tela = {x:window.screen.width, y:window.screen.height}
   var estado;
   var arrow = 0;
+ function screnn(){
+  window.requestAnimationFrame(screnn)
+tela.x = window.screen.width; tela.y = window.screen.height
+console.log("boa noite")
+    }
+screnn()
 </script>
-{#if tela.x < 1020 || tela.y < 800}
+
+{#if tela.x < 1160 || tela.y < 910}
 <div><p style="text-align:center; font-family:'VT323', monospace; font-size:100px; color:gray">A TELA NAO E COMPATIVEL</p></div>
 {:else}
   <header>
     <nav>
       <div class="nav-container">
-        <img id="logo" src="./images/worker.png" alt="trabaiador" />
+        <span>
+          <h1>LOGISTICA</h1>
+        </span>
+        <img id="logo" src="./images/worker.png" alt="trabaiador"/>
         <ul>
           <li on:click={()=> estado = "Ranking"}>Ranking Global</li>
           <li on:click={()=> estado = "comoJogar"}>Como Jogar</li>
@@ -60,6 +70,7 @@
           <li>3:50</li> 
         </ol>
       </div>
+
       {:else if estado === "comoJogar"}
       <div id="comoJogar">
       {#if arrow == 0}
@@ -76,6 +87,7 @@
       <img src="./images/seta.png" alt="retroceder" id="esq" on:click={() => arrow--}>
       {/if}
     </div>
+
     {:else if estado === "Jogar"}
       <MapTest/>
     {/if}
@@ -86,7 +98,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=VT323&display=swap');
 
   header {
-    position: absolute;
+    position: relative;
     top: 0;
     height: auto;
     width: 100%;
@@ -109,9 +121,23 @@
   }
 
   .nav-container {
-    max-width: 1800px;
+    max-width:1900px;
     width: 100%;
     height: 100%;
+  }
+
+  span{
+    display: flex;
+    justify-content: center;
+    color: #666;
+    font-family: 'VT323', monospace;
+  }
+  
+  .nav-container h1{
+    position: absolute;
+    margin: 0;
+    top: 15px;
+    font-size: 60px;
   }
 
   #logo {
@@ -130,20 +156,20 @@
   .nav-container li {
     list-style: none;
     float: left;
-    margin: 0 30px;
     cursor: pointer;
-    color: #666;
+    margin: 0 30px;
     font-size: 25px;
+    color: #666;
     font-family: 'VT323', monospace;
   }
 
   #task{
+    position: absolute;
+    float: left;
     top: 90px;
     max-width: 300px;
     width: 100%;
     background-color: rgb(71, 64, 64);
-    position: absolute;
-    float: left;
   }
 
   #task h1{
@@ -153,10 +179,12 @@
     color: #fff;
     font-family: 'VT323', monospace;
   }
+
   #buttonList{
     width: 375px;
     height:auto;
   }
+
   main {
   position: absolute;
   width: 100vw;
