@@ -1,3 +1,6 @@
+<svelte:head>
+  <link rel="stylesheet" href="./styles/home.css">
+</svelte:head>
 <script>
   import MapTest from "./backup/mapTest.svelte";
   var tela = {x:window.screen.width, y:window.screen.height}
@@ -18,11 +21,13 @@
   <header>
     <nav>
       <div class="nav-container">
-        <span>
-          <h1>LOGISTICA</h1>
-        </span>
-        <img id="logo" src="./images/worker.png" alt="trabalhador"/>
-        <img id="att" src="./images/checklist.png" alt="Lista de atividades">
+        <div id="icones">
+          <img id="logo" src="./images/worker.png" alt="trabalhador"/>
+          <img id="att" src="./images/checklist.png" alt="Lista de atividades">
+        </div>
+
+          <h1><span>LOGISTICA</span></h1>
+        
         <ul>
           <li on:click={()=> estado = "Ranking"}>Ranking Global</li>
           <li on:click={()=> estado = "comoJogar"}>Como Jogar</li>
@@ -97,224 +102,4 @@
 </main>
 {/if}
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=VT323&display=swap');
-
-  #container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    height: 92px;
-  }
-  
-  header {
-    position: relative;
-    top: 0;
-    height: 92px;
-    width: 80%;
-  }
-
-  nav {
-    position: fixed;
-    top: 0;
-    height: 92px;
-    width: 100%;
-    z-index: 1;
-    background-color: rgba(17, 16, 16, 0.926);
-    user-select: none;
-  }
-
-  nav::after {
-    clear: both;
-    content: "";
-    display: block;
-  }
-
-  .nav-container {
-    width: 100%;
-    height: 100%;
-  }
-
-  span{
-    display: flex;
-    justify-content: center;
-    color: #666;
-    font-family: 'VT323', monospace;
-  }
-  
-  .nav-container h1{
-    position: absolute;
-    margin: 0;
-    top: 15px;
-    font-size: 60px;
-  }
-
-  #logo {
-    width: 50px;
-    height: 50px;
-    margin-top: 20px;
-    margin-left: 90px;
-  }
-
-  #att{
-    width: 50px;
-    height: 50px;
-    margin-top: 20px;
-    
-  }
-  .nav-container ul {
-    float: right;
-    line-height: 100px;
-    margin: 0;
-  }
-
-  .nav-container li {
-    list-style: none;
-    float: left;
-    cursor: pointer;
-    margin: 0 30px;
-    font-size: 25px;
-    color: #666;
-    font-family: 'VT323', monospace;
-  }
-
-  #task{
-    position: absolute;
-    float: left;
-    top: 90px;
-    max-width: 300px;
-    width: 100%;
-    background-color: rgb(71, 64, 64);
-  }
-
-  #task h1{
-    position: relative;
-    text-align: center;
-    font-size: 30px;
-    color: #fff;
-    font-family: 'VT323', monospace;
-  }
-
-  #buttonList{
-    width: 375px;
-    height:auto;
-  }
-
-  main {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #rank {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    max-width: 1024px;
-    max-height: 720px;
-    background-color: gray;
-    display: flex;
-  }
-  
-  #titulo {
-    position: absolute;
-    left: 30%;
-    font-size: 80px;
-    color: #fff;
-    font-family: 'VT323', monospace;
-    white-space: nowrap;
-  }
-  
-  
-  .listRank{
-    position: relative;
-    text-align: center;
-    list-style: none;
-    font-size: 20px;
-    font-family: 'VT323', monospace;
-    color: #fff;
-  }
-  
-  #nome {
-    top: 20%;
-    left: 10%;
-  }
-  
-  #tempo {
-    top: 20%;
-    left: 30%;
-  }
-  
-  #turma {
-    top: 20%;
-    left: 45%;
-  }
-  
-  #rank ol li {
-    font-size: 30px;
-  }
-  
-  #comoJogar{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    max-width: 1024px;
-    max-height: 720px;
-    display: flex; 
-    border-style: solid;
-  }
-  
-  #teste {
-    position: relative;
-    top: 45%;
-    left: 45%;
-    max-height: 0;
-    margin: 0;
-  }
-  
-  #jogar{
-    color: #000;
-    border: none;
-    border-radius: 5px;
-    background-color: green;
-    font-size: 180px;
-    font-family: 'VT323', monospace;
-  }
-  
-  #menu{ 
-    position: relative; 
-    color: #000;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(43, 43, 167);
-    font-size: 180px;
-    font-family: 'VT323', monospace;
-    left: 35px;
-  }
-  
-  #esq{
-    position: absolute;
-    top: 90%;
-    left: 10%;
-    transform: rotateY(180deg);
-  }
-  
-  #dir{
-    position: absolute;
-    top: 90%;
-    left: 80%;
-  }
-  @media only screen and (max-width:1280px){
-     #task{
-       display: none;
-     }
-     #att{
-       display: flex;
-       margin: 0;
-     }
-  }
 </style>

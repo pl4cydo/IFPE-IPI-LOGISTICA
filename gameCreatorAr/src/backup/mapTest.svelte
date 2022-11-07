@@ -128,8 +128,8 @@
 
     onMount(() => {
         // chamando a função onde o canvas vai ser posto
-        canvas.width = 1024; // tamanho da largura do canvas
-        canvas.height = 720; // tamanho da altura do canvas
+        canvas.width = innerWidth * 0.60; // tamanho da largura do canvas
+        canvas.height = innerHeight * 0.80; // tamanho da altura do canvas
         const c = canvas.getContext("2d"); // criando uma variavel e chamando o canvas para declarar o contexto 2D
         let lastKey = "";
 
@@ -614,10 +614,10 @@
 <style>
    
     #desenho {
-        position: absolute;
-        max-width: 1024px;
-        max-height: 720px;
-        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height:100%;
         width: 100%;
     }
 </style>
