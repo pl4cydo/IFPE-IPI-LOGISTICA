@@ -3,24 +3,26 @@
   var tela = {x:window.screen.width, y:window.screen.height}
   var estado;
   var arrow = 0;
- function screnn(){
-  window.requestAnimationFrame(screnn)
-tela.x = window.screen.width; tela.y = window.screen.height
-console.log("boa noite")
-    }
-screnn()
+
+  window.addEventListener("resize", (e) => {
+    tela.x = window.screen.width; tela.y = window.screen.height
+    console.log("boa noite")
+    })
+
 </script>
 
-{#if tela.x < 1160 || tela.y < 910}
+{#if tela.x < 1024 || tela.y < 720}
 <div><p style="text-align:center; font-family:'VT323', monospace; font-size:100px; color:gray">A TELA NAO E COMPATIVEL</p></div>
 {:else}
+<div id="container">
   <header>
     <nav>
       <div class="nav-container">
         <span>
           <h1>LOGISTICA</h1>
         </span>
-        <img id="logo" src="./images/worker.png" alt="trabaiador"/>
+        <img id="logo" src="./images/worker.png" alt="trabalhador"/>
+        <img id="att" src="./images/checklist.png" alt="Lista de atividades">
         <ul>
           <li on:click={()=> estado = "Ranking"}>Ranking Global</li>
           <li on:click={()=> estado = "comoJogar"}>Como Jogar</li>
@@ -29,7 +31,8 @@ screnn()
       </div>
     </nav>
   </header>
-
+</div>
+  
 <div id="task">
   <h1>ATIVIDADES A FAZER</h1>
 </div>
@@ -97,11 +100,18 @@ screnn()
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=VT323&display=swap');
 
+  #container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 92px;
+  }
+  
   header {
     position: relative;
     top: 0;
-    height: auto;
-    width: 100%;
+    height: 92px;
+    width: 80%;
   }
 
   nav {
@@ -121,7 +131,6 @@ screnn()
   }
 
   .nav-container {
-    max-width:1900px;
     width: 100%;
     height: 100%;
   }
@@ -144,9 +153,15 @@ screnn()
     width: 50px;
     height: 50px;
     margin-top: 20px;
-    margin-left: 120px;
+    margin-left: 90px;
   }
 
+  #att{
+    width: 50px;
+    height: 50px;
+    margin-top: 20px;
+    
+  }
   .nav-container ul {
     float: right;
     line-height: 100px;
@@ -186,15 +201,15 @@ screnn()
   }
 
   main {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
-
+  
   #rank {
     position: absolute;
     width: 100%;
@@ -204,7 +219,7 @@ screnn()
     background-color: gray;
     display: flex;
   }
-
+  
   #titulo {
     position: absolute;
     left: 30%;
@@ -228,7 +243,7 @@ screnn()
     top: 20%;
     left: 10%;
   }
-
+  
   #tempo {
     top: 20%;
     left: 30%;
@@ -252,7 +267,7 @@ screnn()
     display: flex; 
     border-style: solid;
   }
-
+  
   #teste {
     position: relative;
     top: 45%;
@@ -260,7 +275,7 @@ screnn()
     max-height: 0;
     margin: 0;
   }
-
+  
   #jogar{
     color: #000;
     border: none;
@@ -280,17 +295,26 @@ screnn()
     font-family: 'VT323', monospace;
     left: 35px;
   }
-
+  
   #esq{
     position: absolute;
     top: 90%;
     left: 10%;
     transform: rotateY(180deg);
   }
-
+  
   #dir{
     position: absolute;
     top: 90%;
     left: 80%;
+  }
+  @media only screen and (max-width:1280px){
+     #task{
+       display: none;
+     }
+     #att{
+       display: flex;
+       margin: 0;
+     }
   }
 </style>
