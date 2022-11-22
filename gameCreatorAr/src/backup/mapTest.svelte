@@ -155,7 +155,7 @@
 
         // objeto que contem a posiçao do mapa
         const offset = {
-            x: -635,
+            x: -535 ,
             y: -370,
         };
 
