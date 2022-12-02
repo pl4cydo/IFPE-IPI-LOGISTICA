@@ -1,9 +1,0 @@
-div#app{
-  background-color: pink;
-}
-div#player{
-  width: 10px ;
-  height: 10px ;
-  background-color: black;
-  position: absolute;
-}

@@ -69,7 +69,7 @@
             </div>
             <div id="nfArea">
                 
-                <div id="t5" style="display:none;">
+                <div id="teste" style="display:none;">
                     <div class="notaEncomenda" id="notaSelecionada" style="display:none;">
                         <div class="nfID"><h1>{selectedNote.nota}</h1></div>
                         <div class="encInfo">

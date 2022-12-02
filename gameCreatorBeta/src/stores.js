@@ -22,7 +22,9 @@ for(let i = 0; i < alphaTask2.length; i += 70){
     task2.push(alphaTask2.slice(i, 70 + i))
 }
 
+
+export const walk = writable(true)
 export const Task0 = writable(task0)
 export const Task1 = writable(task1)
 export const Task2 = writable(task2)
-
+export let life = writable(100)

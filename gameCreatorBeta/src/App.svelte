@@ -2,7 +2,7 @@
   import FirstMap from './mapa1/firstMap.svelte';
   import { estado } from './Estado';
   // import TelaTeste from './telaTeste/telaTeste.svelte';
-  import TelaTeste from './telaTeste/telaTeste.svelte'
+  
   import TelaTeste1 from './telaTeste/telaTeste1.svelte'
   import TelaTeste2 from './telaTeste/telaTeste2.svelte'
   let a = 'Beta2.0'
@@ -10,7 +10,7 @@
 
 <main>
   <h1>{a}</h1>
-  {#if $estado === 'mapa'}
+  <!-- {#if $estado === 'mapa'}
     <FirstMap/>
   {:else if $estado === 'telaTeste'}
       <TelaTeste/>
@@ -18,7 +18,10 @@
       <TelaTeste1/>
   {:else if $estado === 'telaTeste2'}
       <TelaTeste2/>
-  {/if}
+  {/if} -->
+
+
+  <FirstMap/>
 </main>
 <style>
    h1{

@@ -1,21 +1,25 @@
 <script>
-    import { trocarEstadoDoJogo } from '../Estado';
+    import { walk } from '../stores'
 
+    function backToLobby() {
+            game.style.display = "flex"
+            task2.style.display = "none"
+            $walk = true
+    }
 </script>
 
-<main>
-    <div id="principal">
+
+<div id="task2">
         <h1>Task 2</h1>
-        <button on:click={() => trocarEstadoDoJogo('mapa')}>Back</button>
-    </div>
-</main>
+        <button on:click={() => backToLobby()}>Back</button>
+</div>
 
 <style>
-    #principal{
+    #task2{
         width: 100vw;
         height: 100vh;
         justify-content: center;
         align-items: center;
-        display: flex;
+        display: none;
     }
 </style>

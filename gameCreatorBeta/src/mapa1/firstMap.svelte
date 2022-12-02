@@ -1,11 +1,17 @@
 <script>
     import { onMount } from "svelte"; 
     import collision from './collisions'
+    import TelaTeste from '../telaTeste/telaTeste.svelte'
+    import TelaTeste1 from "../telaTeste/telaTeste1.svelte";
+    import TelaTeste2 from "../telaTeste/telaTeste2.svelte";
     import { estado } from '../Estado'
     import { trocarEstadoDoJogo } from '../Estado'
     import { Task0 } from '../stores'
     import { Task1 } from '../stores'
     import { Task2 } from '../stores'
+    import { life } from '../stores'
+    import { walk } from '../stores'
+
     // 03:05
 
     let canvas;
@@ -88,10 +94,6 @@
         })
 
 
-
-
-
-
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // constante vazia que para guardar a posição dos objetos
@@ -115,32 +117,48 @@
         //declarando as imagens do game
         const mapa = new Image();
         mapa.src = './images/ProjetoMapa.png';
-        const sprite = new Image();
-        sprite.src = './images/redSpriteDOWN.png';
+
+        const spriteDown = new Image();
+        spriteDown.src = './images/redSpriteDOWN.png';
+        const spriteUp = new Image();
+        spriteUp.src = './images/redSpriteUP.png';
+        const spriteLeft = new Image();
+        spriteLeft.src = './images/redSpriteLEFT.png';
+        const spriteRight = new Image();
+        spriteRight.src = './images/redSpriteRIGHT.png';
+
+
+            // a imagem do sprite tem 256 px de largura, isso dividido por 4 é igual a 64
+
         
         //teste de para iniciar task
         let jorge = {
-            rod: false
+            rod: false,
+            life: true
         }
+
+        
 
         // molde que para criar objetos com propriedades de local na tela para poder movimentar alterando esses parametros
         class SpriteMoviment {
-            constructor({ position, image, frames = {max:1} }) {
+            constructor({ position, image, frames = {max:1}, sprites }) {
                 this.position = position;
                 this.image = image;
-                this.frames = frames;
+                this.frames = {...frames, val: 0, elapsed: 0};
 
                 this.image.onload = () => {
                     this.width = this.image.width / this.frames.max
                     this.height = this.image.height
                 }
+                this.moving = false
+                this.sprites = sprites
             }
             //metodo que desenha dentro do objeto para facilitar o processo em outros obejtos
             draw(){
                 c.drawImage(
                 this.image,
                 //cropping
-                0, // inicio do x da imagem
+                this.frames.val * this.width, // inicio do x da imagem
                 0, // inicio do y da imagem 
                 this.image.width / this.frames.max, // fim do x
                 this.image.height, // fim do y
@@ -151,6 +169,15 @@
                 this.image.height
                 )
 
+                if(!this.moving) return
+
+                if(this.frames.max > 1) {
+                    this.frames.elapsed++
+                }
+                if(this.frames.elapsed % 10 === 0){
+                    if(this.frames.val < this.frames.max - 1) this.frames.val++
+                    else this.frames.val = 0;
+                }
             }
         }
 
@@ -160,9 +187,15 @@
                 x: canvas.width/2 - (256 /4) / 2, 
                 y: canvas.height/2 - 68 /2
             },
-            image: sprite,
+            image: spriteDown,
             frames: {
                 max: 4
+            },
+            sprites: {
+                up: spriteUp,
+                down: spriteDown,
+                left: spriteLeft,
+                rigth: spriteRight
             }
         })
 
@@ -233,9 +266,115 @@
 
 
             let moving = true
-            
-            // test de iniciação de task
-            if(jorge.rod){ // rtoda vez que aperti espaço transforam jorge.rod em true e quando solto volta a ser false
+            player.moving = false
+            // consdicionais que caso o parametro for true almenta ou diminue a posição da imagem do mapa
+            if($walk) {
+                if(keys.w.pressed && lastKey === 'w'){
+                    player.moving = true
+                    player.image = player.sprites.up
+                    // esse for tem como objetivo prever a colisão entre o personagem e a frotneira quando a tecla é apertada, quando isso acontece ele transforma a varaivel booleana em false e para o movimento
+                    for(let i = 0; i < arrBoundaries.length; i++ ){
+                        const element = arrBoundaries[i] 
+                        if(
+                        rectungularCollision({
+                                rectung1: player,
+                                rectung2: {...element, position:{
+                                    x: element.position.x,
+                                    y: element.position.y + 25
+                                }}
+                        })  
+                        )   { 
+                                console.log('colidiu')
+                                moving = false
+                                break
+                            }
+                    }
+
+                    if(moving)
+                    movebles.forEach(element => {
+                        element.position.y += 1.7;
+                    })
+                } else if(keys.a.pressed && lastKey === 'a'){
+                    player.moving = true
+                    player.image = player.sprites.left
+                    // esse for tem como objetivo prever a colisão entre o personagem e a frotneira quando a tecla é apertada, quando isso acontece ele transforma a varaivel booleana em false e para o movimento
+                    for(let i = 0; i < arrBoundaries.length; i++ ){
+                        const element = arrBoundaries[i] 
+                        if(
+                        rectungularCollision({
+                                rectung1: player,
+                                rectung2: {...element, position:{
+                                    x: element.position.x + 3,
+                                    y: element.position.y 
+                                }}
+                        })  
+                    )   { 
+                            console.log('colidiu')
+                            moving = false
+                            break
+                        }
+                    }
+
+                    if(moving)
+                    movebles.forEach(element => {
+                        element.position.x += 1.7;
+                    })
+                } else if(keys.s.pressed && lastKey === 's') {
+                    player.moving = true
+                    player.image = player.sprites.down
+                    // esse for tem como objetivo prever a colisão entre o personagem e a frotneira quando a tecla é apertada, quando isso acontece ele transforma a varaivel booleana em false e para o movimento
+                    for(let i = 0; i < arrBoundaries.length; i++ ){
+                        const element = arrBoundaries[i] 
+                        if(
+                        rectungularCollision({
+                                rectung1: player,
+                                rectung2: {...element, position:{
+                                    x: element.position.x,
+                                    y: element.position.y - 3
+                                }}
+                        })  
+                    )   { 
+                            console.log('colidiu')
+                            moving = false
+                            break
+                        }
+                    }
+
+                    if(moving)
+                    movebles.forEach(element => {
+                        element.position.y -= 1.7;
+                    })
+                } else if(keys.d.pressed && lastKey === 'd'){
+                    player.moving = true
+                    player.image = player.sprites.rigth
+                    // esse for tem como objetivo prever a colisão entre o personagem e a frotneira quando a tecla é apertada, quando isso acontece ele transforma a varaivel booleana em false e para o movimento
+                    for(let i = 0; i < arrBoundaries.length; i++ ){
+                        const element = arrBoundaries[i] 
+                        if(
+                        rectungularCollision({
+                                rectung1: player,
+                                rectung2: {...element, position:{
+                                    x: element.position.x - 3,
+                                    y: element.position.y
+                                }}
+                        })  
+                    )   { 
+                            console.log('colidiu')
+                            moving = false
+                            break
+                        }
+                    }
+
+                    if(moving)
+                    movebles.forEach(element => {
+                        element.position.x -= 1.7;
+                    })
+                }
+
+            }
+
+             // test de iniciação de task
+             if(jorge.rod){ // rtoda vez que aperti espaço transforam jorge.rod em true e quando solto volta a ser false
                 // console.log('basbabsdba')
                 arrTask0.forEach(el => { // esse loop via passar por todas as aeras de tasks e verificar se o player esta dentro
                    if ( rectungularCollision({
@@ -243,7 +382,9 @@
                     rectung2: {...el}
                     })) {
                         console.log('task 0')
-                        trocarEstadoDoJogo('telaTeste')
+                        task0.style.display = "flex"
+                        game.style.display = "none"
+                        $walk = false
                     }
                 })
 
@@ -253,7 +394,9 @@
                     rectung2: {...el}
                     })) {
                         console.log('task 1')
-                        trocarEstadoDoJogo('telaTeste1')
+                        task1.style.display = "flex"
+                        game.style.display = "none"
+                        $walk = false
                     }
                 })
 
@@ -263,108 +406,13 @@
                     rectung2: {...el}
                     })) {
                         console.log('task 2')
-                        trocarEstadoDoJogo('telaTeste2')
+                        task2.style.display = "flex"
+                        game.style.display = "none"
+                        $walk = false
                     }
                 })
             }
-
-
-            // consdicionais que caso o parametro for true almenta ou diminue a posição da imagem do mapa
-            if(keys.w.pressed && lastKey === 'w'){
-                // esse for tem como objetivo prever a colisão entre o personagem e a frotneira quando a tecla é apertada, quando isso acontece ele transforma a varaivel booleana em false e para o movimento
-                for(let i = 0; i < arrBoundaries.length; i++ ){
-                    const element = arrBoundaries[i] 
-                    if(
-                    rectungularCollision({
-                            rectung1: player,
-                            rectung2: {...element, position:{
-                                x: element.position.x,
-                                y: element.position.y + 25
-                            }}
-                    })  
-                )   { 
-                        console.log('colidiu')
-                        moving = false
-                        break
-                    }
-                }
-
-                if(moving)
-                movebles.forEach(element => {
-                    element.position.y += 3;
-                })
-            } else if(keys.a.pressed && lastKey === 'a'){
-                // esse for tem como objetivo prever a colisão entre o personagem e a frotneira quando a tecla é apertada, quando isso acontece ele transforma a varaivel booleana em false e para o movimento
-                for(let i = 0; i < arrBoundaries.length; i++ ){
-                    const element = arrBoundaries[i] 
-                    if(
-                    rectungularCollision({
-                            rectung1: player,
-                            rectung2: {...element, position:{
-                                x: element.position.x + 3,
-                                y: element.position.y 
-                            }}
-                    })  
-                )   { 
-                        console.log('colidiu')
-                        moving = false
-                        break
-                    }
-                }
-
-                if(moving)
-                movebles.forEach(element => {
-                    element.position.x += 3;
-                })
-            } else if(keys.s.pressed && lastKey === 's') {
-                // esse for tem como objetivo prever a colisão entre o personagem e a frotneira quando a tecla é apertada, quando isso acontece ele transforma a varaivel booleana em false e para o movimento
-                for(let i = 0; i < arrBoundaries.length; i++ ){
-                    const element = arrBoundaries[i] 
-                    if(
-                    rectungularCollision({
-                            rectung1: player,
-                            rectung2: {...element, position:{
-                                x: element.position.x,
-                                y: element.position.y - 3
-                            }}
-                    })  
-                )   { 
-                        console.log('colidiu')
-                        moving = false
-                        break
-                    }
-                }
-
-                if(moving)
-                movebles.forEach(element => {
-                    element.position.y -= 3;
-                })
-            } else if(keys.d.pressed && lastKey === 'd'){
-                // esse for tem como objetivo prever a colisão entre o personagem e a frotneira quando a tecla é apertada, quando isso acontece ele transforma a varaivel booleana em false e para o movimento
-                for(let i = 0; i < arrBoundaries.length; i++ ){
-                    const element = arrBoundaries[i] 
-                    if(
-                    rectungularCollision({
-                            rectung1: player,
-                            rectung2: {...element, position:{
-                                x: element.position.x - 3,
-                                y: element.position.y
-                            }}
-                    })  
-                )   { 
-                        console.log('colidiu')
-                        moving = false
-                        break
-                    }
-                }
-
-                if(moving)
-                movebles.forEach(element => {
-                    element.position.x -= 3;
-                })
-            }
-
-        }
+        }    
         animate()
 
         // variavel criada para comportar uma string com a ultima tecla pressionada, fazendo com que o personagem não fique preso em uma unica direção
@@ -377,6 +425,7 @@
             switch(e.key.toLocaleLowerCase()) {
                 case " ":
                     jorge.rod = true
+                    jorge.life = true
                     // console.log(jorge.rod)
                     break
                 case 'w':
@@ -403,6 +452,7 @@
             switch(e.key.toLocaleLowerCase()) {
                 case " ":
                     jorge.rod = false
+                    jorge.life = false
                     // console.log(jorge.rod)
                     break
                 case 'w':
@@ -420,36 +470,53 @@
             }
         })
     });
+    
+
 </script>
 <main>
-    <div id="tela">
-        <canvas bind:this={canvas}></canvas>
+    <div id="game">
+        <div id="tela">
+            <canvas bind:this={canvas}></canvas>
+            <h1>Life: {$life}</h1>
+        </div>
     </div>
-    
+    <TelaTeste />
+    <TelaTeste1 />
+    <TelaTeste2 />
 </main>
 <style>
-    main{
-        width: 100vw;
-        height: 100vh;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        background-color: gray;
-        margin: 0;
-        padding: 0;
-        }
-    
-    #tela{
-        width: 1080px;
-        height: 720px;
-        justify-content: center;
-        align-items: center;
-        display: flex;  
-        border: 1px solid black
+    main {
+    justify-content: center;
+    align-items: center;
+    display:inline-table;
+    margin: 0;
+    padding: 0;
+  }
+#game{
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: gray;
+    margin: 0;
+    padding: 0;
     }
-    canvas {
-        border: 1px solid;
-        border-color: black;
-        position: absolute;
-    }
+
+#tela{
+    width: 1080px;
+    height: 720px;
+    justify-content: center;
+    align-items: center;
+    display: flex;  
+    border: 1px solid black
+}
+canvas {
+    border: 1px solid;
+    border-color: black;
+    position: absolute;
+}
+h1{
+    margin-top: 640px;
+}
 </style>
