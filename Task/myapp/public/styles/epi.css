@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
 }
 
 div#epiContainer{
@@ -20,7 +21,7 @@ div#epiScreen{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 60%;
     height: 80%;
     position: relative;
 }
@@ -34,7 +35,6 @@ div#epiScreen{
 }
 #locker > img{
     max-width: 100%;
-
 }
 div#epiStorage{
     box-shadow: 0px 5px 12px black;
@@ -43,7 +43,7 @@ div#epiStorage{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 80%;
+    width: 90%;
     height: 90%;
     background: white;
     border-radius: 10px;
@@ -55,11 +55,11 @@ div#epiStorage{
     background-color: rgb(0, 0, 163);
 }
 #itens{
+    padding: 5px;
     display: flex;
     flex-wrap: wrap;
-    width: 60%;
+    width: 75%;
     height: 100%;
-    background: green;
 }
 
 div.slots{
@@ -76,9 +76,8 @@ div.slots{
     cursor: pointer;
 }
 
-#gloveCard,#helmetCard,#glassesCard,#coleteCard{
+.card{
     overflow: hidden;
-    display: none;
     align-items: center;
     flex-direction: column;
     font-family: 'Open Sans', sans-serif;
@@ -87,7 +86,7 @@ div.slots{
     box-shadow: 3px 8px 10px black;
     position: absolute;
     background:white;
-    width: 30%;
+    width: 40%;
     height: 80%;
 }
 
@@ -100,13 +99,15 @@ div.slots{
 .cardInfo > img{
     margin-top: 10%;
 }
-.item_Description{
-    
+.item_description{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 5%;
     width: 100%;
+}
+.item_description > p{
+    padding: 5px;
 }
 .item_Description > h1{
     font-size: clamp(1, 1.5em + 3%,2em);
@@ -118,11 +119,13 @@ div.slots{
     font-size: 1.2em;
 }
 .btnArea{
-    bottom: 5px;
     position: absolute;
     width: 100%;
     display: flex;
+    gap: 15px;
     justify-content: center;
+    padding: 5px;
+    bottom: 0;
 }
 .confirmBtn{
     padding: 5px;
@@ -134,7 +137,17 @@ div.slots{
     background: green;
     border-radius: 10px;
 }
-.confirmBtn:hover{
+.returnBtn{
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ffffff;
+    min-width: 30%;
+    height: 8%;
+    background: red;
+    border-radius: 10px;
+}
+.confirmBtn:hover,.returnBtn:hover{
     transform: scale(1.05);
 }
 .cardShakeAniamtion{
@@ -145,6 +158,21 @@ div.slots{
 }
 .hiddenAnimation{
     animation: hidden1 0.5s ease-in forwards;
+}
+
+@media (max-width:900px) {
+    .card{
+        width: 50%;
+    }
+    div#epiStorage{
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    #epiStorage > h1{
+        border-radius: 0;
+    }
+    
 }
 
 
