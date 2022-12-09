@@ -1,9 +1,9 @@
 <script>
     import { onMount } from "svelte"; 
-    import collision from './collisions'
-    import TelaTeste from '../telaTeste/telaTeste.svelte'
-    import TelaTeste1 from "../telaTeste/telaTeste1.svelte";
-    import TelaTeste2 from "../telaTeste/telaTeste2.svelte";
+    import { collision } from '../stores'
+    import TelaTeste from '../Tasks/telaTeste.svelte'
+    import TelaTeste1 from "../Tasks/telaTeste1.svelte";
+    import TelaTeste2 from "../Tasks/telaTeste2.svelte";
     import { estado } from '../Estado'
     import { trocarEstadoDoJogo } from '../Estado'
     import { Task0 } from '../stores'
@@ -100,7 +100,7 @@
         const arrBoundaries = [];
         
         //metodo que percorre o array importado que para cada elemento de elemento cria um novo objeto boundary e coloca dentro do arrBoundaries com sua posição
-        collision.forEach((element, i) => {
+        $collision.forEach((element, i) => {
             element.forEach((row, j) => {
                 if(row === 1) {
                     arrBoundaries.push(

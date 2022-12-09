@@ -15,22 +15,22 @@
         // console.log(leitor)
     }
   
-    const form = {
-      nome: "",
-      pontos: "",
-    };
-  
-    const addranking = () => {
-        //   console.log(form.nome, form.pontos)
-        form.nome = 'Vasco';
-        form.pontos = 5699;
+    // const form = {
+    //     nome: "",
+    //     pontos: 0,
+    // };
 
-        $ranking = $ranking.concat({
-            nome: form.nome,
-            pontos: form.pontos
-        })
-        //   console.log($ranking)
-    }
+    // const addranking = () => {
+    //     //   console.log(form.nome, form.pontos)
+    //     form.nome = 'Pchronos';
+    //     form.pontos = 7000;
+
+    //     $ranking = $ranking.concat({
+    //         nome: form.nome,
+    //         pontos: form.pontos
+    //     })
+    //     //   console.log($ranking)
+    // }
   
     onMount(async () => {
       await loadRanking();
@@ -53,7 +53,7 @@
                 bind:value={form.pontos}
             /> 
         </form> -->
-        <button on:click={() => addranking()}>Mandar</button>
+        <!-- <button on:click={() => addranking()}>Mandar</button> -->
         {#each leitor as el, i }
             {#if i < 10}
                 <ul>{(i+1) + "º"}  {el.Nome}  {el.pontos}</ul>
