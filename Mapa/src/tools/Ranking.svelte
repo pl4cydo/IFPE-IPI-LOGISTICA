@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { ranking } from "../stores";
+    // import { ranking } from "../stores";
   
     const a = 'Ranking';
   

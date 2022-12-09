@@ -40,9 +40,7 @@ export const ranking = writable([])
 
 ranking.subscribe(v => {
     const user = v.at(-1);
-
     if (!user) return;
-
     const formData = new FormData();
     formData.append('Nome', user.nome);
     formData.append('pontos', user.pontos);
