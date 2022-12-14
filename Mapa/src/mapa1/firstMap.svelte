@@ -30,11 +30,11 @@
                 this.height = 54,4; // o mesmo para a altura
             }
             draw () { // função de desenho
-                c.fillStyle = 'rgba(255, 0, 0, 0.2)'
+                c.fillStyle = 'rgba(255, 0, 0, 0)'
                 c.fillRect(this.position.x, this.position.y, this.width, this.height)
             }
             draw2 () { // função de desenho
-                c.fillStyle = 'rgba(0, 0, 255, 0.2)'
+                c.fillStyle = 'rgba(0, 0, 255, 0)'
                 c.fillRect(this.position.x, this.position.y, this.width, this.height)
             }
 
@@ -48,7 +48,7 @@
         const arrTask0 = [];
         $Task0.forEach((el, i) => {
             el.forEach((ment, j) => {
-                if(ment === 0.1) {
+                if(ment === 1) {
                     arrTask0.push(
                         new Boundary({
                             position:{
@@ -64,7 +64,7 @@
         const arrTask1 = [];
         $Task1.forEach((el, i) => {
             el.forEach((ment, j) => {
-                if(ment == 1) {
+                if(ment === 1) {
                     arrTask1.push(
                         new Boundary({
                             position: {
@@ -80,7 +80,7 @@
         const arrTask2 = [];
         $Task2.forEach((el, i) => {
             el.forEach((ment, j) => {
-                if(ment == 2) {
+                if(ment === 1) {
                     arrTask2.push(
                         new Boundary({
                             position: {
@@ -116,7 +116,7 @@
 
         //declarando as imagens do game
         const mapa = new Image();
-        mapa.src = './images/ProjetoMapa.png';
+        mapa.src = './images/ProjetoMapa1.png';
 
         const spriteDown = new Image();
         spriteDown.src = './images/redSpriteDOWN.png';
@@ -234,7 +234,7 @@
                 rectung1.position.x + rectung1.width -15 >= rectung2.position.x &&
                 rectung1.position.x +15 <= rectung2.position.x + rectung2.width &&
                 rectung1.position.y +15 <= rectung2.position.y + rectung2.height &&
-                rectung1.position.y + rectung1.height -10 >= rectung2.position.y
+                rectung1.position.y + rectung1.height >= rectung2.position.y
             )
         }
 

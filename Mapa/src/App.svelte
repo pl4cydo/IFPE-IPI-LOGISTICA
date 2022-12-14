@@ -10,8 +10,8 @@
 <main>
   <!-- <h1>{a}</h1> -->
 
-  <Ranking />
-  <!-- <FirstMap/> -->
+  <!-- <Ranking /> -->
+  <FirstMap/>
 </main>
 <style>
    /* h1{
