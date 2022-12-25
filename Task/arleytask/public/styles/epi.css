@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+div#epiContainer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: #ccc1ac;
+}
+div#epiScreen{
+    overflow: hidden;
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 80%;
+    position: relative;
+}
+#locker{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 1%;
+    width: 100%;
+    height: 80%;
+}
+#locker > img{
+    max-width: 100%;
+}
+div#epiStorage{
+    box-shadow: 0px 5px 12px black;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    height: 90%;
+    background: white;
+    border-radius: 10px;
+}
+#epiStorage > h1{
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    color: white;
+    background-color: rgb(0, 0, 163);
+}
+#itens{
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    height: 100%;
+}
+
+div.slots{
+    background: rgb(185, 185, 185);
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    border: solid black 2px;
+    width: 25%;
+    height: 25%;
+}
+.slots > img{
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.card{
+    overflow: hidden;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 3px 8px 10px black;
+    position: absolute;
+    background:white;
+    width: 40%;
+    height: 80%;
+}
+
+.item_Name{
+    padding: 5px;
+    width: 100%;
+    color: white;
+    background: green;
+}
+.cardInfo > img{
+    margin-top: 10%;
+}
+.item_description{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    width: 100%;
+}
+.item_description > p{
+    padding: 5px;
+}
+.item_Description > h1{
+    font-size: clamp(1, 1.5em + 3%,2em);
+}
+.item_Description > p{
+    width: 100%; 
+    margin-top: 3%;  
+    padding: 0px 10px 0px 10px;  
+    font-size: 1.2em;
+}
+.btnArea{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 5px;
+    bottom: 0;
+}
+.confirmBtn{
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    min-width: 30%;
+    height: 8%;
+    background: green;
+    border-radius: 10px;
+}
+.returnBtn{
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ffffff;
+    min-width: 30%;
+    height: 8%;
+    background: red;
+    border-radius: 10px;
+}
+.confirmBtn:hover,.returnBtn:hover{
+    transform: scale(1.05);
+}
+.cardShakeAniamtion{
+    animation: cardShake 1.5s ease-in-out forwards;
+}
+.cardOutAnimation{
+    animation: cardOut 0.5s ease-in forwards;
+}
+.hiddenAnimation{
+    animation: hidden1 0.5s ease-in forwards;
+}
+
+@media (max-width:900px) {
+    .card{
+        width: 50%;
+    }
+    div#epiStorage{
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    #epiStorage > h1{
+        border-radius: 0;
+    }
+    
+}
+
+
+@keyframes cardShake{
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    95% { transform: translate(1px, -2px) rotate(-1deg); }
+    100% { transform: translate(1px, 1px) rotate(0deg); }
+}
+
+@keyframes cardOut{
+    0% { left: 35%; }
+    100% { left: -200%; }
+}
+@keyframes hidden1 {
+    0%{ opacity: 100%; }
+    100%{ opacity: 0%; }
+}
