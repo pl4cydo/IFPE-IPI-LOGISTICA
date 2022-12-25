@@ -4,7 +4,7 @@
   function backToLobby() {
     $walk = true;
     game.style.display = "flex";
-    task0.style.display = "none";
+    epiContainer.style.display = "none";
   }
 </script>
 

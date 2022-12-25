@@ -401,7 +401,7 @@
             })
           ) {
             console.log("task 0");
-            task0.style.display = "flex";
+            epiContainer.style.display = "flex";
             game.style.display = "none";
             $walk = false;
           }
@@ -504,7 +504,7 @@
       <h1>Life: {$life}</h1>
     </div>
   </div>
-  <!-- <EpiTask /> -->
+  <EpiTask />
   <TelaTeste />
   <TelaTeste1 />
   <TelaTeste2 />
@@ -512,13 +512,10 @@
 
 <style>
   main {
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: inline-table;
-    margin: 0;
-    padding: 0;
     position: absolute;
-    top: 18%;
   }
   #game {
     /* width: 100vw;
@@ -526,6 +523,7 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    position: relative;
     /* background-color: gray; */
     margin: 0;
     padding: 0;

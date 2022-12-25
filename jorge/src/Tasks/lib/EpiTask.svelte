@@ -1,5 +1,6 @@
 <svelte:head>
     <link rel="stylesheet" href="/styles/epi.css">
+    
 </svelte:head>
 <div id="epiContainer">
     <div id="epiScreen">
@@ -51,6 +52,7 @@
     
 </div>
 <script>
+    import {walk} from "../../stores";
     class EpiCard{
         constructor(item_name,item_info,item_image,item,img_ref){
             this.item_name = item_name
@@ -156,9 +158,14 @@
         if(worker.helmet && worker.glasses && worker.vest && worker.glove && worker.boot && worker.headphone){
             console.log("Pontuação final ",points," pontos." )
             setInterval(() => {
-                document.getElementById("epiContainer").style.display = "none"       
+                backToLobby()
             }, 2500);
             console.log("você possui ", points, " Pontos")
         }
+    }
+    function backToLobby() {
+        $walk = true;
+        game.style.display = "flex";
+        epiContainer.style.display = "none";
     }
 </script>
