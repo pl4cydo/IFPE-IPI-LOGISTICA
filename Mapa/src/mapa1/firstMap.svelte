@@ -485,7 +485,7 @@
     <TelaTeste2 />
 </main>
 <style>
-    main {
+main {
     justify-content: center;
     align-items: center;
     display:inline-table;

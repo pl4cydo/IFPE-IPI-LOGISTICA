@@ -1,0 +1,127 @@
+@font-face {
+    font-family: Minecraft;
+    src: url("./TextFont/upheavtt.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+div#Window {
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    background: wheat;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+div#Tela {
+    position: relative;
+    background-color: aliceblue;
+    width: 60%;
+    height: 80%;
+    background-size: 100%;
+    border: ridge white 5px;
+}
+
+div#Fundo{
+    position: absolute;
+    background-image: url("./imagens/background.png");
+    background-repeat: repeat-x;
+    background-position: 0px;
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
+
+#empiadeira {
+    position: relative;
+    float: right; 
+    width:65%;
+    height: 75%;
+    bottom: 0;
+    top: 35%;
+    animation: mymove 4s forwards;
+}
+
+#empiadeira img, #seta img{
+    width:100%;
+    height:100%;
+}
+div#transiçao{
+    background-color: black;
+    position: absolute;
+    width:100%;
+    height: 100%;
+    opacity: 0%;
+}
+
+div#prancheta{
+    position: relative;
+    width:35%;
+    height: 65%;
+    background-image: url("./imagens/prancheta.png");
+    background-size: 100% 100%;
+    display: none;
+}
+div#folha{
+    position: relative;
+    width:95%;
+    height: 95%; 
+}
+label {
+    display: grid;
+    float: left;
+    margin-left: 14%;
+}
+
+p{
+    display: block;
+    position: absolute;
+    float: right;
+}
+
+
+@keyframes mymove {
+    from {right: -410px;}
+    to {right: 10px;}
+  }
+
+@keyframes mymove2 {
+    from{right: 10px;}
+    to{right: 920px;}
+}
+
+div#dialogo {
+    background-image: url("./imagens/dialogaborder1.png");  
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: #ffff;
+    font-family: Minecraft;
+    font-size: 1.8em;
+    position: absolute;
+    max-width: 1150px;
+    width: 100%;
+    height: 25%;
+    bottom: 0;
+    display: none;
+}
+
+#seta{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin: 2%;
+    bottom: 0;
+    right: 0;
+}
+
+#dialogo p {
+    margin: 3%;
+}
+
+
