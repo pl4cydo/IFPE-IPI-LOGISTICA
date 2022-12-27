@@ -11,7 +11,8 @@
   import { Task2 } from "../stores";
   import { life } from "../stores";
   import { walk } from "../stores";
-  import EpiTask from "../Tasks/lib/EpiTask.svelte";
+  import EpiTask from "../Tasks/EpiTask.svelte"
+  import Recebimento from "../Tasks/Recebimento.svelte";
 
   // 03:05
 
@@ -416,7 +417,7 @@
             })
           ) {
             console.log("task 1");
-            task1.style.display = "flex";
+            recContainer.style.display = "flex";
             game.style.display = "none";
             $walk = false;
           }
@@ -505,6 +506,7 @@
     </div>
   </div>
   <EpiTask />
+  <Recebimento />
   <TelaTeste />
   <TelaTeste1 />
   <TelaTeste2 />

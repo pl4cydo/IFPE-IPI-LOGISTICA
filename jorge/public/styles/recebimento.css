@@ -4,15 +4,16 @@ div#recContainer{
     justify-content: center;
     align-items: center;
     user-select: none;
-    background: wheat;
-    display: flex;
+    /* background: wheat; */
+    display: none;
     height: 100vh;
     width: 100vw;
 }
 div#recScreen{
+    top: 4.5%;
     background: #574f4f;
-    width: 60%;
-    height: 80%;
+    width: 50%;
+    height: 55%;
     background-image: url("/images/doca768.png");
     background-repeat: no-repeat;
     background-size: 100%;
