@@ -1,6 +1,6 @@
 @font-face {
     font-family: Minecraft;
-    src: url("./TextFont/upheavtt.ttf");
+    src: url("/public/images/info/TextFont/upheavtt.ttf");
 }
 
 * {
@@ -55,7 +55,7 @@ div#Tela {
 }
 div#Fundo {
     position: absolute;
-    background-image: url("./imagens/background.png");
+    background-image: url("/public/images/background.png");
     background-repeat: repeat-x;
     background-size: 55% 100%;
     width: 100%;
@@ -63,13 +63,7 @@ div#Fundo {
     overflow: hidden;
 }
 
-div#energia{
-    width: 20px;
-    height: 20px;
-    background-color: blue;
-    display: none;
-}
-
+ 
 div#opa {
     position: absolute;
     width: 100%;
@@ -105,7 +99,7 @@ div#list ul li img, #opa img {
     width: 600px;
     height: 530px;
     animation: mymove 4s forwards;
-    background-image: url("./imagens/gffemp.gif");
+    background-image: url("/public/images/info/gffemp.gif");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 12%;
@@ -172,13 +166,14 @@ div#list ul li img, #opa img {
     width: 100px;
     height: 90px;
     right: 100;
-    background-color: aqua;
+    background-image: url('/public/images/seta.gif');
+    background-size: 100% 100%;
     margin: 5%; 
     display: none;
 }
 
 div#dialogo {
-    background-image: url("./imagens/dialogaborder1.png");
+    background-image: url("/public/images/dialogaborder1.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-color: #ffff;
@@ -203,7 +198,7 @@ div#transiçao {
 
 #seta {
     position: absolute;
-    background-image: url('imagens/seta.gif');
+    background-image: url('/public/images/seta.gif');
     background-size: cover;
     width: 50px;
     height: 50px;
@@ -247,10 +242,3 @@ div#transiçao {
     50%{ opacity: 100%; }
     100%{ opacity: 0%; }
 } 
-
-@keyframes mao1 {
-    0%{ top: 0%;}
-    50%{ top:550px;}
-    100%{ top: 0%;}
-}
-
