@@ -1,4 +1,5 @@
 <script>
+    var end = false
     var src2;
     var src;
     var task;
@@ -10,7 +11,7 @@
               { id: './images/info/arrefecimento.png', dd:3 },
               { id: './images/info/giroflex.png', dd:4 },
               { id: './images/info/som.png', dd:5 }];
-    var F = [false,false,false,false,false,false,false,false]
+    var F = [false,false,false,false,false,false,false,false,false]
              
     function box() {
         roteiro.nxtTxt++;
@@ -23,7 +24,7 @@
                 "",
                 "Que bom ve-lo denovo",
                 "Pelo jeito completou a missão anterior, e isso é otimo!",
-                "Essa tarefa voce ira me ajudar a fazer o check-in",
+                "Essa tarefa voce ira me ajudar a fazer o check-list",
                 "Vamos prosseguir em outro local."],
                 [/*motor*/"","motor","em cada um desses indcadores sao oleo para lubrifcaçao de diferentes partes da empilhadeira"],
                 [/*pneu*/"","pneu","clique em um dos pneus para revirsarmos"/*,"oh ceus, grande erro meu continuar circulando dessa maneira",
@@ -33,7 +34,9 @@
                 [/*som de re*/"","som","função semelhante ao giroflex serve para alerta efetuamento da manobra"],
                 ["a bateria esta prestes a acabar","clique no painel para poder carregar"] ,
                 [/*oleo1*/"","Nossa...","esta em pessimo estado, a frente coloco um novo oleo"],
-                ["","que otimo o oleo esta e bom estado, a coloração esta otima. nao precsamos trocar"] ];
+                ["","que otimo o oleo esta e bom estado, a coloração esta otima. nao precsamos trocar"],
+                ["Bom aq ao lado esq temos uma lista, e cada um deles ira verfcar partes da empladera que sao essencas para o fnconamento do mesmo. ",
+                "lembrando qe O BOTAO VERDE é para finalizaçao da task","dado essa inforaçao podemos continuar"] ];
             
                 if (text[roteiro.dd].length == roteiro.nxtTxt) {
                     document.getElementById("dialogo").style.display = 'none' ;      
@@ -59,13 +62,14 @@
             document.getElementById("empilhadeira").style.animationName = 'mymove';
             document.getElementById("Fundo").style.backgroundSize = '100% 100%'; 
             document.getElementById("list").style.display = 'flex'
+            document.getElementById("UID").style.display = 'flex'
         },1950);
 
     }
-
     var backgroundX = 0;
-
+    
     const background = setInterval(() => {
+        document.getElementById("UID").style.display = 'none'
         backgroundX += 3;
         document.getElementById("Fundo").style.backgroundPosition = backgroundX + "px";
         if (backgroundX > 2400) {
@@ -76,6 +80,7 @@
 
     function lst(num){
         document.getElementById("list").style.display = 'none'
+        end = true
         switch (num) {
         case 1:
             task = document.getElementById("imgs")
@@ -92,28 +97,30 @@
             src = "./images/info/arerfe.png"
             document.getElementById("imgs").style.display = 'flex'
             document.getElementById("UID").style.display = 'flex'
+            F[5] = true
         break
         case 4:
             document.getElementById("UID").style.display = 'flex'
+            F[6] = true
         break
         case 5:
             document.getElementById("UID").style.display = 'flex'
             audio.play();
+            F[7] = true
         break
         case 6:
             document.getElementById("list").style.display = 'flex'
             document.getElementById("batera").style.animationName = 'a'
             document.getElementById("UID").style.display = 'flex'
+            F[8] = true
         break
-        case 7:
-            
-        break
-        case 8:
+        case 7: 
+            end = false
             document.getElementById("imgs").style.display = 'none'
-            document.getElementById("list").style.display = 'flex'
-            document.getElementById("UID").style.display = 'none'
             document.getElementById("Fundo").style.backgroundImage = "url('./images/background22.png')"
+            document.getElementById("list").style.display = 'flex'
             task.style.display = 'none'
+            document.getElementById("UID").style.display = 'flex' 
         break 
     }
 }
@@ -139,31 +146,29 @@ function pontos(FinalPoints){
 
 <div id="Window">
     <div id="Tela">
-        <div id="Fundo">         
-            <div id="energia" on:click={()=>{console.log("carregando")}}/> 
-                <div id="opa">
-                    <div id="transiçao" />
+        <div id="Fundo"> 
+            <div id="opa">
+              <div id="transiçao" />
 
-    <div id="list">
-        <div id="mao"/>
+    <div id="list"> 
             <ul style="list-style: none;">
                 {#each ico as { id, dd} }
-                    <li on:click={()=>{roteiro.dd = dd; lst(roteiro.dd)}}>
+                    <li on:click={()=>{roteiro.dd = dd; lst(roteiro.dd); box()}}>
                         <img src={id} alt="">         
                     <li/>
                 {/each}
                 <li  on:click={()=>{roteiro.dd = 6; lst(roteiro.dd);document.getElementById("Fundo").style.backgroundImage = "url('./images/background221.png')"}}   >
                     <img src="./images/info/bateria.png" alt="">
                 </li>
-                <div id="batera"></div>
+                <div id="batera" ></div>
             </ul>
         </div>
         
         <div id="empilhadeira" >
             <ul id="rodas">
-                <li on:click={()=>{F[3] = true; src = './images/info/roda furada.png';
+                <li on:click={()=>{F[4] = true; src = './images/info/roda furada.png';
                 document.getElementById("imgs").style.display = 'flex'}}></li>
-                <li on:click={()=>{F[4] = true; src = './images/info/rodanova.png';
+                <li on:click={()=>{F[3] = true; src = './images/info/rodanova.png';
                 document.getElementById("imgs").style.display = 'flex'}}></li>
             </ul>
         </div>
@@ -173,13 +178,17 @@ function pontos(FinalPoints){
     <ul id="lsbt">       
         <img src={src} alt="">
         <li id="vareta1" on:click={()=>{F[2] = true;roteiro.dd = 7;box(); src2 = './images/info/vareta boa.png'}}>ccc</li>
-        <li id="vareta2" on:click={()=>{F[2] = true;roteiro.dd = 8;box(); src2 = './images/info/vareta rm.png'}}>ccc</li>
-        <li id="vareta3" on:click={()=>{F[2] = true;roteiro.dd = 7;box(); src2 = './images/info/vareta rm.png'}}>ccc</li>
+        <li id="vareta2" on:click={()=>{F[1] = true;roteiro.dd = 8;box(); src2 = './images/info/vareta rm.png'}}>ccc</li>
+        <li id="vareta3" on:click={()=>{F[0] = true;roteiro.dd = 7;box(); src2 = './images/info/vareta rm.png'}}>ccc</li>
         <li id="agua" style="display: none;">aaaaaa</li>
     </ul> 
     
 </div>
-<div id="UID" on:click={()=>{lst(8); pontos()}}/>
+{#if end }
+<div id="UID" style="display: flex ; background-image: url('/public/images/seta.gif');" on:click={()=>{lst(7);console.log("gg",end) }}/>
+{:else}
+<div id="UID" style="display: flex ; background-image: url('/public/images/conf.png');" on:click={()=>{pontos(); console.log("png", end)}}/>
+ {/if}
 <div on:click={() => {box()}} id="dialogo">    
         <p>{falar}</p> 
         <div id="seta" />  
