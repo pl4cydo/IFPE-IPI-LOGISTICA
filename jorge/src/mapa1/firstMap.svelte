@@ -402,7 +402,7 @@
             })
           ) {
             console.log("task 0");
-            epiContainer.style.display = "flex";
+            epiScreen.style.display = "flex";
             game.style.display = "none";
             $walk = false;
           }
