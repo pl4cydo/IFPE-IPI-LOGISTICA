@@ -105,7 +105,7 @@
             </div>
             
         {/each}
-        <div id="EndScreen" style="display: flex;">
+        <div id="EndScreen" style="display: none;">
             <h1>Missão Concluida</h1>
             <h2>Pontuação da missão: {points}</h2>
             <div id="backToMap">Voltar ao mapa</div>

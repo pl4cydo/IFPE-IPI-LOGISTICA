@@ -5,5 +5,5 @@
   import Empilhadeira from "./lib/empilhadeira.svelte";
 </script>
 <main>
-  <Empilhadeira/>
+  <!-- <EpiTask/> -->
 </main>
