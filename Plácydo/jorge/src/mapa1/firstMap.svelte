@@ -1,18 +1,26 @@
 <script>
   import { onMount } from "svelte";
-  import { collision } from "../stores";
+
   import TelaTeste from "../Tasks/telaTeste.svelte";
   import TelaTeste1 from "../Tasks/telaTeste1.svelte";
   import TelaTeste2 from "../Tasks/telaTeste2.svelte";
+  import Recebimento from "../Tasks/Recebimento.svelte";
+  import EpiTask from "../Tasks/EpiTask.svelte"
+
   import { estado } from "../Estado";
+
   import { trocarEstadoDoJogo } from "../Estado";
+
+  import { collision } from "../stores";
   import { Task0 } from "../stores";
   import { Task1 } from "../stores";
   import { Task2 } from "../stores";
+  import { Info } from "../stores"
+  import { Danger } from "../stores"
+
   import { life } from "../stores";
   import { walk } from "../stores";
-  import EpiTask from "../Tasks/EpiTask.svelte"
-  import Recebimento from "../Tasks/Recebimento.svelte";
+
 
   // 03:05
 
@@ -40,6 +48,14 @@
       draw2() {
         // função de desenho
         c.fillStyle = "rgba(0, 0, 255, 0.2)";
+        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+      }
+      draw3() {
+        c.fillStyle = "rgba(0, 255, 0, 0.2)";
+        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+      }
+      draw4() {
+        c.fillStyle = "rgba(255, 165, 0, 0.2)";
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
       }
     }
@@ -96,6 +112,39 @@
         }
       });
     });
+
+    const arrInfo = [];
+    $Info.forEach((el, i) => {
+      el.forEach((ment, j) => {
+        if (ment === 1) {
+          arrInfo.push(
+            new Boundary({
+              position: {
+                x: j * 54.4 + offset.x,
+                y: i * 54.4 + offset.y,
+              }
+            })
+          )
+        }
+      })
+    })
+
+    const arrDanger = [];
+    $Danger.forEach((el, i) => {
+      el.forEach((ment, j) => {
+        if (ment === 1) {
+          arrDanger.push(
+            new Boundary({
+              position: {
+                x: j * 54.4 + offset.x,
+                y: i * 54.4 + offset.y,
+              }
+            })
+          )
+        }
+      })
+    })
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -233,6 +282,8 @@
       ...arrTask0,
       ...arrTask1,
       ...arrTask2,
+      ...arrInfo,
+      ...arrDanger
     ];
 
     // função que verifica se o personagem ta no mesmo lugar que as fronteiras
@@ -270,10 +321,18 @@
       arrTask2.forEach((el) => {
         el.draw2();
       });
+      //  Info
+      arrInfo.forEach((el) => {
+        el.draw3();
+      })
+      // Danger Areas
+      arrDanger.forEach((el) => {
+        el.draw4();
+      })
 
       let moving = true;
       player.moving = false;
-      // consdicionais que caso o parametro for true almenta ou diminue a posição da imagem do mapa
+      // consdicionais que caso o parametro for true aumenta ou diminue a posição da imagem do mapa
       if ($walk) {
         if (keys.w.pressed && lastKey === "w") {
           player.moving = true;
@@ -392,7 +451,7 @@
 
       // test de iniciação de task
       if (jorge.rod) {
-        // rtoda vez que aperti espaço transforam jorge.rod em true e quando solto volta a ser false
+        // rtoda vez que aperta espaço transforam jorge.rod em true e quando solto volta a ser false
         // console.log('basbabsdba')
         arrTask0.forEach((el) => {
           // esse loop via passar por todas as aeras de tasks e verificar se o player esta dentro
@@ -438,7 +497,33 @@
             $walk = false;
           }
         });
+
+        arrInfo.forEach((el) => {
+          // esse loop via passar por todas as aeras de tasks e verificar se o player esta dentro
+          if (
+            rectungularCollision({
+              rectung1: player,
+              rectung2: { ...el },
+            })
+          ) {
+            console.log("Info");
+            // $walk = false;
+          }
+        });
       }
+
+      arrDanger.forEach((el) => {
+          // esse loop via passar por todas as aeras de tasks e verificar se o player esta dentro
+          if (
+            rectungularCollision({
+              rectung1: player,
+              rectung2: { ...el },
+            })
+          ) {
+            console.log("Danger");
+            // $walk = false;
+          }
+        });
     }
     animate();
 
