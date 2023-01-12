@@ -34,12 +34,12 @@
       }
       draw() {
         // função de desenho
-        c.fillStyle = "rgba(255, 0, 0, 0)";
+        c.fillStyle = "rgba(255, 0, 0, 0.2)";
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
       }
       draw2() {
         // função de desenho
-        c.fillStyle = "rgba(0, 0, 255, 0)";
+        c.fillStyle = "rgba(0, 0, 255, 0.2)";
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
       }
     }
