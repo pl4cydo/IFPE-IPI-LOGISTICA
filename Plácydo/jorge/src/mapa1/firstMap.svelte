@@ -6,6 +6,7 @@
   import TelaTeste2 from "../Tasks/telaTeste2.svelte";
   import Recebimento from "../Tasks/Recebimento.svelte";
   import EpiTask from "../Tasks/EpiTask.svelte"
+  import DangerPag from "./DangerPag.svelte";
 
   import { estado } from "../Estado";
 
@@ -32,6 +33,8 @@
     canvas.width = 780;
     canvas.height = 520;
     const c = canvas.getContext("2d"); // constexto 2d do canvas
+
+    let dangerBoo = false;
 
     // classe base para a criação das fronteiras de colisão do código
     class Boundary {
@@ -144,7 +147,6 @@
         }
       })
     })
-
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -512,6 +514,7 @@
         });
       }
 
+      dangerBox.style.display = "none";
       arrDanger.forEach((el) => {
           // esse loop via passar por todas as aeras de tasks e verificar se o player esta dentro
           if (
@@ -521,6 +524,7 @@
             })
           ) {
             console.log("Danger");
+            dangerBox.style.display = "flex";
             // $walk = false;
           }
         });
@@ -588,9 +592,9 @@
   <div id="game">
     <div id="tela1">
       <canvas bind:this={canvas} />
-      <h1>Life: {$life}</h1>
     </div>
   </div>
+  <DangerPag />
   <EpiTask />
   <Recebimento />
   <TelaTeste />
@@ -614,8 +618,8 @@
     position: relative;
     /* background-color: gray; */
     margin: 0;
-    padding: 0;
-    
+    padding: 0;    
+    top: 3.5%;
   }
 
   #tela1 {
@@ -630,8 +634,5 @@
     border: 1px solid;
     border-color: black;
     position: absolute;
-  }
-  h1 {
-    margin-top: 640px;
   }
 </style>
