@@ -7,6 +7,7 @@
   import Recebimento from "../Tasks/Recebimento.svelte";
   import EpiTask from "../Tasks/EpiTask.svelte"
   import DangerPag from "./DangerPag.svelte";
+  import InfoPag from "./infoPag.svelte";
 
   import { estado } from "../Estado";
 
@@ -45,20 +46,20 @@
       }
       draw() {
         // função de desenho
-        c.fillStyle = "rgba(255, 0, 0, 0.2)";
+        c.fillStyle = "rgba(255, 0, 0, 0)";
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
       }
       draw2() {
         // função de desenho
-        c.fillStyle = "rgba(0, 0, 255, 0.2)";
+        c.fillStyle = "rgba(0, 0, 255, 0)";
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
       }
       draw3() {
-        c.fillStyle = "rgba(0, 255, 0, 0.2)";
+        c.fillStyle = "rgba(0, 255, 0, 0)";
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
       }
       draw4() {
-        c.fillStyle = "rgba(255, 165, 0, 0.2)";
+        c.fillStyle = "rgba(255, 165, 0, 0)";
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
       }
     }
@@ -499,8 +500,10 @@
             $walk = false;
           }
         });
+      }
 
-        arrInfo.forEach((el) => {
+      infoBox.style.display = "none";
+      arrInfo.forEach((el) => {
           // esse loop via passar por todas as aeras de tasks e verificar se o player esta dentro
           if (
             rectungularCollision({
@@ -508,11 +511,9 @@
               rectung2: { ...el },
             })
           ) {
-            console.log("Info");
-            // $walk = false;
+            infoBox.style.display = "flex";
           }
         });
-      }
 
       dangerBox.style.display = "none";
       arrDanger.forEach((el) => {
@@ -523,7 +524,6 @@
               rectung2: { ...el },
             })
           ) {
-            console.log("Danger");
             dangerBox.style.display = "flex";
             // $walk = false;
           }
@@ -595,6 +595,7 @@
     </div>
   </div>
   <DangerPag />
+  <InfoPag />
   <EpiTask />
   <Recebimento />
   <TelaTeste />
@@ -608,6 +609,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    padding: 0;
+    margin: 0;
   }
   #game {
     /* width: 100vw;
@@ -621,7 +624,6 @@
     padding: 0;    
     top: 3.5%;
   }
-
   #tela1 {
     width: 780px;
     height: 520px;
