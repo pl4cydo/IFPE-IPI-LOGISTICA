@@ -120,7 +120,8 @@
 
     //declarando as imagens do game
     const mapa = new Image();
-    mapa.src = "./images/ProjetoMapa1.png";
+    // mapa.src = "./images/ProjetoMapa1.png";
+    mapa.src = "./images/Mapa(Base).png";
 
     const spriteDown = new Image();
     spriteDown.src = "./images/redSpriteDOWN.png";
