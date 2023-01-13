@@ -8,13 +8,14 @@
   import EpiTask from "../Tasks/EpiTask.svelte"
   import DangerPag from "./DangerPag.svelte";
   import InfoPag from "./infoPag.svelte";
+  import ChatPag from "./chat.svelte";
 
   import { estado } from "../Estado";
 
   import { trocarEstadoDoJogo } from "../Estado";
 
-  import { collision } from "../stores";
-  import { Task0 } from "../stores";
+  import { collision, Task0 } from "../stores";
+  // import { Task0 } from "../stores";
   import { Task1 } from "../stores";
   import { Task2 } from "../stores";
   import { Info } from "../stores"
@@ -171,10 +172,18 @@
     });
 
     //declarando as imagens do game
-    const mapa = new Image();
-    // mapa.src = "./images/ProjetoMapa1.png";
-    mapa.src = "./images/Mapa(Base).png";
+    /// Mapas ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    const mapaFull = new Image();
+    mapaFull.src = "./images/Mapa(Aviso-Full).png";
+    const mapaAviso1_2 = new Image();
+    mapaAviso1_2.src = "./images/Mapa(Aviso-1,2).png";
+    const mapaAviso2 = new Image();
+    mapaAviso2.src = "./images/Mapa(Aviso-2).png";
+    const mapaFinal = new Image();
+    mapaFinal.src = "./images/Mapa(Base).png";
 
+
+    /// Sprite //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     const spriteDown = new Image();
     spriteDown.src = "./images/redSpriteDOWN.png";
     const spriteUp = new Image();
@@ -194,7 +203,7 @@
 
     // molde que para criar objetos com propriedades de local na tela para poder movimentar alterando esses parametros
     class SpriteMoviment {
-      constructor({ position, image, frames = { max: 1 }, sprites }) {
+      constructor({ position, image, frames = { max: 1 }, sprites, swImages }) {
         this.position = position;
         this.image = image;
         this.frames = { ...frames, val: 0, elapsed: 0 };
@@ -205,6 +214,7 @@
         };
         this.moving = false;
         this.sprites = sprites;
+        this.swImages = swImages;
       }
       //metodo que desenha dentro do objeto para facilitar o processo em outros obejtos
       draw() {
@@ -258,7 +268,13 @@
         x: offset.x,
         y: offset.y,
       },
-      image: mapa,
+      image: mapaFull,
+      swImages: {
+        full: mapaFull,
+        av1: mapaAviso1_2,
+        av2: mapaAviso2,
+        final: mapaFinal,
+      },
     });
 
     // prototype object criado para setar informações na mesma constante e não ter que criar varias constantes diferentes
@@ -468,6 +484,7 @@
             epiScreen.style.display = "flex";
             game.style.display = "none";
             $walk = false;
+            background.image = background.swImages.av1;
           }
         });
 
@@ -483,6 +500,7 @@
             recContainer.style.display = "flex";
             game.style.display = "none";
             $walk = false;
+            background.image = background.swImages.av2;
           }
         });
 
@@ -498,6 +516,7 @@
             task2.style.display = "flex";
             game.style.display = "none";
             $walk = false;
+            background.image = background.swImages.final;
           }
         });
       }
@@ -592,10 +611,11 @@
   <div id="game">
     <div id="tela1">
       <canvas bind:this={canvas} />
+      <DangerPag />
+      <InfoPag />
+      <ChatPag />
     </div>
   </div>
-  <DangerPag />
-  <InfoPag />
   <EpiTask />
   <Recebimento />
   <TelaTeste />

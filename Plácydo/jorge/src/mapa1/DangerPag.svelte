@@ -9,18 +9,17 @@
 
 <style>
     #dangerBox{
-        width: 50%;
-        height: 10%;
+        width: 100%;
+        height: 15%;
         border: 5px solid black;
         border-radius: 5%;
-        position: absolute;
+        position: relative;
         display: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
         justify-content: center;
         align-items: center;
-        top: 50%;
         opacity: 0.8;
         transition: 1s ease;
     }

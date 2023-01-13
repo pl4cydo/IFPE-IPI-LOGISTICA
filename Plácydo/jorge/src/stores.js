@@ -51,11 +51,15 @@ export const Task2 = writable(task2)
 export const Info = writable(information)
 export const Danger = writable(danger)
 
-export const walk = writable(true)
+export const walk = writable(false)
 
 export let life = writable(100)
 
 export const ranking = writable([])
+
+export const infoTasks0 = writable("");
+export const infoTasks1 = writable("");
+export const infoTasks2 = writable("");
 
 ranking.subscribe(v => {
     const user = v.at(-1);

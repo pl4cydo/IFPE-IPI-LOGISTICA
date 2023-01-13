@@ -1,17 +1,12 @@
 <script>
+    import { infoTasks0 } from "../stores";
+
     const nome = "Dustry"
-
-    let check1 = ""
-    let check2 = ""
-    let check3 = ""
-
-    // if() {
-    //     check1 = "FEITO!"
-    // }
-    // if() {
+    
+    // if($infoTasks.task1) {
     //     check2 = "FEITO!"
     // }
-    // if() {
+    // if($infoTasks.task2) {
     //     check3 = "FEITO!"
     // }
 
@@ -26,21 +21,21 @@
     <p>Empinhadeira</p>
   </div>
   <div id="infoCheck">
-    <div id="check1">{check1}</div>
-    <div id="check2">{check2}</div>
-    <div id="check3">{check3}</div>
+    <div id="check1">{$infoTasks0}</div>
+    <div id="check2"></div>
+    <div id="check3"></div>
   </div>
 </div>
 
 <style>
   #infoBox {
-    width: 18%;
-    height: 30%;
+    width: 40%;
+    height: 50%;
     display: none;
-    position: absolute;
+    position: relative;
     border: 1px solid black;
-    top: 30%;
-    left: 30%;
+    top: -22%;
+    left: -28%;
     background-color: aliceblue;
     opacity: 0.8;
     font-size: 30px;

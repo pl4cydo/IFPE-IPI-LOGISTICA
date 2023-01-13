@@ -113,8 +113,12 @@
         </div>
     </div>
 </div>
+
 <script>
     import { walk } from "../stores";
+    import { infoTasks0 } from "../stores";
+
+
     class EpiCard{
         constructor(item_name,item_info,item_image,item,img_ref){
             this.item_name = item_name
@@ -274,5 +278,6 @@
         $walk = true;
         game.style.display = "flex";
         epiScreen.style.display = "none";
+        $infoTasks0 = "COMPLETO!";S
     }
 </script>
