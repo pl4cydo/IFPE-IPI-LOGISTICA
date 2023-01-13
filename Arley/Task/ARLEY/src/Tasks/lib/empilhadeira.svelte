@@ -35,8 +35,8 @@
                 ["a bateria esta prestes a acabar","clique no painel para poder carregar"] ,
                 [/*oleo1*/"","Nossa...","esta em pessimo estado, a frente coloco um novo oleo"],
                 ["","que otimo o oleo esta e bom estado, a coloração esta otima. nao precsamos trocar"],
-                ["","Bom aq ao lado esq temos uma lista, e cada um deles irá verifcar partes da emplhadiera que são essenciais para o funcionamento do mesmo.",
-                "lembrando qe O BOTAO VERDE é para finalizaçao da task","dado essa inforaçao podemos continuar"],["","oh ceus, grande erro meu continuar circulando dessa maneira",
+                ["","Bom aquii ao lado esquerdo temos uma lista, e cada um deles irá verifcar partes da emplhadeira que são essenciais para o funcionamento do mesmo.",
+                "lembrando que O BOTAO VERDE é para finalizaçao da task","dado essa inforaçao podemos continuar"],["","oh ceus, grande erro meu continuar circulando dessa maneira",
                 "e eu aqui ensinando boas maneiras","ironico nao?","vamos verificar os outro"],["","o pneu esta em bom estado não sera necessario a troca","o outro lado da empiçhadeira irei revisar pode ficar tranquilo"],
                 ["","o nivel da água esta normal","vamos revisar mais"],["","existem empilhadeiras que utilizam combustivel","mas também existem empilhadeiras eletricas que diminuem poluição dentro e fora da empresa","bom... acho que a bateria esta cheia"]];
                 
@@ -67,6 +67,7 @@
             document.getElementById("Fundo").style.backgroundSize = '100% 100%'; 
             document.getElementById("list").style.display = 'flex'
             document.getElementById("UID").style.display = 'flex'
+            document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/stopEmp.png')"
             roteiro.dd = 9;box();
         },1950);
 
@@ -105,6 +106,7 @@
             F[5] = true
         break
         case 4:
+            document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/FlexEmp.gif')"
             document.getElementById("UID").style.display = 'flex'
             F[6] = true
         break
@@ -120,7 +122,8 @@
             F[8] = true
         break
         case 7: //aqui é quando aperta na seta ele ira voltar como estava no incio
-            end = false
+        end = false
+            document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/stopEmp.png')"
             document.getElementById("imgs").style.display = 'none'
             document.getElementById("Fundo").style.backgroundImage = "url('./images/background22.png')"
             document.getElementById("list").style.display = 'flex'
@@ -162,7 +165,7 @@ function pontos(FinalPoints){ //aqui o contador de pontos
                         <img src={id} alt="">         
                     <li/>
                 {/each}
-                <li  on:click={()=>{roteiro.dd = 6; lst(roteiro.dd);document.getElementById("Fundo").style.backgroundImage = "url('./images/background221.png')";
+                <li on:click={()=>{roteiro.dd = 6; lst(roteiro.dd);document.getElementById("Fundo").style.backgroundImage = "url('./images/background221.png')";
                         roteiro.dd = 13;box()}}>
                     <img src="./images/info/bateria.png" alt="">
                 </li>
@@ -194,9 +197,11 @@ function pontos(FinalPoints){ //aqui o contador de pontos
     
 </div>
 {#if end }
-<div id="UID" style="display: flex ; background-image: url('/images/seta.gif');" on:click={()=>{lst(7)}}/>
+<div id="UID" style="display: flex ; background-image: url('/images/seta.gif'); width:65px;" 
+on:click={()=>{lst(7)}}/>
 {:else}
-<div id="UID" style="display: flex ; background-image: url('/images/conf.png');" on:click={()=>{pontos(); document.getElementById("Window").style.display = 'none'; }}/>
+<div id="UID" style="display: flex ; background-image: url('/images/conf.png');" 
+on:click={()=>{pontos(); document.getElementById("Window").style.display = 'none'; }}/>
  {/if}
 <div on:click={() => {box()}} id="dialogo">    
         <p>{falar}</p> 

@@ -11,8 +11,7 @@
   import { Task2 } from "../stores";
   import { life } from "../stores";
   import { walk } from "../stores";
-  import EpiTask from "../Tasks/lib/EpiTask.svelte";
-    import Empilhadeira from "../Tasks/lib/empilhadeira.svelte";
+  import Empilhadeira from "../Tasks/lib/empilhadeira.svelte";
 
   // 03:05
 
