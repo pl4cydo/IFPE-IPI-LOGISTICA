@@ -1,7 +1,6 @@
 <script>
     import { infoTasks0 } from "../stores";
-
-    const nome = "Dustry"
+    import { Nome } from "../stores";
     
     // if($infoTasks.task1) {
     //     check2 = "FEITO!"
@@ -15,7 +14,7 @@
 <div id="infoBox">
   <h3>INFO</h3>
   <div id="infoText">
-    <p>Nome: {nome}</p>
+    <p>Nome: {$Nome === "" ? "Dustry" : $Nome}</p>
     <p>Equipamento</p>
     <p>Recebimento</p>
     <p>Empinhadeira</p>

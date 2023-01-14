@@ -3,14 +3,9 @@
   import { estado } from "./Estado";
   import Ranking from "./tools/Ranking.svelte";
   import Menu from "./tools/Menu.svelte";
-  
 
   let a = "Beta2.0";
 </script>
-
-<svelte:head>
-  <link rel="stylesheet" href="./styles/global.css" />
-</svelte:head>
 
 <main>
   <div id="tela">
@@ -34,10 +29,10 @@
         </div>
       </nav>
     </header>
-    {#if $estado === 'game'}
-        <FirstMap />
-    {:else if $estado === 'menu'}
-        <Menu />
+    {#if $estado === "game"}
+      <FirstMap />
+    {:else if $estado === "menu"}
+      <Menu />
     {/if}
   </div>
 
@@ -46,8 +41,59 @@
 </main>
 
 <style>
-
-  /* h1{
-      position: absolute;
-    } */
+  main {
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  #tela {
+    width: 1080px;
+    height: 720px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 1px solid black;
+    position: absolute;
+    overflow: hidden;
+  }
+  header {
+    position: relative;
+    display: block;
+    top: -44%;
+    height: 92px;
+    width: 100%;
+    user-select: none;
+    background-color: rgba(17, 16, 16, 0.926);
+  }
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 92px;
+  }
+  #icones {
+    gap: 25px;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  #logo {
+    width: 50px;
+    height: 50px;
+  }
+  .som {
+    width: 90px;
+    height: 85px;
+    cursor: pointer;
+  }
+  #att {
+    width: 50px;
+    height: 50px;
+    display: block;
+  }
+  
 </style>

@@ -1,5 +1,10 @@
 <script>
   import { trocarEstadoDoJogo } from "../Estado";
+  import { Nome } from "../stores";
+
+  const hiddenName = () => {
+    addNome.style.display = "none";
+  }
 
 </script>
 
@@ -8,7 +13,16 @@
   <div id="bot">
     <div id="Inicio" on:click={() => trocarEstadoDoJogo('game')}>Início</div>
     <div id="Sobre">Sobre</div>
-    <div id="Ajuda">Ajuda</div>
+    <div id="Ajuda" on:click={console.log($Nome)}>Ajuda</div>
+  </div>
+  <div id="addNome">
+      <input 
+          type="text" 
+          placeholder="Nome" 
+          name="Nome"
+          bind:value={$Nome}
+        />
+      <button on:click={hiddenName}>Ok</button>
   </div>
 </div>
 
@@ -43,6 +57,13 @@
     justify-content: center;
     align-items: center;
     top: 30%;
+  }
+  #addNome{
+    background-color: whitesmoke;
+    width: 95%;
+    height: 50%;justify-content: center;
+    align-items: center;
+    display: flex;
   }
   #bot > div {
     position: absolute;

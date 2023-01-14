@@ -61,6 +61,9 @@ export const infoTasks0 = writable("");
 export const infoTasks1 = writable("");
 export const infoTasks2 = writable("");
 
+export const Nome = writable("");
+
+
 ranking.subscribe(v => {
     const user = v.at(-1);
     if (!user) return;
