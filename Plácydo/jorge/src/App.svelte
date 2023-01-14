@@ -34,12 +34,15 @@
         </div>
       </nav>
     </header>
-    <FirstMap />
+    {#if $estado === 'game'}
+        <FirstMap />
+    {:else if $estado === 'menu'}
+        <Menu />
+    {/if}
   </div>
 
   <!-- <h1>{a}</h1> -->
   <!-- <Ranking /> -->
-  <!-- <Menu /> -->
 </main>
 
 <style>

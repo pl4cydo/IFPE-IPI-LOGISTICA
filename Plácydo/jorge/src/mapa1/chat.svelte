@@ -26,7 +26,10 @@
         margin: 2%;
     }
     #chatBox > img {
-        position: absolute;
-        left: 83%;
+        top: 60%;
+        width: 7%;
+        height: 40%;
+        position: relative;
+        
     }
 </style>
