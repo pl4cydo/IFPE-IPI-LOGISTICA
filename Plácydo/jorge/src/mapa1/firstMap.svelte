@@ -9,6 +9,7 @@
   import DangerPag from "./DangerPag.svelte";
   import InfoPag from "./infoPag.svelte";
   import ChatPag from "./chat.svelte";
+  import HeartBar from "./HeartBar.svelte";
 
   import { estado } from "../Estado";
 
@@ -315,6 +316,25 @@
       );
     }
 
+    let pointer = 0;
+    let hp = 100
+    const damage = () => {
+      pointer++
+      setTimeout(() => {
+        if(pointer >= 100 && pointer < 300) {
+          hp -= 5
+          pointer = 0;
+        } else if (pointer >= 300 && pointer < 600) {
+          hp -= 10
+          pointer = 0
+        } else {
+          pointer = 0
+        }
+        console.log(hp)
+        barGreen.style.width = hp+"%"
+      }, 1000);
+    }
+
     // função recursiva que chama a si propria em relação a movimentação da janela do canvas
     function animate() {
       window.requestAnimationFrame(animate); // chamada da função dentro da função
@@ -544,7 +564,10 @@
             })
           ) {
             dangerBox.style.display = "flex";
+            damage()
             // $walk = false;
+          } else {
+            
           }
         });
     }
@@ -615,6 +638,7 @@
       <InfoPag />
       <ChatPag />
     </div>
+    <HeartBar />
   </div>
   <EpiTask />
   <Recebimento />
@@ -645,6 +669,7 @@
     top: 3.5%;
   }
   #tela1 {
+    margin-top: 10%;
     width: 780px;
     height: 520px;
     justify-content: center;

@@ -5,7 +5,7 @@
   import Menu from "./tools/Menu.svelte";
 
   let a = "Beta2.0";
-  
+
   let booRanking = false;
   const hiddenRanking = () => {
       if (!booRanking) booRanking = true;
@@ -38,11 +38,12 @@
         </div>
       </nav>
     </header>
-    {#if $estado === "game"}
+    <FirstMap />
+    <!-- {#if $estado === "game"}
       <FirstMap />
     {:else if $estado === "menu"}
       <Menu />
-    {/if}
+    {/if} -->
       <Ranking />
   </div>
 
