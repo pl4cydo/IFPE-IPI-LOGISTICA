@@ -15,8 +15,7 @@
       await loadRanking();
     });
   </script>
-  <body>
-    <div id="tela">
+    <div id="telaRanking">
         <div class="titulo"><h1>Ranking</h1></div>
         <div class="c">
             <table>
@@ -37,28 +36,19 @@
             </table>
         </div>
     </div>
-  </body>
   
   <style>
-    body{
-        width: 100vw;
-        height: 100vh;
+    #telaRanking{
+        width: 50%;
+        height: 80%;
         justify-content: center;
         align-items: center;
-        display: flex;
-        background-color: gray;
-        margin: 0;
-        padding: 0;
-    }
-
-    #tela{
-        width: 1080px;
-        height: 720px;
-        justify-content: center;
-        align-items: center;
-        display: flex;  
+        display: none;  
         border: 1px solid black;
         position: absolute;
+        background-color: aquamarine;
+        top: 14%;
+        right: 1%;
     }
 
     .titulo{
@@ -67,7 +57,7 @@
         display: flex; 
         border: 1pt solid black;
         position: absolute;
-        width: 50%;
+        width: 80%;
         height: 20%;
         top: 5%
     }
@@ -78,13 +68,13 @@
         display: flex; 
         border: 1pt solid black;
         position: absolute;
-        width: 50%;
+        width: 80%;
         height: 65%;
         bottom: 5%;
     }
     table{
         height: 100%;
-        width: 70%;
+        width: 100%;
         border: 1pt solid black;
     }
     td {

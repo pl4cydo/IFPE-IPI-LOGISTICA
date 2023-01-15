@@ -5,6 +5,15 @@
   import Menu from "./tools/Menu.svelte";
 
   let a = "Beta2.0";
+  
+  let booRanking = false;
+  const hiddenRanking = () => {
+      if (!booRanking) booRanking = true;
+      else booRanking = false;
+      if(!booRanking) telaRanking.style.display = "none";
+      else telaRanking.style.display = "flex"
+  }
+
 </script>
 
 <main>
@@ -20,11 +29,11 @@
               alt="Lista de atividades"
             />
           </div>
-          <h1><span>LOGISTICA</span></h1>
+          <h1 id="sidebarrTitulo">Dustry</h1>
           <ul>
-            <img class="som" src="./images/ranking.png" alt="Placar" />
+            <img on:click={() => hiddenRanking() | console.log(booRanking)} class="som" src="./images/ranking.png" alt="Placar" />
             <img class="som" src="./images/comoJogar.png" alt="Como Jogar" />
-            <img class="som" src="./images/sobre.png" alt="Sobre" />
+            <img id="sobre" class="som" src="./images/sobre.png" alt="Sobre" />
           </ul>
         </div>
       </nav>
@@ -34,6 +43,7 @@
     {:else if $estado === "menu"}
       <Menu />
     {/if}
+      <Ranking />
   </div>
 
   <!-- <h1>{a}</h1> -->
@@ -55,7 +65,7 @@
     align-items: center;
     display: flex;
     border: 1px solid black;
-    position: absolute;
+    position: relative;
     overflow: hidden;
   }
   header {
@@ -69,6 +79,7 @@
   }
   .nav-container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
     height: 92px;
@@ -94,6 +105,11 @@
     width: 50px;
     height: 50px;
     display: block;
+  }
+  #sidebarrTitulo{
+    color: gray;
+    left: 50%;
+    font-size: 50px;
   }
   
 </style>
