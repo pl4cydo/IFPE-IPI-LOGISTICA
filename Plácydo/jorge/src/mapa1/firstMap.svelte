@@ -6,10 +6,10 @@
   import TelaTeste2 from "../Tasks/telaTeste2.svelte";
   import Recebimento from "../Tasks/Recebimento.svelte";
   import EpiTask from "../Tasks/EpiTask.svelte"
-  import DangerPag from "./DangerPag.svelte";
-  import InfoPag from "./infoPag.svelte";
-  import ChatPag from "./chat.svelte";
-  import HeartBar from "./HeartBar.svelte";
+  import DangerPag from "../tools/DangerPag.svelte";
+  import InfoPag from "../tools/infoPag.svelte";
+  import ChatPag from "../tools/chat.svelte";
+  import HeartBar from "../tools/HeartBar.svelte";
 
   import { estado } from "../Estado";
 
@@ -321,18 +321,25 @@
     const damage = () => {
       pointer++
       setTimeout(() => {
-        if(pointer >= 100 && pointer < 300) {
-          hp -= 5
+        if(pointer >= 50 && pointer < 300) {
+          hp -= 20
           pointer = 0;
         } else if (pointer >= 300 && pointer < 600) {
-          hp -= 10
+          hp -= 25
+          pointer = 0
+        } else if (pointer >= 700) {
+          hp -= 90
           pointer = 0
         } else {
           pointer = 0
         }
         console.log(hp)
-        barGreen.style.width = hp+"%"
-      }, 1000);
+        if(hp > 0) barGreen.style.width = hp+"%"
+        else barGreen.style.width = "0%"
+      }, 3000);
+      setTimeout(() => {
+        if(hp <= 0) trocarEstadoDoJogo('menu')
+      }, 4000)
     }
 
     // função recursiva que chama a si propria em relação a movimentação da janela do canvas
@@ -566,8 +573,6 @@
             dangerBox.style.display = "flex";
             damage()
             // $walk = false;
-          } else {
-            
           }
         });
     }

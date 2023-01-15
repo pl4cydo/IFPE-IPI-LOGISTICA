@@ -3,6 +3,7 @@
   import { estado } from "./Estado";
   import Ranking from "./tools/Ranking.svelte";
   import Menu from "./tools/Menu.svelte";
+  import HowtoPlay from "./tools/HowtoPlay.svelte";
 
   let a = "Beta2.0";
 
@@ -12,6 +13,14 @@
       else booRanking = false;
       if(!booRanking) telaRanking.style.display = "none";
       else telaRanking.style.display = "flex"
+  }
+
+  let booHTP = false
+  const hiddenHowToPlay = () => {
+      if (!booHTP) booHTP = true;
+      else booHTP = false;
+      if(!booHTP) boxPlay.style.display = "none";
+      else boxPlay.style.display = "block"
   }
 
 </script>
@@ -32,7 +41,7 @@
           <h1 id="sidebarrTitulo">Dustry</h1>
           <ul>
             <img on:click={() => hiddenRanking() | console.log(booRanking)} class="som" src="./images/ranking.png" alt="Placar" />
-            <img class="som" src="./images/comoJogar.png" alt="Como Jogar" />
+            <img on:click={() => hiddenHowToPlay()} class="som" src="./images/comoJogar.png" alt="Como Jogar" />
             <img id="sobre" class="som" src="./images/sobre.png" alt="Sobre" />
           </ul>
         </div>
@@ -45,6 +54,7 @@
       <Menu />
     {/if} -->
       <Ranking />
+      <HowtoPlay />
   </div>
 
   <!-- <h1>{a}</h1> -->
