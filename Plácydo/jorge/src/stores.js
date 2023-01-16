@@ -62,6 +62,7 @@ export const infoTasks1 = writable("");
 export const infoTasks2 = writable("");
 
 export const Nome = writable("");
+export const totalPoints = writable(0);     
 
 
 ranking.subscribe(v => {

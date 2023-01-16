@@ -47,12 +47,12 @@
         </div>
       </nav>
     </header>
-    <FirstMap />
-    <!-- {#if $estado === "game"}
+    <!-- <FirstMap /> -->
+    {#if $estado === "game"}
       <FirstMap />
     {:else if $estado === "menu"}
       <Menu />
-    {/if} -->
+    {/if}
       <Ranking />
       <HowtoPlay />
   </div>

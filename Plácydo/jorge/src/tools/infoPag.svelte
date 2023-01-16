@@ -1,6 +1,7 @@
 <script>
     import { infoTasks0 } from "../stores";
     import { Nome } from "../stores";
+    import { totalPoints } from "../stores";
     
     // if($infoTasks.task1) {
     //     check2 = "FEITO!"
@@ -18,6 +19,7 @@
     <p>Equipamento</p>
     <p>Recebimento</p>
     <p>Empinhadeira</p>
+    <p>{$totalPoints}</p>
   </div>
   <div id="infoCheck">
     <div id="check1">{$infoTasks0}</div>

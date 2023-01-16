@@ -1,6 +1,8 @@
 <script>
     import { walk } from '../stores'
     import { ranking } from '../stores'
+    import { Nome } from '../stores'
+    import { totalPoints } from '../stores'
 
     function backToLobby() {
             game.style.display = "flex"
@@ -10,13 +12,12 @@
 
     const form = {
         nome: "",
-        pontos: 0,
+        pontos: 0
     };
 
     const addranking = () => {
-        // form.nome = 'Pchronos';
-        // form.pontos = 7000;
-
+        form.nome = $Nome;
+        form.pontos = $totalPoints;
         $ranking = $ranking.concat({
             nome: form.nome,
             pontos: form.pontos
@@ -30,29 +31,26 @@
 <div id="task2">
         <h1>Task 2</h1>
         <button on:click={() => backToLobby()}>Back</button>
-
-        <form on:submit|preventDefault={addranking}>
+        <p>{$Nome}</p>
+        <p>{$totalPoints}</p>
+        <button on:click={() => addranking()}>Teste</button>
+        <!-- <form on:submit|preventDefault={addranking}>
             <input 
                 type="text" 
                 placeholder="Nome" 
                 name="Nome" 
                 bind:value={form.nome}
             />
-            <input 
-                type="number" 
-                placeholder="pontos" 
-                name="pontos" 
-                bind:value={form.pontos}
-            /> 
             <button>Send</button>
-        </form>
+        </form> -->
 </div>
 
 
 <style>
     #task2{
-        width: 100vw;
-        height: 100vh;
+        position: absolute;
+        width: 40%;
+        height: 40%;
         justify-content: center;
         align-items: center;
         display: none;

@@ -117,7 +117,7 @@
 <script>
     import { walk } from "../stores";
     import { infoTasks0 } from "../stores";
-
+    import { totalPoints } from "../stores";
 
     class EpiCard{
         constructor(item_name,item_info,item_image,item,img_ref){
@@ -275,6 +275,7 @@
         
     }
     function backToLobby() {
+        $totalPoints += points;
         $walk = true;
         game.style.display = "flex";
         epiScreen.style.display = "none";
