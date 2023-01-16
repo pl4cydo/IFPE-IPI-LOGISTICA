@@ -26,7 +26,7 @@
                     </tr>
                 {#each leitor as el, i }
                     <tr>
-                        {#if i < 10}
+                        {#if i < 15}
                         <td>{(i+1) + "º"} </td>
                         <td>{el.Nome}</td>
                         <td>{el.pontos}</td>
