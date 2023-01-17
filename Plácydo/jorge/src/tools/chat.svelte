@@ -9,7 +9,7 @@
     const arrChat = [
         `Bem vindo, ${$Nome}, esse é o Dustry. (Use o mouse para clicar na seta e seguir)`,
         "O Dustry está em seu primeiro dia de trabalho em uma fábrica e precisa da sua ajuda.",
-        "Siga o mapa em direção dos locais com uma placa escrito \"!\", nesses locais há tasks a serem feitas.",
+        "Siga o mapa em direção aos locais com uma placa escrita \"!\", nesses locais há tasks a serem feitas.",
         "Essas Tasks o ajudaram a entender melhor os processos Logisticos e de Segurança do Trabalho enquanto se diverte.",
         "Mas tenha atenção, permaneça nas areas seguras, destacadas em amarelo, para sua segurança.",
         "Divirta-se"

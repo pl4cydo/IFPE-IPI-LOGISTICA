@@ -56,9 +56,6 @@
       <Ranking />
       <HowtoPlay />
   </div>
-
-  <!-- <h1>{a}</h1> -->
-  <!-- <Ranking /> -->
 </main>
 
 <style>

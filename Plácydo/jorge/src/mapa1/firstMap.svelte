@@ -15,7 +15,7 @@
 
   import { trocarEstadoDoJogo } from "../Estado";
 
-  import { collision, Task0 } from "../stores";
+  import { collision, Task0, taskOrder} from "../stores";
   // import { Task0 } from "../stores";
   import { Task1 } from "../stores";
   import { Task2 } from "../stores";
@@ -174,10 +174,12 @@
 
     //declarando as imagens do game
     /// Mapas ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    const mapaFull = new Image();
-    mapaFull.src = "./images/Mapa(Aviso-Full).png";
-    const mapaAviso1_2 = new Image();
-    mapaAviso1_2.src = "./images/Mapa(Aviso-1,2).png";
+    // const mapaFull = new Image();
+    // mapaFull.src = "./images/Mapa(Aviso-Full).png";
+    const mapaAviso0 = new Image();
+    mapaAviso0.src = "./images/Mapa(Aviso0).png";
+    const mapaAviso1 = new Image();
+    mapaAviso1.src = "./images/Mapa(Aviso-1).png";
     const mapaAviso2 = new Image();
     mapaAviso2.src = "./images/Mapa(Aviso-2).png";
     const mapaFinal = new Image();
@@ -269,10 +271,10 @@
         x: offset.x,
         y: offset.y,
       },
-      image: mapaFull,
+      image: mapaAviso0,
       swImages: {
-        full: mapaFull,
-        av1: mapaAviso1_2,
+        av0: mapaAviso0,
+        av1: mapaAviso1,
         av2: mapaAviso2,
         final: mapaFinal,
       },
@@ -507,11 +509,13 @@
               rectung2: { ...el },
             })
           ) {
-            console.log("task 0");
-            epiScreen.style.display = "flex";
-            game.style.display = "none";
-            $walk = false;
-            background.image = background.swImages.av1;
+            if($taskOrder.t0){
+              console.log("task 0");
+              epiScreen.style.display = "flex";
+              game.style.display = "none";
+              $walk = false;
+              background.image = background.swImages.av1;
+            }           
           }
         });
 
@@ -523,11 +527,13 @@
               rectung2: { ...el },
             })
           ) {
-            console.log("task 1");
-            recContainer.style.display = "flex";
-            game.style.display = "none";
-            $walk = false;
-            background.image = background.swImages.av2;
+            if($taskOrder.t1){         
+              console.log("task 1");
+              recScreen.style.display = "block";
+              game.style.display = "none";
+              $walk = false;
+              background.image = background.swImages.av2;
+            }
           }
         });
 
@@ -539,11 +545,14 @@
               rectung2: { ...el },
             })
           ) {
-            console.log("task 2");
-            task2.style.display = "flex";
-            game.style.display = "none";
-            $walk = false;
-            background.image = background.swImages.final;
+            if($taskOrder.t2) {
+              console.log("task 2");
+              task2.style.display = "flex";
+              game.style.display = "none";
+              $walk = false;
+              background.image = background.swImages.final;
+            }
+            
           }
         });
       }

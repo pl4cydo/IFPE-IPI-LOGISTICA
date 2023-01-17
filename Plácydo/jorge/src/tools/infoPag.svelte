@@ -1,5 +1,5 @@
 <script>
-    import { infoTasks0 } from "../stores";
+    import { infoTasks0, infoTasks1, infoTasks2 } from "../stores";
     import { Nome } from "../stores";
     import { totalPoints } from "../stores";
     
@@ -23,8 +23,8 @@
   </div>
   <div id="infoCheck">
     <div id="check1">{$infoTasks0}</div>
-    <div id="check2"></div>
-    <div id="check3"></div>
+    <div id="check2">{$infoTasks1}</div>
+    <div id="check3">{$infoTasks2}</div>
   </div>
 </div>
 

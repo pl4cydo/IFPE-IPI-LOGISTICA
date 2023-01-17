@@ -108,14 +108,14 @@
         <div id="cardHolder" style="display: none;"></div>
         <div id="EndScreen" style="display: none;">
             <h1>Missão Concluida</h1>
-            <h2>Pontuação da missão: {points}</h2>
-            <div id="backToMap" on:click={backToLobby}>Voltar ao mapa</div>
+            <h2>Pontuação da missão: {pointsEpi}</h2>
+            <div id="backToMap" on:click={backToLobbyEpi}>Voltar ao mapa</div>
         </div>
     </div>
 </div>
 
 <script>
-    import { walk } from "../stores";
+    import { taskOrder, walk } from "../stores";
     import { infoTasks0 } from "../stores";
     import { totalPoints } from "../stores";
 
@@ -139,7 +139,7 @@
         }
     }
 
-    let points = 0
+    let pointsEpi = 0
     let equipedItem = ""
     let equipCont = 6
     let confirmlock = true
@@ -175,7 +175,7 @@
             setTimeout(() => {
                 if(el === "helmet"){
                     card.classList.add("cardOutAnimation")
-                    points += 25
+                    pointsEpi += 25
                 worker.helmet = true 
                 imgRef.classList.add("hiddenAnimation")
                 equipedItem = "Capacete de segurança equipado "
@@ -186,7 +186,7 @@
 
             }else if(el === "gloves"){
                 card.classList.add("cardOutAnimation")
-                points += 25
+                pointsEpi += 25
                 worker.glove = true
                 imgRef.classList.add("hiddenAnimation")
                 equipedItem = "Luvas de segurança equipadas "
@@ -196,7 +196,7 @@
                 }, 800); 
             }else if(el === "vest"){
                 card.classList.add("cardOutAnimation")
-                points += 25
+                pointsEpi += 25
                 worker.vest = true
                 imgRef.classList.add("hiddenAnimation")
                 equipedItem = "Colete refletivo equipado "
@@ -206,7 +206,7 @@
                 }, 800); 
             }else if(el === "glasses"){
                 card.classList.add("cardOutAnimation")
-                points += 25
+                pointsEpi += 25
                 worker.glasses = true
                 imgRef.classList.add("hiddenAnimation")
                 equipedItem = "Óculos de proteção equipado "
@@ -217,7 +217,7 @@
             }
             else if(el === "boot"){
                 card.classList.add("cardOutAnimation")
-                points += 25
+                pointsEpi += 25
                 worker.boot = true
                 imgRef.classList.add("hiddenAnimation")
                 equipedItem = "Botas equipadas "
@@ -228,7 +228,7 @@
             }
             else if(el === "headphones" ){
                 card.classList.add("cardOutAnimation")
-                points += 25
+                pointsEpi += 25
                 worker.headphone = true
                 imgRef.classList.add("hiddenAnimation")
                 equipCont --
@@ -238,7 +238,7 @@
                 }, 800); 
             }
             else{
-                points -= 10
+                pointsEpi -= 10
                 changeDialogues("dialogue-5","dialogue-6")
                 setTimeout(() => {
                     openItem("dialogueContainer")
@@ -274,11 +274,13 @@
         }
         
     }
-    function backToLobby() {
-        $totalPoints += points;
+    function backToLobbyEpi() {
+        $totalPoints += pointsEpi;
         $walk = true;
         game.style.display = "flex";
         epiScreen.style.display = "none";
-        $infoTasks0 = "COMPLETO!";S
+        $infoTasks0 = "COMPLETO!";
+        $taskOrder.t0 = false;
+        $taskOrder.t1 = true;
     }
 </script>
