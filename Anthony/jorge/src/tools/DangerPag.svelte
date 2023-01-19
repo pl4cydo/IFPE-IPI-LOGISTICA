@@ -22,7 +22,7 @@
         align-items: center;
         opacity: 0.8;
         transition: 1s ease;
-        animation: piscapisca infinite 1.6s ease;
+        animation: piscapisca infinite 1.5s ease;
     }
     #dangerBox > img{
         height: 700%;

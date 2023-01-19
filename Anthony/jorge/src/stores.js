@@ -57,9 +57,9 @@ export let life = writable(100)
 
 export const ranking = writable([])
 
-export const infoTasks0 = writable("");
-export const infoTasks1 = writable("");
-export const infoTasks2 = writable("");
+export const infoTasks0 = writable("INCOMPLETO!");
+export const infoTasks1 = writable("INCOMPLETO!");
+export const infoTasks2 = writable("INCOMPLETO!");
 
 export const Nome = writable("");
 export const totalPoints = writable(0);

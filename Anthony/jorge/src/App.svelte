@@ -80,12 +80,12 @@
 </header>
 <main>
   <div class="main-content flex-center-align">
-    {#if $estado === "game"}
+<!--     {#if $estado === "game"}
       <FirstMap />
     {:else if $estado === "menu"}
       <Menu />
-    {/if}
-   <!--  <FirstMap /> -->
+    {/if} -->
+    <FirstMap />
     <Ranking />
     <HowtoPlay />
   </div>

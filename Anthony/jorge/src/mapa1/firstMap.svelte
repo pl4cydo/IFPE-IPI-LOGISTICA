@@ -318,7 +318,7 @@
     }
 
     let pointer = 0;
-    let hp = 100;
+    let hp = 80;
     const damage = () => {
       pointer++;
       setTimeout(() => {
@@ -647,9 +647,9 @@
   <div id="tela1">
     <canvas bind:this={canvas} />
     <DangerPag />
-    <InfoPag />
     <ChatPag />
   </div>
+  <InfoPag />
   <HeartBar />
 </div>
 <EpiTask />

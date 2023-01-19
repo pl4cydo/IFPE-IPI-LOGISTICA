@@ -13,72 +13,75 @@
 </script>
 
 <div id="infoBox">
-  <h3>INFO</h3>
-  <div id="infoText">
-    <p>Nome: {$Nome === "" ? "Dustry" : $Nome}</p>
-    <p>Equipamento</p>
-    <p>Recebimento</p>
-    <p>Empinhadeira</p>
-    <p>{$totalPoints}</p>
+  <div class="info-tittle">
+    <h1>INFO</h1>
   </div>
-  <div id="infoCheck">
-    <div id="check1">{$infoTasks0}</div>
-    <div id="check2">{$infoTasks1}</div>
-    <div id="check3">{$infoTasks2}</div>
+  <div id="info-text">
+    <div class="info-item">
+      <h2>Nome: {$Nome === "" ? "Dustry" : $Nome}</h2>
+    </div>
+
+    <div class="info-item">
+      <h2>Equipamento</h2> <h2 class="task-progress" class:finalizada={$infoTasks0 === "COMPLETO!"} class:nao={$infoTasks0 === "INCOMPLETO!"}>{$infoTasks0}</h2>
+    </div>
+
+    <div class="info-item">
+      <h2>Recebimento</h2> <h2 class="task-progress" class:finalizada={$infoTasks1 === "COMPLETO!"} class:nao={$infoTasks1 === "INCOMPLETO!"} >{$infoTasks1}</h2>
+    </div>
+
+    <div class="info-item">
+      <h2>Empilhadeira</h2> <h2 class="task-progress" class:finalizada={$infoTasks2 === "COMPLETO!"} class:nao={$infoTasks2 === "INCOMPLETO!"}>{$infoTasks2}</h2>
+    </div>
+
+    <div class="info-item">
+      <h2>Pontuação</h2> <h2 class="task-progress">{$totalPoints}</h2>
+    </div>
+
   </div>
+  
 </div>
 
 <style>
   #infoBox {
+    top: 2%;
+    right: 1%;
     width: 40%;
-    height: 50%;
     display: none;
-    position: relative;
-    border: 1px solid black;
-    top: -22%;
-    left: -28%;
-    background-color: aliceblue;
-    opacity: 0.8;
-    font-size: 30px;
-  }
-  #infoBox > h3 {
+    flex-flow: column nowrap;
     position: absolute;
-    left: 41%;
+    border: 2px ridge black;
+    background: white;
+  
   }
-  #infoText {
-    position: relative;
-    /* border: 1px solid black; */
-    top: 10%;
-    margin: 1%;
-    width: 55%;
-    height: 85%;
+  .info-tittle{
+    color: black;
+    width: 100%;
+    font-size: 1.5em;
+    text-align: center;
   }
-  #infoText > p {
-    padding: 5%;
+  #info-text{
+    width: 100%;
   }
-  #infoCheck {
-    top: 10%;
-    position: relative;
-    /* border: 1px solid black; */
-    margin: 1%;
-    width: 30%;
-    height: 85%;
+  .info-item{
+    display: flex;
+    justify-content: space-between;
+    color: black ;
+    padding: 2%;
+    margin-bottom: 2%;
+    letter-spacing: 1px;
   }
-  #infoCheck > div {
-    position: relative;
-    /* border: 1px solid black; */
-    left: 0%;
+  .task-progress{
+    text-align: end;
   }
-  #check1 {
+  .finalizada{
     color: green;
-    top: 25%;
   }
-  #check2 {
-    color: green;
-    top: 34%;
+  .nao{
+    color: red;
   }
-  #check3 {
-    color: green;
-    top: 42%;
+  .info-item > h2{
+    width: 100%;
+    border-bottom: solid 2px black;
   }
+ 
 </style>
