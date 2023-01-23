@@ -1,5 +1,4 @@
 <script>
-    var end = false //essa funçao é um liga e desliga somente
     var src2; // aqui armazena o local do arquivo
     var src; // o mesmo se aplica a varivel acima
     var task; //aqui armazenda o id da tag html provavelmente seja desnecessario
@@ -22,41 +21,45 @@
                 /*texto da caixa de dialogo*/
                  let text = [[/*inicio*/
                 "",//tudo isso aqui é todo o texto da task, porem nao esta de forma cronologica vamos assim dizer
-                "Que bom ve-lo denovo",
-                "Pelo jeito completou a missão anterior, e isso é otimo!",
-                "Essa tarefa voce ira me ajudar a fazer o check-list",
-                "Vamos prosseguir em outro local."],
-                [/*motor*/"","motor","em cada um desses indcadores sao oleo para lubrifcaçao de diferentes partes da empilhadeira"],
-                [/*pneu*/"","pneu","clique em um dos pneus para revirsarmos"],
-                [/*arrefecimento*/"","arrefecimento","o radiador é uma peça que serve de resfriamento do motor","arrefecimento significa desaparacimento de calor."
-                 ,"nesta tampa laranja se tem um liquido para o uso exclusiivo do radiador","vamos revisar"/*esta com o nivel ideal para o funcionamento*/],[/*giroflex*/"",
-                "essa luz luminosa é o giroflex","a funçao dele é avisar, para pessoas que estejam perto do equipamento, sobre seu deslocamento ou movimentação.","e esta funcionando normalmente"] ,
-                [/*som de re*/"","som","função semelhante ao giroflex serve para alerta efetuamento da manobra"],
-                ["a bateria esta prestes a acabar","clique no painel para poder carregar"] ,
-                [/*oleo1*/"","Nossa...","esta em pessimo estado, a frente coloco um novo oleo"],
-                ["","que otimo o oleo esta e bom estado, a coloração esta otima. nao precsamos trocar"],
-                ["","Bom aquii ao lado esquerdo temos uma lista, e cada um deles irá verifcar partes da emplhadeira que são essenciais para o funcionamento do mesmo.",
-                "lembrando que O BOTAO VERDE é para finalizaçao da task","dado essa inforaçao podemos continuar"],["","oh ceus, grande erro meu continuar circulando dessa maneira",
-                "e eu aqui ensinando boas maneiras","ironico nao?","vamos verificar os outro"],["","o pneu esta em bom estado não sera necessario a troca","o outro lado da empiçhadeira irei revisar pode ficar tranquilo"],
-                ["","o nivel da água esta normal","vamos revisar mais"],["","existem empilhadeiras que utilizam combustivel","mas também existem empilhadeiras eletricas que diminuem poluição dentro e fora da empresa","bom... acho que a bateria esta cheia"]];
-                
-                if (text[roteiro.dd].length == roteiro.nxtTxt) {
-                    document.getElementById("dialogo").style.display = 'none' ;    
-                    //esse if é um caso a aparte, somente quando ele pegar o primeiro texto e terminar. ele ira fazer a transiçao   
+                "Opa! vejo que equipou o EPI já é um passo a mais da nossa check-list ","não só isso a check-list envolve revisar a empilhadeira e se tiver tudo certo esta liberada para operar",
+                "Vou levar a empilhadeira a um local adequado para podermos observar de perto pontos essenciais para que o uso",
+                "Vamos lá."],
+                [/*motor*/"","abaixo do assento da empilhadeira existe o motor, bateria, filtro e outros. Mas vamos ficar em revisar regiões que contenham oleo para a lubrificação",
+                "em cada um desses indcadores há uma haste mergulhada no oleo ",
+                "quando retirados ficam requícios e é ai que passamos essa haste em um frapo e cor vai indicar sua qualidade",
+                "veja a cor escura do oleo, significa que o uso dela ultrapassou e consquentemente a qualidade diminui",
+                "aqui é um caso diferente a cor clara do oleo significa que ele esta em bom estado e não será necessario a troca",
+                "bem simples não? aqui terminamos vamos ao proximo!"/*motor ta pica*/],
+                [/*pneu*/"","sem muito segredo no pneu né?","uma rapida olhada averiguando se esta murcho ou com avaria","mas para evitar essas situações toda semana o pneu da empilhadeira deve ser calibrado",
+                "dependendo do modelo da empilhadeira tem sua tabela de calibragem","deve se atentar a isso","como posso demonstrar nesse exemplo","vamos para o proximo"],
+                [/*arrefecimento*/"","o radiador é uma peça que serve de resfriamento do motor","a tampa do radiador não pode ser aberta logo depois do uso da empilhadeira se retirado quente pode causar queimaduras",
+                "espere ela esfriar para ai sim poder retirar a tampa","ai sim podemos observar se o liquido do radiador esta normal",
+                "para descobrir com seu dedo molhe a ponta do seu dedo dele caso fique molhado não é necessario repor mas só de olhar se percebe o nivel"],
+                 [/*giroflex*/"","essa luz luminosa é o giroflex","a funçao dele é avisar, para pessoas que estejam perto do equipamento, sobre seu deslocamento ou movimentação.",
+                 "caso não funione quando ligado, deve se solicitar a troca"],
+                [/*som de re*/"","som","função semelhante ao giroflex serve para alerta efetuamento da manobra","e caso não funcione deve se solicitar a troca"],
+                ["a bateria esta prestes a acabar","clique no painel para poder carregar"],
+                ["","Bom aqui ao lado esquerdo temos uma lista, e cada um deles irá verificar partes da emplhadeira para prevenção como já havia falado anteriormente.",
+                "depois de revisados marque a caixa ao lado itens da lista que estão funcionando","depois de marcados finalize clicando no botão verde"],
+                ["","existem empilhadeiras que utilizam combustivel","mas também existem empilhadeiras eletricas que diminuem poluição dentro e fora da empresa","bom... acho que a bateria esta cheia"]];
+               
+                if (!(text[roteiro.dd].length == roteiro.nxtTxt)) {
+                    falar = text[roteiro.dd][roteiro.nxtTxt].substring(0, roteiro.txt);
+                    roteiro.txt++;
+                    console.log(roteiro.dd,roteiro.nxtTxt)
+                }else if(text[roteiro.dd].length == roteiro.nxtTxt){
                     if (roteiro.nxtTxt == text[0].length ){
                         transiçao1()   
                     }
-                    //aqui é um reset. é necessario pois se caso solicitar o dialogo, ele nao pegara do meio do texto ou final
-                    roteiro.nxtTxt = 0;
-                    clearInterval(caixa);
+                    roteiro.nxtTxt = 0
+                    document.getElementById("dialogo").style.display = 'none'
+                    clearInterval(caixa)
                 }
-                falar = text[roteiro.dd][roteiro.nxtTxt].substring(0, roteiro.txt);
-                roteiro.txt++;
-            }, 50);
+            }, 60);
             
         }
         //essa função faz a mudança do cenario ativaçao da lista de botoes, animaçao da empilhadeira e umas coisas ai
-        function transiçao1( ) {
+        function transiçao1() {
         document.getElementById("transiçao").style.animationName = 'desvanecer'
         document.getElementById("dialogo").style.display = "none";
         document.getElementById("empilhadeira").style.animationName = 'mymove2';
@@ -66,12 +69,12 @@
             document.getElementById("empilhadeira").style.animationName = 'mymove';
             document.getElementById("Fundo").style.backgroundSize = '100% 100%'; 
             document.getElementById("list").style.display = 'flex'
-            document.getElementById("UID").style.display = 'flex'
             document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/stopEmp.png')"
-            roteiro.dd = 9;box();
+            roteiro.dd = 7;box();
         },1950);
 
     }
+
     var backgroundX = 0;
     /*aqui é só pra fazer o movimento de fundo da tela, mudando a posição atraves de pixels*/
     const background = setInterval(() => {
@@ -83,10 +86,10 @@
             box();
         }
     }, 10);
+
 /*aqui abaixo fica a lista de botões que fica ao lado */
     function lst(num){
         document.getElementById("list").style.display = 'none'
-        end = true
         switch (num) {
         case 1://exemplo: esse é o motor 
             task = document.getElementById("imgs")
@@ -95,9 +98,8 @@
             document.getElementById("UID").style.display = 'flex'
         break;
         case 2://rodas
-            task = document.getElementById("rodas")
-            task.style.display = 'grid'
-            document.getElementById("UID").style.display = 'flex'
+            roteiro.dd = 2 
+            box()
         break
         case 3://arrefecimento
             src = "./images/info/arerfe.png"
@@ -122,18 +124,16 @@
             F[8] = true
         break
         case 7: //aqui é quando aperta na seta ele ira voltar como estava no incio
-        end = false
             document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/stopEmp.png')"
             document.getElementById("imgs").style.display = 'none'
             document.getElementById("Fundo").style.backgroundImage = "url('./images/background22.png')"
             document.getElementById("list").style.display = 'flex'
             task.style.display = 'none'
-            document.getElementById("UID").style.display = 'flex' 
         break 
     }
 }
 
-function pontos(FinalPoints){ //aqui o contador de pontos
+/*function pontos(FinalPoints){ //aqui o contador de pontos
     let score = 80
     for(let i=0;i < F.length; i++){
         if(!F[i]){
@@ -142,7 +142,7 @@ function pontos(FinalPoints){ //aqui o contador de pontos
         }
     }
     return score
-}
+}*/
  
 
  
@@ -156,7 +156,7 @@ function pontos(FinalPoints){ //aqui o contador de pontos
     <div id="Tela">
         <div id="Fundo"> 
             <div id="opa">
-              <div id="transiçao" />
+              
 
     <div id="list"> 
             <ul style="list-style: none;">
@@ -173,40 +173,34 @@ function pontos(FinalPoints){ //aqui o contador de pontos
             </ul>
         </div>
         
-        <div id="empilhadeira" >
-            <ul id="rodas">
-                <li on:click={()=>{F[4] = true; src = './images/info/roda furada.png';
-                document.getElementById("imgs").style.display = 'flex';roteiro.dd = 11 ; box()}}></li>
-                <li on:click={()=>{F[3] = true; src = './images/info/rodanova.png';
-                document.getElementById("imgs").style.display = 'flex';roteiro.dd = 12; box()}}></li>
-            </ul>
-        </div>
- 
+     <div id="empilhadeira" />
+
 </div> 
+
 <div id="imgs"> 
     <ul id="lsbt">       
         <img src={src} alt="">
-        {#if src === "./images/info/motor.png"}
-        <li id="vareta1" on:click={()=>{F[2] = true;roteiro.dd = 7;box(); src2 = './images/info/vareta boa.png'}}>ccc</li>
-        <li id="vareta2" on:click={()=>{F[1] = true;roteiro.dd = 8;box(); src2 = './images/info/vareta rm.png'}}>ccc</li>
-        <li id="vareta3" on:click={()=>{F[0] = true;roteiro.dd = 7;box(); src2 = './images/info/vareta rm.png'}}>ccc</li>
-        {:else if src === "./images/info/arerfe.png"}
-        <li id="agua" style="display: flex;" on:click={()=>{console.log("teste");roteiro.dd = 12; box()}}>aaaaaa</li>
+        {#if roteiro.dd == 1 && roteiro.nxtTxt == 3 }
+        <img style="position: absolute;left:0;" src="/images/info/frapo.gif" alt="frapo">
+        {:else if roteiro.dd == 1 && roteiro.nxtTxt == 4}
+        <img style="position: absolute;left:0;" src="/images/info/frapoMelado.png" alt="frapo">
+        {:else if roteiro.dd == 1 && roteiro.nxtTxt == 5}
+        <img style="position: absolute;left:0;" src="/images/info/frapoMelado.png" alt="frapo">
         {/if}
-    </ul> 
-    
+    </ul>   
 </div>
-{#if end }
-<div id="UID" style="display: flex ; background-image: url('/images/seta.gif'); width:65px;" 
+
+<div id="UID" style="display: none ; background-image: url('/images/seta.gif'); width:65px;" 
 on:click={()=>{lst(7)}}/>
-{:else}
-<div id="UID" style="display: flex ; background-image: url('/images/conf.png');" 
-on:click={()=>{pontos(); document.getElementById("Window").style.display = 'none'; }}/>
- {/if}
+
 <div on:click={() => {box()}} id="dialogo">    
-        <p>{falar}</p> 
-        <div id="seta" />  
-</div> 
+    <p>{falar}</p> 
+    <div id="seta" />  
+</div>
+
+{#if !((roteiro.txt - 1) > falar.length) }
+<div id="transiçao" />
+{/if}
 </div>
 </div> 
 </div>
