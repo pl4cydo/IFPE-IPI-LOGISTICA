@@ -1,14 +1,29 @@
 <script>
   import { trocarEstadoDoJogo } from "../Estado";
+  import  FirstMap  from "../mapa1/FirstMap.svelte";
+  import { onMount } from "svelte";
+  import { estado } from "../Estado";
   import { Nome } from "../stores";
 
   const hiddenName = () => {
-    addNome.style.display = "none";
-  }
+    inputName.style.display = "none";
+  };
 
+  //variavel declarada como array para receber o json tratado
+  let leitor = [];
+
+  async function loadRanking() {
+    let resposta = await fetch("http://localhost:8001/ler_banco.php");
+    let texto = await resposta.text();
+    let json = JSON.parse(texto);
+    leitor = json;
+  }
+  onMount(async () => {
+    await loadRanking();
+  });
 </script>
 
-<div id="blocoMenu">
+<!-- <div id="blocoMenu">
   <div id="Titulo">MENU</div>
   <div id="bot">
     <div id="Inicio" on:click={() => trocarEstadoDoJogo('game')}>Início</div>
@@ -24,57 +39,154 @@
         />
       <button on:click={hiddenName}>Ok</button>
   </div>
-</div>
+</div> -->
+<div class="menu-wrapper">
+  <section>
+    <div class="info1 flex-align-center ">
+      <!-- <div id="inputName">
+        <input type="text" placeholder="Nome" name="Nome" bind:value={$Nome} />
+        <button on:click={hiddenName}>Ok</button>
+      </div> -->
+    </div>
+    <div class="area-jogo flex-align-center">
+      {#if $estado === "menu"}
+        <div class="btn-wrapper flex-align-center">
+          <div class="menu-btn" on:click={() => trocarEstadoDoJogo("game")}>
+            INÍCIO
+          </div>
+          <div class="menu-btn">SOBRE</div>
+          <div class="menu-btn" on:click={console.log($Nome)}>AJUDA</div>
+        </div>
+      {:else if $estado === "game"}
+        <FirstMap />  
+        {/if}
+      </div>
+      {#if $estado === "game"}
+        
+      <div class="rankingarea flex-align-center">
+        <div class="tabela-de-ranking">
+          <div class="ranking-tittle">
+            <h1>RANKING</h1>
+          </div>
+          <div class="players">
+            {#each leitor as el, i}
+            <div class="player" class:first={i == 0} class:second={i == 1} class:third={i == 2}>
+              {#if i < 15}
+              <div class="p-position flex-align-center"><h2>{i + 1 + "º"}</h2></div> 
+              <div class="p-name flex-align-center">{el.Nome}</div>
+              <div class="p-points flex-align-center">{el.pontos}</div>
+              {/if}
+            </div>
+            {/each}
+          </div>
+        </div>
+      </div>
+      {/if}
+    </section>
+  </div>
+  
+  <style>
+  
+    
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
 
-<style>
-  #blocoMenu {
-    position: absolute;
-    border: 1px solid grey;
-    height: 70%;
-    width: 70%;
-    display: flex;
-    top: 20%;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    text-align: center;
+  .menu-wrapper {
+    width: 100%;
+    height: 100%;
   }
-  #blocoMenu > div {
-    border: 1px solid black;
+  .flex-align-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  section {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  .info1 {
+    background: peru;
+    width: 20%;
+    height: 100%;
+  }
+  .area-jogo {
+    position: relative;
+    /* background: purple; */
+    width: 60%;
+    height: 100%;
+  }
+  .btn-wrapper {
+    background: white;
+    width: 50%;
+    flex-flow: column nowrap;
+    cursor: pointer;
+    gap: 5px;
+  }
+  .menu-btn {
     color: black;
-    position: absolute;
-    margin: 2%;
+    font-size: 3em;
   }
-  #Titulo {
-    top: 5%;
-    width: 40%;
-    height: 20%;
+  .rankingarea {
+    
+    width: 20%;
+    height: 100%;
+    font-family: 'VT323';
   }
-  #bot{
-    width: 40%;
-    height: 60%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    top: 30%;
-  }
-  #addNome{
-    background-color: whitesmoke;
-    width: 95%;
-    height: 50%;justify-content: center;
-    align-items: center;
+  .tabela-de-ranking{
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  #bot > div {
-    position: absolute;
-    border: 1px solid black;
-    width: 80%;
-    height: 20%;
+  .ranking-tittle{
+    text-align: center;
+    color: black;
+    text-shadow: black 1px 0 1px;
+    font-size: 2em;
+    letter-spacing: 2px;
   }
-  #Inicio {
-    top: 5%;
+  .players{
+    padding: 5%;
+    display: flex;
+    flex-flow: column nowrap;
   }
-  #Ajuda {
-    bottom: 5%;
+  .player{
+    background: #dfdede;
+    padding: 5px;
+    border-bottom: 1px solid #888888;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3%;
+    box-shadow: black 2px 2px 2px;
   }
+  .p-name,.p-points,.p-position{
+    width: 30%;
+    color: black;
+    font-weight: 700;
+  }
+  .p-name{
+    font-size: 1.2em;
+  }
+  .first{
+    background: gold;
+  }
+  .second{
+    background: silver;
+  }
+  .third{
+    background: coral;
+  }
+  @media (max-width: 1278px){
+    .rankingarea{
+      display: none;
+    }
+
+  }
+
 </style>

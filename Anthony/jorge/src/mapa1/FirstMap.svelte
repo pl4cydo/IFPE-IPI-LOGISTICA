@@ -10,11 +10,8 @@
   import InfoPag from "../tools/infoPag.svelte";
   import ChatPag from "../tools/chat.svelte";
   import HeartBar from "../tools/HeartBar.svelte";
-
   import { estado } from "../Estado";
-
   import { trocarEstadoDoJogo } from "../Estado";
-
   import { collision, Task0, taskOrder } from "../stores";
   // import { Task0 } from "../stores";
   import { Task1 } from "../stores";
