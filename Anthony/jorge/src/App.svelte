@@ -1,5 +1,4 @@
 <script>
-  import FirstMap from "./mapa1/firstMap.svelte";
   import { estado } from "./Estado";
   import Ranking from "./tools/Ranking.svelte";
   import Menu from "./tools/Menu.svelte";
@@ -79,16 +78,7 @@
   </div>
 </header>
 <main>
-  <div class="main-content flex-center-align">
-<!--     {#if $estado === "game"}
-      <FirstMap />
-    {:else if $estado === "menu"}
-      <Menu />
-    {/if} -->
-    <FirstMap />
-    <Ranking />
-    <HowtoPlay />
-  </div>
+ <Menu></Menu>
 </main>
 
 <style>
@@ -143,8 +133,10 @@
     font-size: 3em;
     font-family: 'VT323';
     letter-spacing: 10px;
+    color: #f2f2f2;
+    text-shadow: rgb(48, 144, 255) 1px 0px 1px;
   }
-  .main-content{
+  main{
     width: 100vw;
     height: 90vh;
   }
