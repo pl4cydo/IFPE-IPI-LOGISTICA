@@ -1,123 +1,11 @@
 <svelte:head>
     <link rel="stylesheet" href="/styles/epi.css">
 </svelte:head>
-<div id="epiContainer">
-    <div id="epiScreen">
-        <div id="locker" on:click={()=>{openItem("epiStorage"),openItem("dialogueContainer")}}></div>
-        <div id="epiStorage" style="display: none;">
-            <h1>INVENTARIO DO ARMARIO</h1>
-            <div id="itens">
-                <div class="slots"><img id="helmet_img" src="/images/helmet.png" alt="helmet" on:click={() => {openItem("helmet"),openItem("cardHolder")}} ></div>
-                <div class="slots"><img id="boot2_img" on:click={()=>{openItem("boot2"),openItem("cardHolder")}} src="/images/botabalanceiada.png" alt="bota"></div>
-                <div class="slots"></div>
-                <div class="slots"></div>
-                <div class="slots"><img id="glasses_img" src="/images/glasses.png" alt="glasses" on:click={() => {openItem("glasses"),openItem("cardHolder")}}></div>
-                <div class="slots"></div>
-                <div class="slots"></div>
-                <div class="slots"><img id="machado_img" on:click={()=>{openItem("axe"),openItem("cardHolder")}} src="/images/machado.png" alt="machado"></div>
-                <div class="slots"><img id="colete_img" src="/images/colete.png" alt="colete" on:click={() => {openItem("vest"),openItem("cardHolder")}}></div>
-                <div class="slots"><img id="helmet2_img" on:click={()=>{openItem("helmet2"),openItem("cardHolder")}} src="/images/capacetedanificado.png" alt=""></div>
-                <div class="slots"> </div>
-                <div class="slots"><img id="boot_img" src="/images/BotaEpii.png" alt="bota de segurança" on:click={()=>{openItem("boot"),openItem("cardHolder")}}></div>
-                <div class="slots"><img id="glove_img" src="/images/glove.png" alt="glove" on:click={() => {openItem("gloves"),openItem("cardHolder")}}></div>
-                <div class="slots"><img id="protetor_img" on:click={()=>{openItem("headphones"),openItem("cardHolder")}} src="/images/Protetor.png" alt=""></div>
-                <div class="slots"><img id="desentupidor_img" on:click={()=>{openItem("desentupidor"),openItem("cardHolder")}} src="/images/Desentupidor.png" alt="desentupidor" ></div>
-                <div class="slots"></div>
-            </div>
-        </div>
-        <div id="dialogueContainer">
-            <div style="display:flex;"  class="dialogue" id="dialogue-1">
-                <p>Em nossa empresa é extremamente importante garantir a sua segurança enquando atua em nossas dependências.</p>
-                <div class="skipBtn" on:click={()=> changeDialogues("dialogue-1","dialogue-2")}>Avançar</div>
-            </div>
-            <div style="display:none;" class="dialogue" id="dialogue-2">
-                <p>Tendo isso em mente nós disponibilizamos os equipamentos de proteção essenciais para a realização segura do seu trabalho, assim que estiver pronto clique no armário para iniciar a missão. </p>
-                <div class="skipBtn" on:click={()=>{openItem("dialogueContainer"),changeDialogues("dialogue-2","dialogue-3")}}>Estou pronto</div>
-            </div>
-            <div style="display:none; flex-direction:column;" class="dialogue" id="dialogue-3">
-                <p>Para que você possa trabalhar com segurança é necessário ter equipado os seguintes equipamentos.</p>
-                <div class="Epis">
-                    <div>
-                        <span class="unequipped">Capacete de segurança</span><span class="unequipped">Óculos de proteção</span>
-                    </div>
-                    <div>
-                        <span class="unequipped">Colete Refletivo</span><span class="unequipped">Protetor de ouvidos</span>
-                    </div>
-                    <div>
-                        <span class="unequipped">Botas com biqueira</span><span class="unequipped">Luvas de proteção</span>
-                    </div>
-                </div>
-                <div class="skipBtn" on:click={()=>{changeDialogues("dialogue-3","dialogue-4")}}>Avançar</div>
-            </div>
-            <div style="display:none;" class="dialogue" id="dialogue-4">
-                <p>Agora que você sabe quais os itens necessários selecione os equipamentos corretos para avançar para a proxima fase</p>
-                <div class="skipBtn" on:click={()=>{openItem("dialogueContainer"),changeDialogues("dialogue-4","dialogue-5")}}>Selecionar itens</div>
-            </div>
-            <div style="display:none; flex-direction:column;" class="dialogue" id="dialogue-5">
-                <p>{equipedItem} com Sucesso. <br>Equipamentos restantes: {equipCont}</p>
-                <div class="Epis">
-                    <div>
-                        <span class:unequipped={worker.helmet == false} class:equipped={worker.helmet == true}>Capacete de segurança</span><span class:unequipped={worker.glasses == false} class:equipped={worker.glasses == true}>Óculos de proteção</span>
-                    </div>
-                    <div>
-                        <span class:unequipped={worker.vest == false} class:equipped={worker.vest == true}>Colete Refletivo</span><span class:unequipped={worker.headphone == false} class:equipped={worker.headphone == true}>Protetor de ouvidos</span>
-                    </div>
-                    <div>
-                        <span class:unequipped={worker.boot == false} class:equipped={worker.boot == true}>Botas com biqueira</span><span class:unequipped={worker.glove == false} class:equipped={worker.glove == true}>Luvas de proteção</span>
-                    </div>
-                </div>
-                <div class="skipBtn" on:click={()=>{openItem("dialogueContainer"),taskFInished()}}>Continuar</div>
-            </div>
-            <div style="display:none; flex-direction:column;" class="dialogue" id="dialogue-6">
-                <p>Este item não corresponde com os requesitos de segurança selecione outro item. </p>
-                <div class="Epis">
-                    <div>
-                        <span class:unequipped={worker.helmet == false} class:equipped={worker.helmet == true}>Capacete de segurança</span><span class:unequipped={worker.glasses == false} class:equipped={worker.glasses == true}>Óculos de proteção</span>
-                    </div>
-                    <div>
-                        <span class:unequipped={worker.vest == false} class:equipped={worker.vest == true}>Colete Refletivo</span><span class:unequipped={worker.headphone == false} class:equipped={worker.headphone == true}>Protetor de ouvidos</span>
-                    </div>
-                    <div>
-                        <span class:unequipped={worker.boot == false} class:equipped={worker.boot == true}>Botas com biqueira</span><span class:unequipped={worker.glove == false} class:equipped={worker.glove == true}>Luvas de proteção</span>
-                    </div>
-                </div>
-                <div class="skipBtn" on:click={()=>{openItem("dialogueContainer"),changeDialogues("dialogue-6","dialogue-5")}}>Continuar selecionando</div>
-            </div>
-        </div>
-        <div id="cardHolder" style="display:none;">
-
-            {#each cards as card}
-            <div class="card" id={card.item} style="display: none;">
-                <div class="item_Name">
-                    <h1>{card.item_name}</h1>
-                </div>
-                <div class="cardInfo">
-                    <img src={card.item_image} alt={card.item_name}>
-                </div>
-                <div class="item_description">
-                    <h1>Descrição do item</h1>
-                    <p>{card.item_info}</p>
-                </div>
-                <div class="btnArea">
-                    <div class="returnBtn" on:click={()=>{openItem(card.item),openItem("cardHolder")}}>Voltar</div>
-                    <div class="confirmBtn" on:click={()=>{equipItem(card.item,card.img_ref)}}>Equipar</div>
-                </div>
-            </div>
-            {/each}
-        </div>
-        <div id="cardHolder" style="display: none;"></div>
-        <div id="EndScreen" style="display: none;">
-            <h1>Missão Concluida</h1>
-            <h2>Pontuação da missão: {pointsEpi}</h2>
-            <div id="backToMap" on:click={backToLobbyEpi}>Voltar ao mapa</div>
-        </div>
-    </div>
-</div>
-
 <script>
     import { taskOrder, walk } from "../stores";
     import { infoTasks0 } from "../stores";
     import { totalPoints } from "../stores";
+    import { Nome } from "../stores"
 
     class EpiCard{
         constructor(item_name,item_info,item_image,item,img_ref){
@@ -284,3 +172,117 @@
         $taskOrder.t1 = true;
     }
 </script>
+
+<div id="epiContainer">
+    <div id="epiScreen">
+        <div id="locker" on:click={()=>{openItem("epiStorage"),openItem("dialogueContainer")}}></div>
+        <div id="epiStorage" style="display: none;">
+            <h1>INVENTARIO DO ARMARIO</h1>
+            <div id="itens">
+                <div class="slots"><img id="helmet_img" src="/images/helmet.png" alt="helmet" on:click={() => {openItem("helmet"),openItem("cardHolder")}} ></div>
+                <div class="slots"><img id="boot2_img" on:click={()=>{openItem("boot2"),openItem("cardHolder")}} src="/images/botabalanceiada.png" alt="bota"></div>
+                <div class="slots"></div>
+                <div class="slots"></div>
+                <div class="slots"><img id="glasses_img" src="/images/glasses.png" alt="glasses" on:click={() => {openItem("glasses"),openItem("cardHolder")}}></div>
+                <div class="slots"></div>
+                <div class="slots"></div>
+                <div class="slots"><img id="machado_img" on:click={()=>{openItem("axe"),openItem("cardHolder")}} src="/images/machado.png" alt="machado"></div>
+                <div class="slots"><img id="colete_img" src="/images/colete.png" alt="colete" on:click={() => {openItem("vest"),openItem("cardHolder")}}></div>
+                <div class="slots"><img id="helmet2_img" on:click={()=>{openItem("helmet2"),openItem("cardHolder")}} src="/images/capacetedanificado.png" alt=""></div>
+                <div class="slots"> </div>
+                <div class="slots"><img id="boot_img" src="/images/BotaEpii.png" alt="bota de segurança" on:click={()=>{openItem("boot"),openItem("cardHolder")}}></div>
+                <div class="slots"><img id="glove_img" src="/images/glove.png" alt="glove" on:click={() => {openItem("gloves"),openItem("cardHolder")}}></div>
+                <div class="slots"><img id="protetor_img" on:click={()=>{openItem("headphones"),openItem("cardHolder")}} src="/images/Protetor.png" alt=""></div>
+                <div class="slots"><img id="desentupidor_img" on:click={()=>{openItem("desentupidor"),openItem("cardHolder")}} src="/images/Desentupidor.png" alt="desentupidor" ></div>
+                <div class="slots"></div>
+            </div>
+        </div>
+        <div id="dialogueContainer">
+            <div style="display:flex;"  class="dialogue" id="dialogue-1">
+                <p>Óla {$Nome} em nossa empresa é extremamente importante garantir a sua segurança enquando atua em nossas dependências.</p>
+                <div class="skipBtn" on:click={()=> changeDialogues("dialogue-1","dialogue-2")}>Avançar</div>
+            </div>
+            <div style="display:none;" class="dialogue" id="dialogue-2">
+                <p>Tendo isso em mente nós disponibilizamos os equipamentos de proteção essenciais para a realização segura do seu trabalho, assim que estiver pronto clique no armário para iniciar a missão. </p>
+                <div class="skipBtn" on:click={()=>{openItem("dialogueContainer"),changeDialogues("dialogue-2","dialogue-3")}}>Estou pronto</div>
+            </div>
+            <div style="display:none; flex-direction:column;" class="dialogue" id="dialogue-3">
+                <p>Para que você possa trabalhar com segurança é necessário ter equipado os seguintes equipamentos.</p>
+                <div class="Epis">
+                    <div>
+                        <span class="unequipped">Capacete de segurança</span><span class="unequipped">Óculos de proteção</span>
+                    </div>
+                    <div>
+                        <span class="unequipped">Colete Refletivo</span><span class="unequipped">Protetor de ouvidos</span>
+                    </div>
+                    <div>
+                        <span class="unequipped">Botas com biqueira</span><span class="unequipped">Luvas de proteção</span>
+                    </div>
+                </div>
+                <div class="skipBtn" on:click={()=>{changeDialogues("dialogue-3","dialogue-4")}}>Avançar</div>
+            </div>
+            <div style="display:none;" class="dialogue" id="dialogue-4">
+                <p>Agora que você sabe quais os itens necessários selecione os equipamentos corretos para avançar para a proxima fase</p>
+                <div class="skipBtn" on:click={()=>{openItem("dialogueContainer"),changeDialogues("dialogue-4","dialogue-5")}}>Selecionar itens</div>
+            </div>
+            <div style="display:none; flex-direction:column;" class="dialogue" id="dialogue-5">
+                <p>{equipedItem} com Sucesso. <br>Equipamentos restantes: {equipCont}</p>
+                <div class="Epis">
+                    <div>
+                        <span class:unequipped={worker.helmet == false} class:equipped={worker.helmet == true}>Capacete de segurança</span><span class:unequipped={worker.glasses == false} class:equipped={worker.glasses == true}>Óculos de proteção</span>
+                    </div>
+                    <div>
+                        <span class:unequipped={worker.vest == false} class:equipped={worker.vest == true}>Colete Refletivo</span><span class:unequipped={worker.headphone == false} class:equipped={worker.headphone == true}>Protetor de ouvidos</span>
+                    </div>
+                    <div>
+                        <span class:unequipped={worker.boot == false} class:equipped={worker.boot == true}>Botas com biqueira</span><span class:unequipped={worker.glove == false} class:equipped={worker.glove == true}>Luvas de proteção</span>
+                    </div>
+                </div>
+                <div class="skipBtn" on:click={()=>{openItem("dialogueContainer"),taskFInished()}}>Continuar</div>
+            </div>
+            <div style="display:none; flex-direction:column;" class="dialogue" id="dialogue-6">
+                <p>Este item não corresponde com os requesitos de segurança selecione outro item. </p>
+                <div class="Epis">
+                    <div>
+                        <span class:unequipped={worker.helmet == false} class:equipped={worker.helmet == true}>Capacete de segurança</span><span class:unequipped={worker.glasses == false} class:equipped={worker.glasses == true}>Óculos de proteção</span>
+                    </div>
+                    <div>
+                        <span class:unequipped={worker.vest == false} class:equipped={worker.vest == true}>Colete Refletivo</span><span class:unequipped={worker.headphone == false} class:equipped={worker.headphone == true}>Protetor de ouvidos</span>
+                    </div>
+                    <div>
+                        <span class:unequipped={worker.boot == false} class:equipped={worker.boot == true}>Botas com biqueira</span><span class:unequipped={worker.glove == false} class:equipped={worker.glove == true}>Luvas de proteção</span>
+                    </div>
+                </div>
+                <div class="skipBtn" on:click={()=>{openItem("dialogueContainer"),changeDialogues("dialogue-6","dialogue-5")}}>Continuar selecionando</div>
+            </div>
+        </div>
+        <div id="cardHolder" style="display:none;">
+
+            {#each cards as card}
+            <div class="card" id={card.item} style="display: none;">
+                <div class="item_Name">
+                    <h1>{card.item_name}</h1>
+                </div>
+                <div class="cardInfo">
+                    <img src={card.item_image} alt={card.item_name}>
+                </div>
+                <div class="item_description">
+                    <h1>Descrição do item</h1>
+                    <p>{card.item_info}</p>
+                </div>
+                <div class="btnArea">
+                    <div class="returnBtn" on:click={()=>{openItem(card.item),openItem("cardHolder")}}>Voltar</div>
+                    <div class="confirmBtn" on:click={()=>{equipItem(card.item,card.img_ref)}}>Equipar</div>
+                </div>
+            </div>
+            {/each}
+        </div>
+        <div id="cardHolder" style="display: none;"></div>
+        <div id="EndScreen" style="display: none;">
+            <h1>Missão Concluida</h1>
+            <h2>Pontuação da missão: {pointsEpi}</h2>
+            <div id="backToMap" on:click={backToLobbyEpi}>Voltar ao mapa</div>
+        </div>
+    </div>
+</div>
+
