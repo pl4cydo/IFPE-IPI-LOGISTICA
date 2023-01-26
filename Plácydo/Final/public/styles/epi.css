@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: 'VT323', monospace;
+    
+}
+
+
+#epiScreen{
+    background: #574f4f;
+    overflow: hidden;
+    background-image: url("/images/ArmarioEpi768.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 780px;
+    height: 520px;
+    position: relative;
+    /* border: black solid 2px; */
+}
+#locker{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 1%;
+    width: 23%;
+    height: 59%;
+}
+#locker > img{
+    max-width: 100%;
+}
+div#epiStorage{
+    box-shadow: 0px 5px 12px black;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: rgb(233, 231, 231);
+}
+#epiStorage > h1{
+    width: 100%;
+    color: white;
+    background-color: rgb(0, 0, 163);
+}
+#itens{
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    height: 100%;
+}
+
+div.slots{
+    background: rgb(185, 185, 185);
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    border: solid black 1px;
+    width: 25%;
+    height: 25%;
+    overflow: hidden;
+
+}
+.slots > img{
+    max-width: 100%;
+    cursor: pointer;
+}
+.unequipped{
+    padding: 3px;
+    color: black;
+    background: red;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+.equipped{
+    padding: 3px;
+    border-radius: 5px;
+    color: white;
+    background: lime;
+}
+.Epis{
+    font-family: 'VT323', monospace;
+    display: flex;
+    font-size: 1.2em;
+    gap: 2px;
+    width: 100%;
+    height: 100%;   
+}
+.Epis > div{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 27%;
+
+}
+
+#dialogueContainer{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.dialogue{
+    border: solid 2px black;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25%;
+    padding: 5px;
+    background: #f3f0f0;
+}
+.dialogue > p{
+    font-family: 'VT323', monospace;
+    margin-bottom: 3px;
+    font-size: 1.4em;
+
+}
+.skipBtn{
+    font-family: 'VT323', monospace;
+    font-size: 1.4em;
+    padding: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+}
+#cardHolder{
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.card{
+    overflow: hidden;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 3px 8px 10px black;
+    position: absolute;
+    background:white;
+    width: 40%;
+    height: 80%;
+}
+
+.item_Name{
+    padding: 5px;
+    width: 100%;
+    color: white;
+    background: green;
+}
+.cardInfo > img{
+    margin-top: 10%;
+}
+.item_description{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    width: 100%;
+}
+
+.item_description > h1{
+    font-size: clamp(1, 1.5em + 3%,2em);
+}
+.item_description > p{
+    width: 100%; 
+    margin-top: 3%;  
+    padding: 0px 5px 0px 5px;
+
+    font-size: 1.3em;
+}
+.btnArea{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 5px;
+    bottom: 0;
+}
+.confirmBtn,.returnBtn{
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    min-width: 30%;
+    height: 8%;
+    background: green;
+    border-radius: 10px;
+    font-size: 1.4em;
+}
+.returnBtn{    
+    background: red;
+}
+
+#EndScreen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    flex-direction: column;
+    display: flex;
+    font-size: 20px;
+    
+}
+#EndScreen > p{
+    margin-right: 20px;
+    margin-bottom: 5px;
+    text-align: justify;
+}
+.direita{
+    text-align: left;
+}
+#backToMap{
+    color: wheat ;
+    background: blue;
+    cursor: pointer;
+}
+.confirmBtn:hover,.returnBtn:hover{
+    transform: scale(1.05);
+}
+.cardShakeAniamtion{
+    animation: cardShake 1.5s ease-in-out forwards;
+}
+.cardOutAnimation{
+    animation: cardOut 0.5s ease-in forwards;
+}
+.hiddenAnimation{
+    animation: hidden1 0.5s ease-in forwards;
+}
+
+
+@media (max-width:900px) {
+    .card{
+        width: 80%;
+    }
+    div#epiStorage{
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    #epiStorage > h1{
+        border-radius: 0;
+    }
+    
+}
+
+
+@keyframes cardShake{
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    95% { transform: translate(1px, -2px) rotate(-1deg); }
+    100% { transform: translate(1px, 1px) rotate(0deg); }
+}
+
+@keyframes cardOut{
+    0% { left: 35%; }
+    100% { left: -200%; }
+}
+@keyframes hidden1 {
+    0%{ opacity: 100%; }
+    100%{ opacity: 0%; }
+}

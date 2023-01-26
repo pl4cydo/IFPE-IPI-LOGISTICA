@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=VT323&display=swap');
+  *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+  }
+  :root {
+    --black: rgba(17, 16, 16, 0.926);
+    --white: #ffffff;
+  }
+  body{
+  background-color: var(--white);
+  }
+  #container{
+      background-color: var(--white);
+      display: flex;
+      align-items: center;
+      height: 92px;
+    }
+    
+  header {
+      position: relative;
+      top: 0;
+      height: 92px;
+      width: 100%;
+      user-select: none;
+      position: fixed;
+      background-color: rgba(17, 16, 16, 0.926);
+  }
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 92px;
+  }
+  #icones{
+    gap: 25px;
+    width: 25%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  #logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  #att{
+    width: 50px;
+    height: 50px;
+    display: none;
+  }
+
+  .nav-container h1{
+    font-family: 'VT323', monospace;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+  }
+
+  .nav-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .nav-container ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .nav-container li {
+    list-style: none;
+    float: left;
+    cursor: pointer;
+    font-size: 25px;
+    color:var(--black);
+    font-family: 'VT323', monospace;
+  }
+
+  #listContainer{
+    display: flex;
+    justify-content:center;
+    height: 620px;
+    gap: 250px;
+  }
+  #listContainer ol{  
+    list-style: none;
+    font-size: 30px;
+    font-family: 'VT323', monospace;
+    color: #000
+  }
+
+  #listContainer ol li {
+    font-size: 30px;
+    text-align: center;
+  }
+  #task{
+    position: absolute;
+    float: left;
+    top: 90px;
+    width: 20%;
+    background-color: var(--white);
+  }
+
+  #task h1{
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    color: var(--black);
+    font-family: 'VT323', monospace;
+  }
+
+  #buttonList{
+    position: relative;
+    width: 375px;
+    height:auto;
+    top: 25%;
+  }
+
+  main {
+    position: absolute;
+    width: 100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .ListInfo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-width: 1024px;
+    max-height: 720px;
+    background-color: gray;
+  }
+
+  .CloseButton{
+    position: relative;
+    left: 940px;
+    width: 55px;
+    height: 50px;
+  }
+
+  #dark{
+    background-image: ("./images/dark.png");
+  }
+  #titulo {
+    position: relative;
+    text-align: center;
+    font-size: 80px;
+    color: #000;
+    font-family: 'VT323', monospace;
+    white-space: nowrap;
+  }
+  
+  #teste {
+    position: relative;
+    top: 45%;
+    left: 45%;
+    max-height: 0;
+    margin: 0;
+  }
+  
+  #jogarButton{
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    background-color: green;
+    font-size: 180px;
+    font-family: 'VT323', monospace;
+  }
+  
+  #menuButton{ 
+    position: relative; 
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(43, 43, 167);
+    font-size: 180px;
+    font-family: 'VT323', monospace;
+    left: 35px;
+  }
+  
+  #esq{
+    position: absolute;
+    top: 90%;
+    left: 10%;
+    transform: rotateY(180deg);
+  }
+  .som{
+    width: 90px;
+    height: 85px;
+    cursor: pointer;
+  }
+  #dir{
+    position: absolute;
+    top: 90%;
+    left: 80%;
+  }
+
+  @media only screen and (max-width:1660px){
+    #task{
+       display: none;
+    }
+    #att{
+      display: flex;
+    }
+  }
