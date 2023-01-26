@@ -242,6 +242,7 @@
                     toggleElement("approveBtn")
                     toggleElement("changeBtn")
                     setTimeout(()=> {
+                        recScreen.style.border = "none"
                         toggleElement("endScreen")
                     },2000)
                 }

@@ -681,11 +681,11 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    border: 1px solid black;
+    /* border: 1px solid black; */
   }
   canvas {
     border: 1px solid;
-    border-color: black;
+    /* border-color: black; */
     position: absolute;
   }
 </style>

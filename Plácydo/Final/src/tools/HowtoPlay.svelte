@@ -2,35 +2,45 @@
 
 </script>
 <div id="boxPlay">
-    <p>
-        Nem tudo o que reluz é ouro,
-        Nem todos os que vagueiam estão perdidos;
-        O velho que é forte não murcha,
-        Raízes profundas não são atingidas pela geada.
-    </p>
-    <p>
-        Das cinzas um fogo deve ser acordado,
-        Uma luz das sombras brotará;
-        Renovada será a lâmina que estava quebrada,
-        O sem coroa novamente será rei
-    </p>
+    <h1>COMO JOGAR</h1>
+    <p>Use teclas W A S D para mover o personagem pelo mapa</p>
+    <img id="imgs" class="wasd" src="./images/wasd.png" alt="wasd">
+    <p>Use a tecla de ESPAÇO para interagir com as tasks</p>
+    <img id="imgs" src="./images/espaco.png" alt="espaco">
+    <p>Use o MOUSE para interagir com a caixa de mensagens e para resolver as tasks</p>
+    <img id="cursor" src="./images/cursor.png" alt="">
 </div>
 
 <style>
     #boxPlay{
-        font-size: 38px;
-        width: 50%;
-        height: 80%;
-        justify-content: center;
+        width: 90%;
+        height: 88%;
+        font-family: "VT323";
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        display: none;  
-        border: 1px solid black;
-        position: absolute;
-        background-color: aquamarine;
-        top: 14%;
-        right: 1%;
+        text-align: center;
+        font-size: 1.5em;
+        letter-spacing: 1px;
     }
-    #boxPlay > p{
-        margin: 5%;
+    h1{
+        margin-bottom: 10px;
+    }
+    #imgs {
+        width: 70%;
+        margin: 10px;
+    }
+    #cursor{
+        width: 30%;
+        margin: 10px;
+    }
+    .wasd{
+        margin-left: -5%;
+    }
+    @media (max-width: 1278px) {
+        #boxPlay {
+            display: none;
+        }
     }
 </style>

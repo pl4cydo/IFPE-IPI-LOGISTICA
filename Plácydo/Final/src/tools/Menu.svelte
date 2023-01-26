@@ -5,6 +5,7 @@
   import { Nome } from "../stores";
   import Sideranking from "./Sideranking.svelte";
   import Inputname from "./Inputname.svelte";
+  import HowtoPlay from "./HowtoPlay.svelte";
 
   const hiddenName = () => {
     inputName.style.display = "none";
@@ -36,6 +37,9 @@
         <input type="text" placeholder="Nome" name="Nome" bind:value={$Nome} />
         <button on:click={hiddenName}>Ok</button>
       </div> -->
+      {#if $estado === "game"}
+        <HowtoPlay />  
+      {/if}
     </div>
     <div class="area-jogo flex-align-center">
       {#if $estado === "menu"}
@@ -55,6 +59,7 @@
       {#if $estado === "game"}
         <Sideranking />  
       {/if}
+
     </section>
   </div>
   

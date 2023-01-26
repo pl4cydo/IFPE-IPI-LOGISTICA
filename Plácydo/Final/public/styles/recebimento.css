@@ -30,6 +30,7 @@ div#recScreen{
     padding: 15px;
     height: 100%;
     width: 100%;
+    /* border: 1px solid black; */
 }
 
 
@@ -60,7 +61,7 @@ div#carga{
     position: absolute;
     display: none;
     cursor: pointer;
-    border: solid 3px green;
+    /* border: solid 3px green; */
     height: 60%;
     width: 46%;
     left: 27%;
