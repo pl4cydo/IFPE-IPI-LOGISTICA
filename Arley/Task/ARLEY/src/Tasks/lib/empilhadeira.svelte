@@ -1,16 +1,14 @@
 <script>
-    var src2; // aqui armazena o local do arquivo
     var src; // o mesmo se aplica a varivel acima
     var task; //aqui armazenda o id da tag html provavelmente seja desnecessario
     var falar = "";// e necessario a variavel para a aplicaçao de cada letra para forma o texto e precisa ser global para que o svelte reconheça e aplique na tag
     var roteiro = { txt: 1, nxtTxt: 0,dd:0}; // cada um desses são referentes ao texto; txt é para cada letra; nxtTxt é para o prox texto dentro do array; dd deterina um outro array
-    var audio = new Audio('./images/info/Siren.mp4');//audio apenas
-    var ico = [{id: './images/info/oleo.png', dd:1  }, // lista de imagens para a lista de botoes
-              { id: './images/info/pneu.png', dd:2 },
-              { id: './images/info/arrefecimento.png', dd:3 },
-              { id: './images/info/giroflex.png', dd:4 },
-              { id: './images/info/som.png', dd:5 }];
-    var F = [false,false,false,false,false,false,false,false,false] // cadad uma corresponde a uma das taks 
+    var audio = new Audio('./images/info/Siren.mp3');//audio apenas
+    var ico = [{id: './images/info/oleo.png', dd:1, chk:false  }, // lista de imagens para a lista de botoes
+              { id: './images/info/pneu.png', dd:2, chk:false },
+              { id: './images/info/arrefecimento.png', dd:3, chk:false },
+              { id: './images/info/giroflex.png', dd:4, chk:false },
+              { id: './images/info/som.png', dd:5, chk:false }];
              
     function box() {//aqui é onde forma letra por letra na box de dialogos
         roteiro.nxtTxt++;
@@ -22,16 +20,16 @@
                  let text = [[/*inicio*/
                 "",//tudo isso aqui é todo o texto da task, porem nao esta de forma cronologica vamos assim dizer
                 "Opa! vejo que equipou o EPI já é um passo a mais da nossa check-list ","não só isso a check-list envolve revisar a empilhadeira e se tiver tudo certo esta liberada para operar",
-                "Vou levar a empilhadeira a um local adequado para podermos observar de perto pontos essenciais para que o uso",
+                "Vou levar a empilhadeira a um local adequado para podermos observar de perto pontos essenciais",
                 "Vamos lá."],
                 [/*motor*/"","abaixo do assento da empilhadeira existe o motor, bateria, filtro e outros. Mas vamos ficar em revisar regiões que contenham oleo para a lubrificação",
                 "em cada um desses indcadores há uma haste mergulhada no oleo ",
                 "quando retirados ficam requícios e é ai que passamos essa haste em um frapo e cor vai indicar sua qualidade",
                 "veja a cor escura do oleo, significa que o uso dela ultrapassou e consquentemente a qualidade diminui",
                 "aqui é um caso diferente a cor clara do oleo significa que ele esta em bom estado e não será necessario a troca",
-                "bem simples não? aqui terminamos vamos ao proximo!"/*motor ta pica*/],
+                "bem simples não? aqui terminamos vamos ao proximo!"],
                 [/*pneu*/"","sem muito segredo no pneu né?","uma rapida olhada averiguando se esta murcho ou com avaria","mas para evitar essas situações toda semana o pneu da empilhadeira deve ser calibrado",
-                "dependendo do modelo da empilhadeira tem sua tabela de calibragem","deve se atentar a isso","como posso demonstrar nesse exemplo","vamos para o proximo"],
+                "dependendo do modelo da empilhadeira tem sua tabela de calibragem","deve se atentar a isso","o pneu esta descalibrado e na tabela desse pneu é 145 psi","...","agora sim esta correto","vamos para o proximo"],
                 [/*arrefecimento*/"","o radiador é uma peça que serve de resfriamento do motor","a tampa do radiador não pode ser aberta logo depois do uso da empilhadeira se retirado quente pode causar queimaduras",
                 "espere ela esfriar para ai sim poder retirar a tampa","ai sim podemos observar se o liquido do radiador esta normal",
                 "para descobrir com seu dedo molhe a ponta do seu dedo dele caso fique molhado não é necessario repor mas só de olhar se percebe o nivel"],
@@ -39,8 +37,8 @@
                  "caso não funione quando ligado, deve se solicitar a troca"],
                 [/*som de re*/"","som","função semelhante ao giroflex serve para alerta efetuamento da manobra","e caso não funcione deve se solicitar a troca"],
                 ["a bateria esta prestes a acabar","clique no painel para poder carregar"],
-                ["","Bom aqui ao lado esquerdo temos uma lista, e cada um deles irá verificar partes da emplhadeira para prevenção como já havia falado anteriormente.",
-                "depois de revisados marque a caixa ao lado itens da lista que estão funcionando","depois de marcados finalize clicando no botão verde"],
+                ["","Bom aqui ao lado esquerdo temos uma lista, e cada um deles irá verificar partes da emplhadeira",
+                " e em uma delas mostrarei como trocar caso seja necessario","depois de todos os itens verificados finalize clicando no botão verde"],
                 ["","existem empilhadeiras que utilizam combustivel","mas também existem empilhadeiras eletricas que diminuem poluição dentro e fora da empresa","bom... acho que a bateria esta cheia"]];
                
                 if (!(text[roteiro.dd].length == roteiro.nxtTxt)) {
@@ -92,42 +90,42 @@
         document.getElementById("list").style.display = 'none'
         switch (num) {
         case 1://exemplo: esse é o motor 
+            src = "/images/info/motor.gif"
             task = document.getElementById("imgs")
             task.style.display = 'flex'
-            src = "./images/info/motor.png"  
             document.getElementById("UID").style.display = 'flex'
+
         break;
         case 2://rodas
-            roteiro.dd = 2 
-            box()
+            src = "/images/info/pneumurcho.png"
+            task = document.getElementById("imgs")
+            task.style.display = 'flex'
+            document.getElementById("UID").style.display = 'flex'
         break
         case 3://arrefecimento
-            src = "./images/info/arerfe.png"
+            src = "./images/info/aqua.png"
             document.getElementById("imgs").style.display = 'flex'
             document.getElementById("UID").style.display = 'flex'
-            F[5] = true
         break
         case 4:
             document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/FlexEmp.gif')"
             document.getElementById("UID").style.display = 'flex'
-            F[6] = true
         break
         case 5:
             document.getElementById("UID").style.display = 'flex'
             audio.play();
-            F[7] = true
         break
         case 6:
             document.getElementById("list").style.display = 'flex'
             document.getElementById("batera").style.animationName = 'a'
             document.getElementById("UID").style.display = 'flex'
-            F[8] = true
         break
         case 7: //aqui é quando aperta na seta ele ira voltar como estava no incio
             document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/stopEmp.png')"
             document.getElementById("imgs").style.display = 'none'
             document.getElementById("Fundo").style.backgroundImage = "url('./images/background22.png')"
             document.getElementById("list").style.display = 'flex'
+            document.getElementById("UID").style.display = 'none'
             task.style.display = 'none'
         break 
     }
@@ -166,7 +164,7 @@
                     <li/>
                 {/each}
                 <li on:click={()=>{roteiro.dd = 6; lst(roteiro.dd);document.getElementById("Fundo").style.backgroundImage = "url('./images/background221.png')";
-                        roteiro.dd = 13;box()}}>
+                        roteiro.dd = 8;box()}}>
                     <img src="./images/info/bateria.png" alt="">
                 </li>
                 <div id="batera" ></div>
@@ -186,6 +184,12 @@
         <img style="position: absolute;left:0;" src="/images/info/frapoMelado.png" alt="frapo">
         {:else if roteiro.dd == 1 && roteiro.nxtTxt == 5}
         <img style="position: absolute;left:0;" src="/images/info/frapoMelado.png" alt="frapo">
+        {:else if roteiro.dd == 2 && roteiro.nxtTxt == 7}
+        <img style="position: absolute; left:0" src="/images/info/calibragem.gif" alt="calibrando">
+        {:else if roteiro.dd == 3 && roteiro.nxtTxt <= 3}
+        <img style="position: absolute;;left:0;" src="/images/info/queimadura.gif" alt="queimou">
+        {:else if roteiro.dd == 3 && roteiro.nxtTxt > 4 }
+        <img style="position:absolute; left:0;" src="/images/info/arrefecimentoAnim.gif" alt="testando">
         {/if}
     </ul>   
 </div>
@@ -193,7 +197,7 @@
 <div id="UID" style="display: none ; background-image: url('/images/seta.gif'); width:65px;" 
 on:click={()=>{lst(7)}}/>
 
-<div on:click={() => {box()}} id="dialogo">    
+<div id="dialogo" on:click={() => {box()}} >    
     <p>{falar}</p> 
     <div id="seta" />  
 </div>

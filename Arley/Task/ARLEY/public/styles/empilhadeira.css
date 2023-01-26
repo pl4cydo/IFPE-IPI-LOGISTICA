@@ -18,13 +18,13 @@
     width: 100%;
     border: 5px solid;
     overflow: hidden;
+    background-color: gray;
  }
 
  #lsbt{
     position: absolute;    
-    width: 70%;
-    height: 80%; 
-    background-color: red;
+    width: 85%;
+    height: 100%; 
 }
  
  #imgs img{
@@ -41,7 +41,7 @@ div#Window {
     display: flex;
     width: 780px;
     height: 520px;
-    display: none;
+    display: flex;
 }
 
 div#Tela {
@@ -79,7 +79,7 @@ div#list {
     cursor: pointer;
     text-transform: none;
     background-color: aliceblue;
-    animation: introduçao 10s;
+    animation: introduçao 8s;
 } 
 
 div#list ul li img, #opa img {
@@ -188,6 +188,7 @@ div#transiçao {
         width: 165px;
         left: 265px ;
         top: 0;
+
     }
     50%{
         width: 65px;
