@@ -10,6 +10,8 @@
   import InfoPag from "../tools/infoPag.svelte";
   import ChatPag from "../tools/chat.svelte";
   import HeartBar from "../tools/HeartBar.svelte";
+  import Death from "../tools/death.svelte";
+
   import { estado } from "../Estado";
   import { trocarEstadoDoJogo } from "../Estado";
   import { collision, Task0, taskOrder } from "../stores";
@@ -46,7 +48,7 @@
       }
       draw() {
         // função de desenho
-        c.fillStyle = "rgba(255, 0, 0, 0)";
+        c.fillStyle = "rgba(255, 0, 0, 0.5)";
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
       }
       draw2() {
@@ -686,6 +688,7 @@
 <div id="game">
   <div id="tela1">
     <canvas bind:this={canvas} />
+    <Death />
     <DangerPag />
     <ChatPag />
   </div>
