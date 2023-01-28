@@ -6,6 +6,7 @@
     import { infoTasks0 } from "../stores";
     import { totalPoints } from "../stores";
     import { Nome } from "../stores"
+    import { epi } from "../stores";
 
     class EpiCard{
         constructor(item_name,item_info,item_image,item,img_ref){
@@ -170,6 +171,7 @@
         $infoTasks0 = "COMPLETO!";
         $taskOrder.t0 = false;
         $taskOrder.t1 = true;
+        $epi = true;
     }
 </script>
 

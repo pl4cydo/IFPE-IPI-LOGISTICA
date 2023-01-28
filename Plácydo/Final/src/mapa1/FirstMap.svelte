@@ -21,6 +21,7 @@
 
   import { life } from "../stores";
   import { walk } from "../stores";
+  import { epi } from "../stores";
 
   // 03:05
 
@@ -171,6 +172,7 @@
 
     //declarando as imagens do game
     /// Mapas ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // const mapaFull = new Image();
     // mapaFull.src = "./images/Mapa(Aviso-Full).png";
     const mapaAviso0 = new Image();
@@ -183,14 +185,45 @@
     mapaFinal.src = "./images/Mapa(Base).png";
 
     /// Sprite //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Sem epi
+
+    const objimgDown = {
+      uno: "./images/redSpriteDOWN.png",
+      dos: "./images/epiDOWN.png"
+    }
+    const objimgUp = {
+      uno: "./images/redSpriteUP.png",
+      dos: "./images/epiUP.png"
+    }
+    const objimgLEFT = {
+      uno: "./images/redSpriteLEFT.png",
+      dos: "./images/epiLEFT.png"
+    }
+    const objimgRIGHT = {
+      uno: "./images/redSpriteRIGHT.png",
+      dos: "./images/epiRIGHT.png"
+    }
+
     const spriteDown = new Image();
-    spriteDown.src = "./images/redSpriteDOWN.png";
+    spriteDown.src = objimgDown.uno;
     const spriteUp = new Image();
-    spriteUp.src = "./images/redSpriteUP.png";
+    spriteUp.src = objimgUp.uno;
     const spriteLeft = new Image();
-    spriteLeft.src = "./images/redSpriteLEFT.png";
+    spriteLeft.src = objimgLEFT.uno;
     const spriteRight = new Image();
-    spriteRight.src = "./images/redSpriteRIGHT.png";
+    spriteRight.src = objimgRIGHT.uno;
+
+    //com epi
+    const epiDown = new Image();
+    epiDown.src = "./images/epiDOWN.png"
+    const epiUP = new Image();
+    epiUP.src = "./images/epiUP.png"
+    const epiLeft = new Image();
+    epiLeft.src = "./images/epiLEFT.png"
+    const epiRight = new Image();
+    epiRight.src = "./images/epiRIGHT.png"
+
+
 
     // a imagem do sprite tem 256 px de largura, isso dividido por 4 é igual a 64
 
@@ -340,6 +373,8 @@
       }, 4000);
     };
 
+    let epiCount = 0;
+
     // função recursiva que chama a si propria em relação a movimentação da janela do canvas
     function animate() {
       window.requestAnimationFrame(animate); // chamada da função dentro da função
@@ -373,6 +408,14 @@
       arrDanger.forEach((el) => {
         el.draw4();
       });
+
+      if($epi && epiCount == 0) {
+        spriteDown.src = objimgDown.dos;
+        spriteUp.src = objimgUp.dos;
+        spriteLeft.src = objimgLEFT.dos;
+        spriteRight.src = objimgRIGHT.dos;
+        epiCount++
+      }
 
       let moving = true;
       player.moving = false;

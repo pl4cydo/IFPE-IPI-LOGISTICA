@@ -67,7 +67,8 @@ export const taskOrder = writable({
     t0: true,
     t1: false,
     t2: false
-});     
+});   
+export const epi = writable(false)  
 
 
 ranking.subscribe(v => {

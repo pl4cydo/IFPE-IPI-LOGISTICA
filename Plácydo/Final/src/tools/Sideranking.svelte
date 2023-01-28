@@ -68,7 +68,7 @@
         flex-flow: column nowrap;
     }
     .player {
-        background: #dfdede;
+        background: #dfdede91;
         padding: 5px;
         border-bottom: 1px solid #888888;
         border-radius: 5px;
@@ -89,13 +89,13 @@
         font-size: 1.2em;
     }
     .first {
-        background: gold;
+        background: rgba(255, 217, 0, 0.3);
     }
     .second {
-        background: silver;
+        background: rgba(192, 192, 192, 0.4);
     }
     .third {
-        background: coral;
+        background: rgba(255, 127, 80, 0.3);
     }
     .flex-align-center {
         display: flex;
