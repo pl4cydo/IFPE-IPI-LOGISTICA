@@ -14,7 +14,7 @@
 <style>
     #boxPlay{
         width: 90%;
-        height: 88%;
+        height: 100%;
         font-family: "VT323";
         /* border: 1px solid black; */
         display: flex;
@@ -23,6 +23,8 @@
         text-align: center;
         font-size: 1.5em;
         letter-spacing: 1px;
+        /* background-color: blueviolet; */
+        justify-content: center;
     }
     h1{
         margin-bottom: 10px;

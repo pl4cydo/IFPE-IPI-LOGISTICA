@@ -47,6 +47,7 @@
         width: 20%;
         height: 100%;
         font-family: "VT323";
+        /* background-color: blue; */
     }
     .tabela-de-ranking {
         width: 100%;
