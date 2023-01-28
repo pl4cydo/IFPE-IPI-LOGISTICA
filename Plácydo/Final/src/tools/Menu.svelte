@@ -1,16 +1,16 @@
 <script>
   import { trocarEstadoDoJogo } from "../Estado";
-  import  FirstMap  from "../mapa1/FirstMap.svelte";
+  import FirstMap from "../mapa1/FirstMap.svelte";
   import { estado } from "../Estado";
   import { Nome } from "../stores";
   import Sideranking from "./Sideranking.svelte";
   import Inputname from "./Inputname.svelte";
   import HowtoPlay from "./HowtoPlay.svelte";
+  import Ranking from "./Ranking.svelte";
 
   const hiddenName = () => {
     inputName.style.display = "none";
   };
-
 </script>
 
 <!-- <div id="blocoMenu">
@@ -38,7 +38,7 @@
         <button on:click={hiddenName}>Ok</button>
       </div> -->
       {#if $estado === "game"}
-        <HowtoPlay />  
+        <HowtoPlay />
       {/if}
     </div>
     <div class="area-jogo flex-align-center">
@@ -47,25 +47,25 @@
           <div class="menu-btn" on:click={() => trocarEstadoDoJogo("nome")}>
             JOGAR
           </div>
-          <div class="menu-btn">SOBRE</div>
+          <div class="menu-btn" on:click={() => trocarEstadoDoJogo("ranking")}>RANKING</div>
           <div class="menu-btn" on:click={console.log($Nome)}>AJUDA</div>
+          <div class="menu-btn">SOBRE</div>
         </div>
       {:else if $estado === "nome"}
         <Inputname />
       {:else if $estado === "game"}
-        <FirstMap />  
-        {/if}
-      </div>
-      {#if $estado === "game"}
-        <Sideranking />  
+        <FirstMap />
+      {:else if $estado === "ranking"}
+        <Ranking />
       {/if}
+    </div>
+    {#if $estado === "game"}
+      <Sideranking />
+    {/if}
+  </section>
+</div>
 
-    </section>
-  </div>
-  
-  <style>
-  
-    
+<style>
   * {
     padding: 0;
     margin: 0;

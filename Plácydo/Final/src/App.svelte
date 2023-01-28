@@ -62,16 +62,16 @@
     <nav class="nav-bar">
       <div class="nav-content">
         <div class="logo-wrapper flex-center-align">
-          <img class="icons" src="./images/worker.png" alt="trabalhador"/>
-          <img class="icons" src="./images/checklist.png" alt="Lista de atividades"/>
+          <!-- <img class="icons" src="./images/worker.png" alt="trabalhador"/> -->
+          <!-- <img class="icons" src="./images/checklist.png" alt="Lista de atividades"/> -->
         </div>
         <div class="logo-name-wrapper flex-center-align">
           <h1>DUSTRY</h1>
         </div>
         <div class="click-wrapper flex-center-align">
-          <img class="icons" on:click={() => hiddenRanking()} src="./images/ranking.png" alt="Placar"/>
-          <img class="icons" on:click={() => hiddenHowToPlay()} src="./images/comoJogar.png" alt="Como Jogar"/>
-          <img class="icons" src="./images/sobre.png" alt="Sobre"/>
+          <!-- <img class="icons" on:click={() => hiddenRanking()} src="./images/ranking.png" alt="Placar"/>
+          <img class="icons" on:click={() => hiddenHowToPlay()} src="./images/comoJogar.png" alt="Como Jogar"/> -->
+          <!-- <img class="icons" src="./images/sobre.png" alt="Sobre"/> -->
         </div>
       </div>
     </nav>

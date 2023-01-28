@@ -1,85 +1,114 @@
 <script>
     import { onMount } from "svelte";
-    // import { ranking } from "../stores";
-    //variavel declarada como array para receber o json tratado
+    import { trocarEstadoDoJogo } from "../Estado";
     let leitor = [];
-  
-    async function loadRanking(){
-        let resposta = await fetch('http://localhost:8001/ler_banco.php');
+    async function loadRanking() {
+        let resposta = await fetch("http://localhost:8001/ler_banco.php");
         let texto = await resposta.text();
         let json = JSON.parse(texto);
         leitor = json;
-        // console.log(leitor)
     }
     onMount(async () => {
-      await loadRanking();
+        await loadRanking();
     });
-  </script>
-    <div id="telaRanking">
-        <div class="titulo"><h1>Ranking</h1></div>
-        <div class="c">
-            <table>
-                    <tr>
-                        <td>Colocação</td>
-                        <td>Nome</td>
-                        <td>Pontos</td>
-                    </tr>
-                {#each leitor as el, i }
-                    <tr>
-                        {#if i < 10}
-                        <td>{(i+1) + "º"} </td>
-                        <td>{el.Nome}</td>
-                        <td>{el.pontos}</td>
-                        {/if}
-                    </tr>
-                {/each}
-            </table>
+</script>
+
+<div class="rankingarea flex-align-center">
+    <div class="voltar" on:click={() => trocarEstadoDoJogo("menu")}>Voltar</div>
+    <div class="tabela-de-ranking">
+        <div class="ranking-tittle">
+            <h1>RANKING</h1>
+        </div>
+        <div class="players">
+            {#each leitor as el, i}
+                {#if i < 10}
+                <div
+                    class="player"
+                    class:first={i == 0}
+                    class:second={i == 1}
+                    class:third={i == 2}
+                >
+                    {#if i < 10}
+                        <div class="p-position flex-align-center">
+                            <h2>{i + 1 + "º"}</h2>
+                        </div>
+                        <div class="p-name flex-align-center">{el.Nome}</div>
+                        <div class="p-points flex-align-center">
+                            {el.pontos}
+                        </div>
+                    {/if}
+                </div>
+                {/if}
+            {/each}
         </div>
     </div>
-  
-  <style>
-    #telaRanking{
-        width: 50%;
-        height: 80%;
-        justify-content: center;
-        align-items: center;
-        display: none;  
-        border: 1px solid black;
-        position: absolute;
-        background-color: aquamarine;
-        top: 14%;
-        right: 1%;
-    }
+</div>
 
-    .titulo{
-        justify-content: center;
-        align-items: center;
-        display: flex; 
-        border: 1pt solid black;
+<style>
+    .voltar{
         position: absolute;
-        width: 80%;
-        height: 20%;
-        top: 5%
+        top: 10%;
+        right: 0;
     }
-
-    .c {
-        justify-content: center;
-        align-items: center;
-        display: flex; 
-        border: 1pt solid black;
-        position: absolute;
+    .rankingarea {
         width: 80%;
-        height: 65%;
-        bottom: 5%;
+        height: 90%;
+        font-family: "VT323";
+        margin-top: 30%;
+        /* background-color: blue; */
     }
-    table{
-        height: 100%;
+    .tabela-de-ranking {
         width: 100%;
-        border: 1pt solid black;
-    }
-    td {
-        border: 1pt solid black;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: center;
     }
-  </style>
+    .ranking-tittle {
+        text-align: center;
+        color: black;
+        text-shadow: black 1px 0 1px;
+        font-size: 2em;
+        letter-spacing: 2px;
+    }
+    .players {
+        padding: 5%;
+        display: flex;
+        flex-flow: column nowrap;
+    }
+    .player {
+        background: #dfdedeca;
+        padding: 5px;
+        border-bottom: 1px solid #888888;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3%;
+        box-shadow: black 2px 2px 2px;
+    }
+    .p-name,
+    .p-points,
+    .p-position {
+        width: 30%;
+        color: black;
+        font-weight: 700;
+    }
+
+    .p-name {
+        font-size: 1.2em;
+    }
+    .first {
+        background: rgba(255, 217, 0, 0.7);
+    }
+    .second {
+        background: rgba(192, 192, 192, 0.8);
+    }
+    .third {
+        background: rgba(255, 127, 80, 0.7);
+    }
+    .flex-align-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    </style>
