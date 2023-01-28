@@ -371,9 +371,17 @@
         else barGreen.style.width = "0%";
       }, 3000);
       setTimeout(() => {
-        if (hp <= 0) trocarEstadoDoJogo("menu");
+        if (hp <= 0) deathh();
       }, 4000);
     };
+
+    const deathh = () => {
+      $walk = false;
+      deathBox.style.display = "flex";
+      setTimeout(() => {
+        trocarEstadoDoJogo("menu")
+      }, 10000);
+    }
 
     let epiCount = 0;
 

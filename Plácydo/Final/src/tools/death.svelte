@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from "svelte";
 
   class deaths {
     constructor(titulo, texto, img) {
@@ -11,11 +10,11 @@
 
   const caixa = new deaths(
     "Caixa",
-    "Você morreu esmagado por uma caixa, infelizmente acidentes acontecem e você estava no lugar errado",
+    "Você foi esmagado por uma caixa, infelizmente acidentes acontecem e você estava no lugar errado",
     "./images/deathBox.png"
   );
   const empilhadiera = new deaths(
-    "Epilhadeira",
+    "Empilhadeira",
     "Você foi atropelado por uma empilhadeira, infelizmente acidentes acontecem e você estava no lugar errado",
     "./images/deathAtr.png"
   );
@@ -25,7 +24,7 @@
     "./images/deathShock.png"
   );
   const queda = new deaths(
-    "Lugar alto",
+    "Plataformaa",
     "Você caiu da plataforma, infelizmente acidentes acontecem e você estava no lugar errado",
     "./images/deathFall.png"
   );
@@ -33,7 +32,7 @@
   const arrayObjDeath = [caixa, empilhadiera, choque, queda];
   function switchDeath() {
     let num = Math.floor(Math.random() * arrayObjDeath.length);
-    ObjDeath = arrayObjDeath[0];
+    ObjDeath = arrayObjDeath[num];
   }
   switchDeath();
 </script>
@@ -48,25 +47,33 @@
 
 <style>
   #deathBox {
-    color: white;
+    font-family: "VT323";
+    color: rgb(0, 0, 0);
     top: 15%;
-    border: 1px solid black;
+    /* border: 2px solid black; */
     height: 70%;
     width: 60%;
-    background-color: rgb(9, 9, 61);
+    background: #dfdede;
+    border-radius: 5px;
+    box-shadow: black 2px 2px 2px;
     position: absolute;
-    display: flex;
+    display: none;
     justify-content: center;
 
     /* margin: 0 auto; */
   }
   #coisas {
-    margin: 0 auto;
+    /* border: 1px blue solid; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
   }
+  #coisas > p {
+    margin-left: 20px;
+  }
+
   #imgs {
     width: 50%;
   }
