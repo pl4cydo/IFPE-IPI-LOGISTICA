@@ -32,7 +32,7 @@
                 "dependendo do modelo da empilhadeira tem sua tabela de calibragem","deve se atentar a isso","o pneu esta descalibrado e na tabela desse pneu é 145 psi","...","agora sim esta correto","vamos para o proximo"],
                 [/*arrefecimento*/"","o radiador é uma peça que serve de resfriamento do motor","a tampa do radiador não pode ser aberta logo depois do uso da empilhadeira se retirado quente pode causar queimaduras",
                 "espere ela esfriar para ai sim poder retirar a tampa","ai sim podemos observar se o liquido do radiador esta normal",
-                "para descobrir com seu dedo molhe a ponta do seu dedo dele caso fique molhado não é necessario repor mas só de olhar se percebe o nivel"],
+                "para descobrir com seu dedo molhe a ponta do seu dedo dele caso fique molhado não é necessario repor mas só de olhar se percebe o nivel","bem tranquilo vamos ao proximo "],
                  [/*giroflex*/"","essa luz luminosa é o giroflex","a funçao dele é avisar, para pessoas que estejam perto do equipamento, sobre seu deslocamento ou movimentação.",
                  "caso não funione quando ligado, deve se solicitar a troca"],
                 [/*som de re*/"","som","função semelhante ao giroflex serve para alerta efetuamento da manobra","e caso não funcione deve se solicitar a troca"],
@@ -88,6 +88,7 @@
 /*aqui abaixo fica a lista de botões que fica ao lado */
     function lst(num){
         document.getElementById("list").style.display = 'none'
+        document.getElementById("list").style.animationName = "bb"
         switch (num) {
         case 1://exemplo: esse é o motor 
             src = "/images/info/motor.gif"
@@ -186,9 +187,11 @@
         <img style="position: absolute;left:0;" src="/images/info/frapoMelado.png" alt="frapo">
         {:else if roteiro.dd == 2 && roteiro.nxtTxt == 7}
         <img style="position: absolute; left:0" src="/images/info/calibragem.gif" alt="calibrando">
-        {:else if roteiro.dd == 3 && roteiro.nxtTxt <= 3}
+        {:else if roteiro.dd == 3 && roteiro.nxtTxt > 1 && roteiro.nxtTxt < 3}
         <img style="position: absolute;;left:0;" src="/images/info/queimadura.gif" alt="queimou">
-        {:else if roteiro.dd == 3 && roteiro.nxtTxt > 4 }
+        {:else if roteiro.dd == 3 && roteiro.nxtTxt == 4 && roteiro.nxtTxt < 5 }
+        <img style="position: absolute;left:0" src="/images/info/tampaarre.png" alt="">
+        {:else if roteiro.dd == 3 && roteiro.nxtTxt >= 4}
         <img style="position:absolute; left:0;" src="/images/info/arrefecimentoAnim.gif" alt="testando">
         {/if}
     </ul>   

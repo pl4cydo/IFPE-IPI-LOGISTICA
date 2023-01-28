@@ -41,7 +41,7 @@ div#Window {
     display: flex;
     width: 780px;
     height: 520px;
-    display: flex;
+    display: none;
 }
 
 div#Tela {
