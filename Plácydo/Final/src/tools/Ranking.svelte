@@ -113,4 +113,9 @@
         align-items: center;
         justify-content: center;
     }
+    @media (max-width: 1278px) {
+        .ranking-tittle {
+            margin-top: 55%;
+        }
+    }
     </style>

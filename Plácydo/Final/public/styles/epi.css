@@ -221,8 +221,12 @@ div.slots{
 }
 #EndScreen > p{
     margin-right: 20px;
+    margin-left: 20px;
     margin-bottom: 5px;
     text-align: justify;
+}
+#endScreen > a {
+    margin-bottom: 20px;
 }
 .direita{
     text-align: left;

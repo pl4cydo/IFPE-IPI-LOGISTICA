@@ -65,8 +65,8 @@ export const Nome = writable("");
 export const totalPoints = writable(0);
 export const taskOrder = writable({
     t0: true,
-    t1: false,
-    t2: false
+    t1: true,
+    t2: true
 });   
 export const epi = writable(false)  
 

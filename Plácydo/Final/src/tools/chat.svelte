@@ -10,9 +10,10 @@
         `Bem vindo, ${!($Nome)? "Dustry" : $Nome}, esse é o Dustry. (Use o mouse para clicar na seta e seguir)`,
         "O Dustry está em seu primeiro dia de trabalho em uma fábrica e precisa da sua ajuda.",
         "Siga o mapa em direção aos locais com uma placa escrita \"!\", nesses locais há tasks a serem feitas.",
-        "Essas Tasks o ajudaram a entender melhor os processos Logisticos e de Segurança do Trabalho enquanto se diverte.",
-        "Mas tenha atenção, permaneça nas areas seguras, destacadas em amarelo, para sua segurança.",
-        "Divirta-se"
+        "Essas Tasks o ajudarão a entender melhor os processos Logísticos e de Segurança do Trabalho enquanto se diverte.",
+        "Mas, tenha atenção, permaneça nas areas seguras (destacadas em amarelo) para sua segurança.",
+        "Em um ambiente como esse é importante usar equipamentos de segurança, vá até o armário e você irá encontra-los.",
+        "Divirta-se."
     ]
     let chatCount = 0;
     const chatLogic = () => {

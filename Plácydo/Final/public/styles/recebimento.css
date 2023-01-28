@@ -178,6 +178,9 @@ div#carga{
     margin-top: 5px;
     margin-bottom: 5px;
 }
+#endScreen > a {
+    margin-bottom: 20px;
+}
 #backToLobby{
     background: dodgerblue;
     cursor: pointer;
