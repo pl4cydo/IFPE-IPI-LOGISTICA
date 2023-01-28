@@ -7,6 +7,7 @@
   import Inputname from "./Inputname.svelte";
   import HowtoPlay from "./HowtoPlay.svelte";
   import Ranking from "./Ranking.svelte";
+  import HowtoPlayMenu from "./HowtoPlayMenu.svelte";
 
   const hiddenName = () => {
     inputName.style.display = "none";
@@ -48,7 +49,7 @@
             JOGAR
           </div>
           <div class="menu-btn" on:click={() => trocarEstadoDoJogo("ranking")}>RANKING</div>
-          <div class="menu-btn" on:click={console.log($Nome)}>AJUDA</div>
+          <div class="menu-btn" on:click={() => trocarEstadoDoJogo("ajuda")}>AJUDA</div>
           <div class="menu-btn">SOBRE</div>
         </div>
       {:else if $estado === "nome"}
@@ -57,6 +58,8 @@
         <FirstMap />
       {:else if $estado === "ranking"}
         <Ranking />
+      {:else if $estado === "ajuda"}
+        <HowtoPlayMenu />
       {/if}
     </div>
     {#if $estado === "game"}
