@@ -65,6 +65,8 @@
         justify-content: center;
     }
     .ranking-tittle {
+        margin-bottom: -10%;
+        margin-top: 35%;
         text-align: center;
         color: black;
         text-shadow: black 1px 0 1px;
