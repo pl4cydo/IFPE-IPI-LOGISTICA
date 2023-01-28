@@ -1,14 +1,15 @@
 <script>
     var src; // o mesmo se aplica a varivel acima
     var task; //aqui armazenda o id da tag html provavelmente seja desnecessario
+    var score = 0
     var falar = "";// e necessario a variavel para a aplicaçao de cada letra para forma o texto e precisa ser global para que o svelte reconheça e aplique na tag
     var roteiro = { txt: 1, nxtTxt: 0,dd:0}; // cada um desses são referentes ao texto; txt é para cada letra; nxtTxt é para o prox texto dentro do array; dd deterina um outro array
     var audio = new Audio('./images/info/Siren.mp3');//audio apenas
-    var ico = [{id: './images/info/oleo.png', dd:1, chk:false  }, // lista de imagens para a lista de botoes
-              { id: './images/info/pneu.png', dd:2, chk:false },
-              { id: './images/info/arrefecimento.png', dd:3, chk:false },
-              { id: './images/info/giroflex.png', dd:4, chk:false },
-              { id: './images/info/som.png', dd:5, chk:false }];
+    var ico = [{id: './images/info/oleo.png', dd:1 }, // lista de imagens para a lista de botoes
+              { id: './images/info/pneu.png', dd:2},
+              { id: './images/info/arrefecimento.png', dd:3},
+              { id: './images/info/giroflex.png', dd:4},
+              { id: './images/info/som.png', dd:5}];
              
     function box() {//aqui é onde forma letra por letra na box de dialogos
         roteiro.nxtTxt++;
@@ -95,31 +96,36 @@
             task = document.getElementById("imgs")
             task.style.display = 'flex'
             document.getElementById("UID").style.display = 'flex'
-
+            score += 30
         break;
         case 2://rodas
             src = "/images/info/pneumurcho.png"
             task = document.getElementById("imgs")
             task.style.display = 'flex'
             document.getElementById("UID").style.display = 'flex'
+            score += 15
         break
         case 3://arrefecimento
             src = "./images/info/aqua.png"
             document.getElementById("imgs").style.display = 'flex'
             document.getElementById("UID").style.display = 'flex'
+            score += 25
         break
         case 4:
             document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/FlexEmp.gif')"
             document.getElementById("UID").style.display = 'flex'
+            score += 10
         break
         case 5:
             document.getElementById("UID").style.display = 'flex'
             audio.play();
+            score += 10
         break
         case 6:
             document.getElementById("list").style.display = 'flex'
             document.getElementById("batera").style.animationName = 'a'
             document.getElementById("UID").style.display = 'flex'
+            score += 10
         break
         case 7: //aqui é quando aperta na seta ele ira voltar como estava no incio
             document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/stopEmp.png')"
@@ -127,22 +133,12 @@
             document.getElementById("Fundo").style.backgroundImage = "url('./images/background22.png')"
             document.getElementById("list").style.display = 'flex'
             document.getElementById("UID").style.display = 'none'
+            document.getElementById("dialogo").style.display = 'none'
+            roteiro.nxtTxt = 1
             task.style.display = 'none'
         break 
     }
 }
-
-/*function pontos(FinalPoints){ //aqui o contador de pontos
-    let score = 80
-    for(let i=0;i < F.length; i++){
-        if(!F[i]){
-            score -= 10
-            console.log(score)
-        }
-    }
-    return score
-}*/
- 
 
  
 </script>
