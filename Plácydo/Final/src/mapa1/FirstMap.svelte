@@ -48,7 +48,7 @@
       }
       draw() {
         // função de desenho
-        c.fillStyle = "rgba(255, 0, 0, 0.5)";
+        c.fillStyle = "rgba(255, 0, 0, 0)";
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
       }
       draw2() {
@@ -355,13 +355,10 @@
       pointer++;
       setTimeout(() => {
         if (pointer >= 50 && pointer < 300) {
-          hp -= 20;
+          hp -= 40;
           pointer = 0;
         } else if (pointer >= 300 && pointer < 600) {
-          hp -= 25;
-          pointer = 0;
-        } else if (pointer >= 700) {
-          hp -= 90;
+          hp -= 60;
           pointer = 0;
         } else {
           pointer = 0;
