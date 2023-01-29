@@ -192,7 +192,7 @@
         <img style="position: absolute;left:0;" src="/images/info/frapoMelado.png" alt="frapo">
         {:else if roteiro.dd == 2 && roteiro.nxtTxt == 7}
         <img style="position: absolute; left:0" src="/images/info/calibragem.gif" alt="calibrando">
-        {:else if roteiro.dd == 2 && roteiro.nxtTxt >= 9 || roteiro.nxtTxt == 0}
+        {:else if roteiro.dd == 2 && roteiro.nxtTxt >= 8 || roteiro.dd == 2 && roteiro.nxtTxt == 0}
         <img style="position: absolute; left:0" src="/images/info/pneuCheio.png" alt="cheio">
         {:else if roteiro.dd == 3 && roteiro.nxtTxt > 1 && roteiro.nxtTxt <= 3}
         <img style="position: absolute;;left:0;" src="/images/info/queimadura.gif" alt="queimou">
