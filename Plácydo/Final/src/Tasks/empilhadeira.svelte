@@ -3,6 +3,21 @@
   import { infoTasks2 } from "../stores";
   import { totalPoints } from "../stores";
   import { Nome } from "../stores";
+  import { ranking } from "../stores";
+
+  const form = {
+    nome: "",
+    pontos: 0,
+  };
+
+  const addranking = () => {
+    form.nome = $Nome;
+    form.pontos = $totalPoints;
+    $ranking = $ranking.concat({
+      nome: form.nome,
+      pontos: form.pontos,
+    });
+  };
 
   var src; // o mesmo se aplica a varivel acima
   var task; //aqui armazenda o id da tag html provavelmente seja desnecessario
@@ -222,6 +237,7 @@
     empilhaBox.style.display = "none";
     $infoTasks2 = "COMPLETO!";
     $taskOrder.t2 = false;
+    addranking();
   }
 </script>
 
@@ -316,7 +332,7 @@
           style="display: flex ; background-image: url('/images/seta.gif'); width:65px;"
           on:click={() => {
             // document.getElementById("empilhaBox").style.display = "none";
-            backToLobbyEpi()
+            backToLobbyEpi();
           }}
         />
       {:else}
