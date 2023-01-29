@@ -1,11 +1,10 @@
 <script>
   import { onMount } from "svelte";
 
-  import TelaTeste from "../Tasks/telaTeste.svelte";
-  import TelaTeste1 from "../Tasks/telaTeste1.svelte";
-  import TelaTeste2 from "../Tasks/telaTeste2.svelte";
   import Recebimento from "../Tasks/Recebimento.svelte";
   import EpiTask from "../Tasks/EpiTask.svelte";
+  import Empilhadeira from "../Tasks/empilhadeira.svelte";
+
   import DangerPag from "../tools/DangerPag.svelte";
   import InfoPag from "../tools/infoPag.svelte";
   import ChatPag from "../tools/chat.svelte";
@@ -593,7 +592,7 @@
           ) {
             if ($taskOrder.t2) {
               console.log("task 2");
-              task2.style.display = "flex";
+              empilhaBox.style.display = "flex";
               game.style.display = "none";
               $walk = false;
               background.image = background.swImages.final;
@@ -702,9 +701,7 @@
 </div>
 <EpiTask />
 <Recebimento />
-<TelaTeste />
-<TelaTeste1 />
-<TelaTeste2 />
+<Empilhadeira />
 
 <style>
   /* main {
