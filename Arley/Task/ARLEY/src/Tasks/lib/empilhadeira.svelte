@@ -5,12 +5,16 @@
     var falar = "";// e necessario a variavel para a aplicaçao de cada letra para forma o texto e precisa ser global para que o svelte reconheça e aplique na tag
     var roteiro = { txt: 1, nxtTxt: 0,dd:0}; // cada um desses são referentes ao texto; txt é para cada letra; nxtTxt é para o prox texto dentro do array; dd deterina um outro array
     var audio = new Audio('./images/info/Siren.mp3');//audio apenas
-    var ico = [{id: './images/info/oleo.png', dd:1 }, // lista de imagens para a lista de botoes
-              { id: './images/info/pneu.png', dd:2},
-              { id: './images/info/arrefecimento.png', dd:3},
-              { id: './images/info/giroflex.png', dd:4},
-              { id: './images/info/som.png', dd:5}];
-             
+    var ico = [{id: './images/info/oleo.png', dd:1, chk:'' }, // lista de imagens para a lista de botoes
+              { id: './images/info/pneu.png', dd:2, chk:''},
+              { id: './images/info/arrefecimento.png', dd:3, chk:''},
+              { id: './images/info/giroflex.png', dd:4, chk:''},
+              { id: './images/info/som.png', dd:5, chk:''}];
+
+    for(let i = 0; i < ico.length;i++ ){
+            ico[i].chk = '/images/info/invisible.png'
+    }
+    
     function box() {//aqui é onde forma letra por letra na box de dialogos
         roteiro.nxtTxt++;
         roteiro.txt = 1;
@@ -59,7 +63,6 @@
         }
         //essa função faz a mudança do cenario ativaçao da lista de botoes, animaçao da empilhadeira e umas coisas ai
         function transiçao1() {
-        document.getElementById("transiçao").style.animationName = 'desvanecer'
         document.getElementById("dialogo").style.display = "none";
         document.getElementById("empilhadeira").style.animationName = 'mymove2';
         document.getElementById("Fundo").style.backgroundPosition = 0 + "px";
@@ -97,6 +100,7 @@
             task.style.display = 'flex'
             document.getElementById("UID").style.display = 'flex'
             score += 30
+            ico[0].chk = '/images/info/check.png'
         break;
         case 2://rodas
             src = "/images/info/pneumurcho.png"
@@ -104,27 +108,31 @@
             task.style.display = 'flex'
             document.getElementById("UID").style.display = 'flex'
             score += 15
+            ico[1].chk = '/images/info/check.png'
         break
         case 3://arrefecimento
             src = "./images/info/aqua.png"
+            task = document.getElementById("imgs")
             document.getElementById("imgs").style.display = 'flex'
             document.getElementById("UID").style.display = 'flex'
             score += 25
+            ico[2].chk = '/images/info/check.png'
         break
         case 4:
             document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/FlexEmp.gif')"
             document.getElementById("UID").style.display = 'flex'
             score += 10
+            ico[3].chk = '/images/info/check.png'
         break
         case 5:
             document.getElementById("UID").style.display = 'flex'
             audio.play();
             score += 10
+            ico[4].chk = '/images/info/check.png'
         break
         case 6:
             document.getElementById("list").style.display = 'flex'
             document.getElementById("batera").style.animationName = 'a'
-            document.getElementById("UID").style.display = 'flex'
             score += 10
         break
         case 7: //aqui é quando aperta na seta ele ira voltar como estava no incio
@@ -134,13 +142,13 @@
             document.getElementById("list").style.display = 'flex'
             document.getElementById("UID").style.display = 'none'
             document.getElementById("dialogo").style.display = 'none'
-            roteiro.nxtTxt = 1
+            roteiro.nxtTxt = 0
             task.style.display = 'none'
         break 
     }
 }
 
- 
+
 </script>
 
 <svelte:head>
@@ -155,9 +163,10 @@
 
     <div id="list"> 
             <ul style="list-style: none;">
-                {#each ico as { id, dd} }
+                {#each ico as { id, dd, chk} }
                     <li on:click={()=>{roteiro.dd = dd; lst(roteiro.dd); box()}}>
-                        <img src={id} alt="">         
+                        <img id="checkList" style="height: 65px;" src="{chk}" alt="">
+                        <img src={id} alt="">           
                     <li/>
                 {/each}
                 <li on:click={()=>{roteiro.dd = 6; lst(roteiro.dd);document.getElementById("Fundo").style.backgroundImage = "url('./images/background221.png')";
@@ -183,7 +192,9 @@
         <img style="position: absolute;left:0;" src="/images/info/frapoMelado.png" alt="frapo">
         {:else if roteiro.dd == 2 && roteiro.nxtTxt == 7}
         <img style="position: absolute; left:0" src="/images/info/calibragem.gif" alt="calibrando">
-        {:else if roteiro.dd == 3 && roteiro.nxtTxt > 1 && roteiro.nxtTxt < 3}
+        {:else if roteiro.dd == 2 && roteiro.nxtTxt >= 9 || roteiro.nxtTxt == 0}
+        <img style="position: absolute; left:0" src="/images/info/pneuCheio.png" alt="cheio">
+        {:else if roteiro.dd == 3 && roteiro.nxtTxt > 1 && roteiro.nxtTxt <= 3}
         <img style="position: absolute;;left:0;" src="/images/info/queimadura.gif" alt="queimou">
         {:else if roteiro.dd == 3 && roteiro.nxtTxt == 4 && roteiro.nxtTxt < 5 }
         <img style="position: absolute;left:0" src="/images/info/tampaarre.png" alt="">
@@ -202,9 +213,10 @@ on:click={()=>{lst(7)}}/>
 </div>
 
 {#if !((roteiro.txt - 1) > falar.length) }
-<div id="transiçao" />
+    <div id="block" />
 {/if}
-</div>
-</div> 
+
+         </div>
+    </div> 
 </div>
 

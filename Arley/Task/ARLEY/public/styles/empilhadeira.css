@@ -86,7 +86,10 @@ div#list ul li img, #opa img {
     width: 100%;
     height: 100%;
 }
-
+#checkList{
+    position: absolute;
+    left: 0;
+}
 #empilhadeira {
     position: absolute;
     width: 490px;
@@ -127,13 +130,11 @@ div#dialogo {
     display: none;
 }
 
-div#transiçao {
+div#block {
     position: absolute;
-    background-color: black;
     width: 100%;
     height: 100%;
-    opacity: 0%;
-    animation: rr 5s forwards;
+   
 } 
 
 #seta {
@@ -178,11 +179,7 @@ div#transiçao {
     to { right: 1720px;
     background-image: url('/images/info/stopEmp.png'); }
 }
-@keyframes desvanecer {
-    0%{ opacity: 0% ;}
-    50%{ opacity: 100%; }
-    100%{ opacity: 0%; }
-} 
+
 @keyframes introduçao {
     0% {
         width: 165px;
