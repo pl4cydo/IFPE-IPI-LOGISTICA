@@ -5,11 +5,13 @@
     var falar = "";// e necessario a variavel para a aplicaçao de cada letra para forma o texto e precisa ser global para que o svelte reconheça e aplique na tag
     var roteiro = { txt: 1, nxtTxt: 0,dd:0}; // cada um desses são referentes ao texto; txt é para cada letra; nxtTxt é para o prox texto dentro do array; dd deterina um outro array
     var audio = new Audio('./images/info/Siren.mp3');//audio apenas
+    var FinalCheck
     var ico = [{id: './images/info/oleo.png', dd:1, chk:'' }, // lista de imagens para a lista de botoes
               { id: './images/info/pneu.png', dd:2, chk:''},
               { id: './images/info/arrefecimento.png', dd:3, chk:''},
               { id: './images/info/giroflex.png', dd:4, chk:''},
-              { id: './images/info/som.png', dd:5, chk:''}];
+              { id: './images/info/som.png', dd:5, chk:''},
+              { id:'./images/info/bateria.png',dd:6,chk:''}];
 
     for(let i = 0; i < ico.length;i++ ){
             ico[i].chk = '/images/info/invisible.png'
@@ -49,7 +51,7 @@
                 if (!(text[roteiro.dd].length == roteiro.nxtTxt)) {
                     falar = text[roteiro.dd][roteiro.nxtTxt].substring(0, roteiro.txt);
                     roteiro.txt++;
-                    console.log(roteiro.dd,roteiro.nxtTxt)
+                   // console.log(roteiro.dd,roteiro.nxtTxt)
                 }else if(text[roteiro.dd].length == roteiro.nxtTxt){
                     if (roteiro.nxtTxt == text[0].length ){
                         transiçao1()   
@@ -131,9 +133,12 @@
             ico[4].chk = '/images/info/check.png'
         break
         case 6:
+            console.log("bateria")
             document.getElementById("list").style.display = 'flex'
             document.getElementById("batera").style.animationName = 'a'
             score += 10
+            ico[5].chk = '/images/info/check.png'
+            FinalCheck = ico.every(checkAge)
         break
         case 7: //aqui é quando aperta na seta ele ira voltar como estava no incio
             document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/stopEmp.png')"
@@ -144,10 +149,14 @@
             document.getElementById("dialogo").style.display = 'none'
             roteiro.nxtTxt = 0
             task.style.display = 'none'
+            FinalCheck = ico.every(checkAge)
+            console.log(FinalCheck)
         break 
     }
 }
-
+function checkAge(age){
+    return age.chk == '/images/info/check.png'
+}
 
 </script>
 
@@ -169,10 +178,7 @@
                         <img src={id} alt="">           
                     <li/>
                 {/each}
-                <li on:click={()=>{roteiro.dd = 6; lst(roteiro.dd);document.getElementById("Fundo").style.backgroundImage = "url('./images/background221.png')";
-                        roteiro.dd = 8;box()}}>
-                    <img src="./images/info/bateria.png" alt="">
-                </li>
+             
                 <div id="batera" ></div>
             </ul>
         </div>
@@ -203,9 +209,14 @@
         {/if}
     </ul>   
 </div>
-
+{#if FinalCheck}
+<div id="UID" style="display: flex ; background-image: url('/images/seta.gif'); width:65px;" 
+on:click={()=>{document.getElementById("Window").style.display = 'none'}}/>
+{:else}
 <div id="UID" style="display: none ; background-image: url('/images/seta.gif'); width:65px;" 
 on:click={()=>{lst(7)}}/>
+{/if}
+
 
 <div id="dialogo" on:click={() => {box()}} >    
     <p>{falar}</p> 
