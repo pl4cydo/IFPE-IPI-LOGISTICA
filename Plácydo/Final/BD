@@ -1,0 +1,6 @@
+create database projeto_logistica;
+create table ranking (
+    Nome varchar(255),
+    pontos int,
+    PRIMARY KEY (Nome)
+);
