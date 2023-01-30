@@ -43,7 +43,7 @@
                  [/*giroflex*/"","essa luz luminosa é o giroflex","a funçao dele é avisar, para pessoas que estejam perto do equipamento, sobre seu deslocamento ou movimentação.",
                  "caso não funione quando ligado, deve se solicitar a troca"],
                 [/*som de re*/"","som","função semelhante ao giroflex serve para alerta efetuamento da manobra","e caso não funcione deve se solicitar a troca"],
-                ["a bateria esta prestes a acabar","clique no painel para poder carregar"],
+                ["","existem empilhadeiras que utilizam combustivel","mas também existem empilhadeiras eletricas que diminuem poluição dentro e fora da empresa","bom... acho que a bateria esta cheia"],
                 ["","Bom aqui ao lado esquerdo temos uma lista, e cada um deles irá verificar partes da emplhadeira",
                 " e em uma delas mostrarei como trocar caso seja necessario","depois de todos os itens verificados finalize clicando no botão verde"],
                 ["","existem empilhadeiras que utilizam combustivel","mas também existem empilhadeiras eletricas que diminuem poluição dentro e fora da empresa","bom... acho que a bateria esta cheia"]];
@@ -82,7 +82,7 @@
     var backgroundX = 0;
     /*aqui é só pra fazer o movimento de fundo da tela, mudando a posição atraves de pixels*/
     const background = setInterval(() => {
-        document.getElementById("UID").style.display = 'none'
+       // document.getElementById("UID").style.display = 'none'
         backgroundX += 3;
         document.getElementById("Fundo").style.backgroundPosition = backgroundX + "px";
         if (backgroundX > 2400) {
@@ -100,7 +100,6 @@
             src = "/images/info/motor.gif"
             task = document.getElementById("imgs")
             task.style.display = 'flex'
-            document.getElementById("UID").style.display = 'flex'
             score += 30
             ico[0].chk = '/images/info/check.png'
         break;
@@ -108,7 +107,6 @@
             src = "/images/info/pneumurcho.png"
             task = document.getElementById("imgs")
             task.style.display = 'flex'
-            document.getElementById("UID").style.display = 'flex'
             score += 15
             ico[1].chk = '/images/info/check.png'
         break
@@ -116,24 +114,20 @@
             src = "./images/info/aqua.png"
             task = document.getElementById("imgs")
             document.getElementById("imgs").style.display = 'flex'
-            document.getElementById("UID").style.display = 'flex'
             score += 25
             ico[2].chk = '/images/info/check.png'
         break
         case 4:
             document.getElementById("empilhadeira").style.backgroundImage = "url('./images/info/FlexEmp.gif')"
-            document.getElementById("UID").style.display = 'flex'
             score += 10
             ico[3].chk = '/images/info/check.png'
         break
         case 5:
-            document.getElementById("UID").style.display = 'flex'
             audio.play();
             score += 10
             ico[4].chk = '/images/info/check.png'
         break
         case 6:
-            console.log("bateria")
             document.getElementById("list").style.display = 'flex'
             document.getElementById("batera").style.animationName = 'a'
             score += 10
@@ -212,8 +206,8 @@ function checkAge(age){
 {#if FinalCheck}
 <div id="UID" style="display: flex ; background-image: url('/images/seta.gif'); width:65px;" 
 on:click={()=>{document.getElementById("Window").style.display = 'none'}}/>
-{:else}
-<div id="UID" style="display: none ; background-image: url('/images/seta.gif'); width:65px;" 
+{:else if roteiro.nxtTxt == 0 && roteiro.dd != 0 && roteiro.dd != 7}
+<div id="UID" style="display: flex ; background-image: url('/images/seta.gif'); width:65px;" 
 on:click={()=>{lst(7)}}/>
 {/if}
 
