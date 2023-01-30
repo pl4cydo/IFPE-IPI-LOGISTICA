@@ -40,7 +40,7 @@ div#empilhaBox {
     user-select: none; 
     width: 780px;
     height: 520px;
-    display: none;
+    display: flex;
 }
 
 div#Tela {
