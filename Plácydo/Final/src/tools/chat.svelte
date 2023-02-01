@@ -8,11 +8,12 @@
 
     const arrChat = [
         `Bem vindo, ${!($Nome)? "Dustry" : $Nome}, esse é o Dustry. (Use o mouse para clicar na seta e seguir)`,
-        "O Dustry está em seu primeiro dia de trabalho em uma fábrica e precisa da sua ajuda.",
+        "O Dustry está em seu primeiro dia de trabalho em uma operação fabril e precisa da sua ajuda.",
         "Siga o mapa em direção aos locais com uma placa escrita \"!\", nesses locais há tasks a serem feitas.",
         "Essas Tasks o ajudarão a entender melhor os processos Logísticos e de Segurança do Trabalho enquanto se diverte.",
-        "Mas, tenha atenção, permaneça nas areas seguras (destacadas em amarelo) para sua segurança.",
-        "Em um ambiente como esse é importante usar equipamentos de segurança, vá até o armário e você irá encontra-los.",
+        "Mas, tenha atenção, permaneça nas áreas seguras (destacadas em amarelo) para sua segurança.",
+        "Os locais fora da faixa amarela são áreas destinadas a equipamentos.",
+        "Em um ambiente como esse é importante usar equipamentos de segurança (EPIs), vá até o armário e você irá encontrá-los.",
         "Divirta-se."
     ]
     let chatCount = 0;

@@ -32,7 +32,7 @@
 
   let glove = new EpiCard(
     "Luvas de proteção",
-    "As luvas de proteção tem a capacidade de proteger a sua mão de possiveis riscos e acidentes no local de trabalho. Essas luvas ajudam, por exemplo, a proteger as mãos quando é preciso manusear produtos químicos, objetos cortantes e pontiagudos. Elas evitam infecções, queimaduras, cortes, etc.",
+    "As luvas de proteção tem a capacidade de proteger a sua mão de possiveis riscos e acidentes no local de trabalho. Essas luvas ajudam a proteger as mãos quando é preciso manusear produtos químicos, objetos cortantes, pontiagudos e elétricos. Elas evitam infecções, queimaduras, cortes, etc.",
     "/images/glove.png",
     "gloves",
     "glove_img"
@@ -74,7 +74,7 @@
   );
   let protetor = new EpiCard(
     "Protetor de ouvido",
-    "O protetor de ouvido é muito importantes para previnir o trabalhador contra problemas de poluição sonora, como em locais com muitos aparelhos e ruidos.",
+    "O protetor de ouvido é muito importantes para previnir o trabalhador contra problemas auditivos devido a poluição sonora, como em locais com muitos aparelhos e ruidos.",
     "/images/Protetor.png",
     "headphones",
     "protetor_img"

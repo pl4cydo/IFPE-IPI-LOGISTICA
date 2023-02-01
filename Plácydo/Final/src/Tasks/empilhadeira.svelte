@@ -91,12 +91,14 @@
           "esse sinalizador luminoso é o giroflex",
           "a funçao dele é avisar para pessoas que estejam perto do equipamento sobre seu deslocamento ou movimentação.",
           "caso não funione quando ligado, deve se solicitar a troca",
+          "A empilhadeira só se movimenta com o girolex funcionanado, assim se tornando impropia para uso."
         ],
         [
           /*som de re*/ "",
           "som",
           "função semelhante ao giroflex serve para alerta efetuamento da manobra",
           "e caso não funcione deve se solicitar a troca",
+          "A empilhadeira só se movimenta com o som funcionanado, assim se tornando impropia para uso."
         ],
         [
           "a bateria esta prestes a acabar",
@@ -168,7 +170,7 @@
     switch (num) {
       case 1: //exemplo: esse é o motor
         src = "/images/info/motor.gif";
-        task = document.getElementById("imgs");
+        task = document.getElementById("boxImg");
         task.style.display = "flex";
         document.getElementById("UID").style.display = "flex";
         score += 30;
@@ -176,7 +178,7 @@
         break;
       case 2: //rodas
         src = "/images/info/pneumurcho.png";
-        task = document.getElementById("imgs");
+        task = document.getElementById("boxImg");
         task.style.display = "flex";
         document.getElementById("UID").style.display = "flex";
         score += 15;
@@ -184,8 +186,8 @@
         break;
       case 3: //arrefecimento
         src = "./images/info/aqua.png";
-        task = document.getElementById("imgs");
-        document.getElementById("imgs").style.display = "flex";
+        task = document.getElementById("boxImg");
+        document.getElementById("boxImg").style.display = "flex";
         document.getElementById("UID").style.display = "flex";
         score += 25;
         ico[2].chk = "/images/info/check.png";
@@ -214,7 +216,7 @@
       case 7: //aqui é quando aperta na seta ele ira voltar como estava no incio
         document.getElementById("empilhadeira").style.backgroundImage =
           "url('./images/info/stopEmp.png')";
-        document.getElementById("imgs").style.display = "none";
+        document.getElementById("boxImg").style.display = "none";
         document.getElementById("Fundo").style.backgroundImage =
           "url('./images/background22.png')";
         document.getElementById("list").style.display = "flex";
@@ -272,7 +274,7 @@
         <div id="empilhadeira" />
       </div>
 
-      <div id="imgs">
+      <div id="boxImg">
         <ul id="lsbt">
           <img {src} alt="" />
           {#if roteiro.dd == 1 && roteiro.nxtTxt == 3}

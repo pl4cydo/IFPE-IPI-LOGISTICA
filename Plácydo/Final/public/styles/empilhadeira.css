@@ -9,7 +9,7 @@
     box-sizing: border-box;
     
 }
- div#imgs{ 
+ div#boxImg{ 
     position: absolute;
     justify-content: center;
     align-items: center ;
@@ -27,7 +27,7 @@
     height: 100%; 
 }
  
- #imgs img{
+ #boxImg img{
     width: 100%;
     height: 100%;
  }
@@ -40,7 +40,7 @@ div#empilhaBox {
     user-select: none; 
     width: 780px;
     height: 520px;
-    display: flex;
+    display: none;
 }
 
 div#Tela {

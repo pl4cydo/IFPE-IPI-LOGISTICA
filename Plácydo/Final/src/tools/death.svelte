@@ -10,22 +10,22 @@
 
   const caixa = new deaths(
     "Caixa",
-    "Você foi esmagado por uma caixa, infelizmente acidentes acontecem e você estava no lugar errado",
+    "Você executou um ato inseguro e foi esmagado por uma caixa, infelizmente acidentes acontecem e você estava no lugar errado",
     "./images/deathBox.png"
   );
   const empilhadiera = new deaths(
     "Empilhadeira",
-    "Você foi atropelado por uma empilhadeira, infelizmente acidentes acontecem e você estava no lugar errado",
+    "Você executou um ato inseguro e foi atropelado por uma empilhadeira, infelizmente acidentes acontecem e você estava no lugar errado",
     "./images/deathAtr.png"
   );
   const choque = new deaths(
     "Choque-eletrico",
-    "Você foi eletrocutado por mexer onde não devia, infelizmente acidentes acontecem e você estava no lugar errado",
+    "Você executou um ato inseguro e foi eletrocutado por mexer onde não devia, infelizmente acidentes acontecem e você estava no lugar errado",
     "./images/deathShock.png"
   );
   const queda = new deaths(
     "Plataformaa",
-    "Você caiu da plataforma, infelizmente acidentes acontecem e você estava no lugar errado",
+    "Você executou um ato inseguro e caiu da plataforma, infelizmente acidentes acontecem e você estava no lugar errado",
     "./images/deathFall.png"
   );
   let ObjDeath;

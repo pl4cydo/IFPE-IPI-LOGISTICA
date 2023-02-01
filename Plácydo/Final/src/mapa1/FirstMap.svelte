@@ -359,6 +359,9 @@
         } else if (pointer >= 300 && pointer < 600) {
           hp -= 60;
           pointer = 0;
+        } else if (pointer > 600) {
+          hp -= 80;
+          pointer = 0;
         } else {
           pointer = 0;
         }
@@ -367,7 +370,9 @@
         else barGreen.style.width = "0%";
       }, 3000);
       setTimeout(() => {
-        if (hp <= 0) deathh();
+        if (hp <= 0) {
+          deathh();
+        }
       }, 4000);
     };
 
@@ -375,7 +380,8 @@
       $walk = false;
       deathBox.style.display = "flex";
       setTimeout(() => {
-        trocarEstadoDoJogo("menu")
+        window.location.reload();
+        // trocarEstadoDoJogo("menu")
       }, 10000);
     }
 
@@ -623,8 +629,12 @@
             rectung2: { ...el },
           })
         ) {
-          dangerBox.style.display = "flex";
-          reator.play()
+          if(hp <= 0){
+            dangerBox.style.display = "none";
+          } else {
+            dangerBox.style.display = "flex";
+          }
+          if(hp > 0) reator.play()
           damage();
           // $walk = false;
         }
