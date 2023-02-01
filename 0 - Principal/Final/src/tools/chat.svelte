@@ -1,0 +1,57 @@
+<script>
+    import { walk, Nome } from "../stores";
+
+    const chatHidden = () => {
+        chatBox.style.display = "none";
+        $walk = true;
+    }
+
+    const arrChat = [
+        `Bem vindo, ${!($Nome)? "Dustry" : $Nome}, esse é o Dustry. (Use o mouse para clicar na seta e seguir)`,
+        "O Dustry está em seu primeiro dia de trabalho em uma operação fabril e precisa da sua ajuda.",
+        "Siga o mapa em direção aos locais com uma placa escrita \"!\", nesses locais há tasks a serem feitas.",
+        "Essas Tasks o ajudarão a entender melhor os processos Logísticos e de Segurança do Trabalho enquanto se diverte.",
+        "Mas, tenha atenção, permaneça nas áreas seguras (destacadas em amarelo) para sua segurança.",
+        "Os locais fora da faixa amarela são áreas destinadas a equipamentos.",
+        "Em um ambiente como esse é importante usar equipamentos de segurança (EPIs), vá até o armário e você irá encontrá-los.",
+        "Divirta-se."
+    ]
+    let chatCount = 0;
+    const chatLogic = () => {
+        if(chatCount < arrChat.length - 1){
+            chatCount++
+        } else {
+            chatHidden()
+        }
+    }
+
+
+</script>
+
+<div id="chatBox">
+    <h1>{arrChat[chatCount]}</h1>
+    <img src="./images/seta.gif" alt="seta" on:click={chatLogic}>
+</div>
+
+<style>
+    #chatBox{
+        border: 2px solid orangered;
+        background-color: whitesmoke;
+        display: flex;
+        height: 25%;
+        width: 100%;
+        top: 37.5%;
+        position: relative;
+    }
+    #chatBox > h1 {
+        margin: 2%;
+    }
+    #chatBox > img {
+        top: 60%;
+        right: 0;
+        width: 7%;
+        height: 40%;
+        position: absolute;
+        
+    }
+</style>
