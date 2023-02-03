@@ -100,7 +100,12 @@ div#list ul li img, #opa img {
     background-position: 12%;
     bottom: -40px;
 }
-
+#fim{
+    position: absolute;    
+    width: 100%;
+    height: 100%;
+    background-color: #ffff;
+}
 #UID{
     position: absolute;
     top: -20px;
@@ -146,18 +151,6 @@ div#block {
     bottom: 0;
     right: 0;
 } 
-
-#batera {
-    content: '';
-    position: absolute;
-    display: flex;
-    width:33px;
-    height: 10px;
-    background-color: green;
-    right: 25.4%;
-    top: 396px;
-    animation: aa 3s forwards;
-}
 
 #dialogo p {
     margin: 3%;
