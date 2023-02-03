@@ -124,7 +124,9 @@
           "bom... acho que a bateria esta cheia",
         ],
       ];
-
+      if(FinalCheck){
+        clearInterval(caixa)
+      }
       if (!(text[roteiro.dd].length == roteiro.nxtTxt)) {
         falar = text[roteiro.dd][roteiro.nxtTxt].substring(0, roteiro.txt);
         roteiro.txt++;
@@ -318,19 +320,19 @@
             />
           {:else if roteiro.dd == 6 && roteiro.nxtTxt == 4}  
           <img
-          style="position:absolute; left:0;"
+          style="position:absolute; left:0; top:-115px;"
           src="/images/info/animaçao/fechar.gif"
           alt="testando"
           />
           {:else if roteiro.dd == 6 && roteiro.nxtTxt == 5}  
             <img
-          style="position:absolute; left:0;"
+          style="position:absolute; left:0; top:-115px;"
           src="/images/info/animaçao/vazamento.gif"
           alt="testando"
           />
           {:else if roteiro.dd == 6 && roteiro.nxtTxt == 7}  
             <img
-          style="position:absolute; left:0;"
+          style="position:absolute; left:0; top:-115px;"
           src="/images/info/animaçao/removendoCabo.gif"
           alt="testando"
           />
