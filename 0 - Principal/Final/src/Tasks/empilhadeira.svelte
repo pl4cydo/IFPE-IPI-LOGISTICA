@@ -32,7 +32,7 @@
     { id: "./images/info/arrefecimento.png", dd: 3, chk: "" },
     { id: "./images/info/giroflex.png", dd: 4, chk: "" },
     { id: "./images/info/som.png", dd: 5, chk: "" },
-    { id: "./images/info/bateria.png", dd: 6, chk: "" },
+    { id: "./images/info/gas.png", dd: 6, chk: "" },
   ];
 
   for (let i = 0; i < ico.length; i++) {
@@ -91,7 +91,7 @@
           "esse sinalizador luminoso é o giroflex",
           "a funçao dele é avisar para pessoas que estejam perto do equipamento sobre seu deslocamento ou movimentação.",
           "caso não funione quando ligado, deve se solicitar a troca",
-          "A empilhadeira só se movimenta com o girolex funcionanado, assim se tornando impropia para uso."
+          "A empilhadeira só se movimenta com o girolex funcionanado, assim se tornando impropia para o uso."
         ],
         [
           /*som de re*/ "",
@@ -101,8 +101,15 @@
           "A empilhadeira só se movimenta com o som funcionanado, assim se tornando impropia para uso."
         ],
         [
-          "a bateria esta prestes a acabar",
-          "clique no painel para poder carregar",
+          "",
+          "combustivel da empilhadeira",
+          "em nossa empresa não temos pit stop para reabaster a empiladeira",
+          "para reabastecer a empilhadeira deve repor com outro cilindro ja cheio",
+          "para efetuar a troca deve fechar a saida do gas do cilindro depois retirar a mangueira do cilindro",
+          "mas cuidado! pode sair o gas que ficou armazenada na mangeueira e o vazamento pode congelar sua mão e o gas ir em direção a seu olho",
+          "para evitar deve ligar a empilhadeira depois de fechar a vauvula do cilindro assim fazendo a empilhadeira consumir o gás restante da mangeuira",
+          "feito isso remova a mangueira","reitire do suporte que apoia e prende o cilindro","e coloque um cheio","faça o caminho inverso agora",
+          "coloque o cilindro","prenda junto ao suporte","coloque a mangueira","abra a vauvula","e sua empilhadeira esta pronta para o uso"
         ],
         [
           "",
@@ -117,13 +124,14 @@
           "bom... acho que a bateria esta cheia",
         ],
       ];
-
+      if(FinalCheck){
+        clearInterval(caixa)
+      }
       if (!(text[roteiro.dd].length == roteiro.nxtTxt)) {
         falar = text[roteiro.dd][roteiro.nxtTxt].substring(0, roteiro.txt);
         roteiro.txt++;
-        // console.log(roteiro.dd,roteiro.nxtTxt)
       } else if (text[roteiro.dd].length == roteiro.nxtTxt) {
-        if (roteiro.nxtTxt == text[0].length) {
+        if (roteiro.nxtTxt == text[0].length && roteiro.dd != 4 && roteiro.dd != 5) {
           transiçao1();
         }
         roteiro.nxtTxt = 0;
@@ -153,7 +161,6 @@
   var backgroundX = 0;
   /*aqui é só pra fazer o movimento de fundo da tela, mudando a posição atraves de pixels*/
   const background = setInterval(() => {
-    document.getElementById("UID").style.display = "none";
     backgroundX += 3;
     document.getElementById("Fundo").style.backgroundPosition =
       backgroundX + "px";
@@ -170,67 +177,53 @@
     switch (num) {
       case 1: //exemplo: esse é o motor
         src = "/images/info/motor.gif";
-        task = document.getElementById("boxImg");
-        task.style.display = "flex";
-        document.getElementById("UID").style.display = "flex";
+        document.getElementById("boxImg").style.display = "flex";
         score += 30;
         ico[0].chk = "/images/info/check.png";
         break;
       case 2: //rodas
         src = "/images/info/pneumurcho.png";
-        task = document.getElementById("boxImg");
-        task.style.display = "flex";
-        document.getElementById("UID").style.display = "flex";
+        document.getElementById("boxImg").style.display = "flex";
         score += 15;
         ico[1].chk = "/images/info/check.png";
         break;
       case 3: //arrefecimento
         src = "./images/info/aqua.png";
-        task = document.getElementById("boxImg");
         document.getElementById("boxImg").style.display = "flex";
-        document.getElementById("UID").style.display = "flex";
         score += 25;
         ico[2].chk = "/images/info/check.png";
         break;
       case 4:
-        document.getElementById("empilhadeira").style.backgroundImage =
-          "url('./images/info/FlexEmp.gif')";
-        document.getElementById("UID").style.display = "flex";
         score += 10;
         ico[3].chk = "/images/info/check.png";
         break;
       case 5:
-        document.getElementById("UID").style.display = "flex";
         audio.play();
         score += 10;
         ico[4].chk = "/images/info/check.png";
         break;
       case 6:
-        console.log("bateria");
-        document.getElementById("list").style.display = "flex";
-        document.getElementById("batera").style.animationName = "a";
+        src = "./images/info/BarrilEmp.png";
+        document.getElementById("boxImg").style.display = "flex";
         score += 10;
         ico[5].chk = "/images/info/check.png";
-        FinalCheck = ico.every(checkAge);
         break;
       case 7: //aqui é quando aperta na seta ele ira voltar como estava no incio
+        document.getElementById("UID").style.display = 'none'
         document.getElementById("empilhadeira").style.backgroundImage =
           "url('./images/info/stopEmp.png')";
         document.getElementById("boxImg").style.display = "none";
         document.getElementById("Fundo").style.backgroundImage =
           "url('./images/background22.png')";
         document.getElementById("list").style.display = "flex";
-        document.getElementById("UID").style.display = "none";
         document.getElementById("dialogo").style.display = "none";
-        roteiro.nxtTxt = 0;
-        task.style.display = "none";
-        FinalCheck = ico.every(checkAge);
+        FinalCheck = ico.every(checkLst);
         console.log(FinalCheck);
         break;
     }
   }
-  function checkAge(age) {
-    return age.chk == "/images/info/check.png";
+  function checkLst(icoLst) {
+    return icoLst.chk == "/images/info/check.png";
   }
   function backToLobbyEpi() {
     $totalPoints += score;
@@ -267,11 +260,11 @@
               <li />
             {/each}
 
-            <div id="batera" />
           </ul>
         </div>
 
         <div id="empilhadeira" />
+
       </div>
 
       <div id="boxImg">
@@ -292,7 +285,7 @@
           {:else if roteiro.dd == 1 && roteiro.nxtTxt == 5}
             <img
               style="position: absolute;left:0;"
-              src="/images/info/frapoMelado.png"
+              src="/images/info/frapoMelado2.png"
               alt="frapo"
             />
           {:else if roteiro.dd == 2 && roteiro.nxtTxt == 7}
@@ -325,22 +318,50 @@
               src="/images/info/arrefecimentoAnim.gif"
               alt="testando"
             />
+          {:else if roteiro.dd == 6 && roteiro.nxtTxt == 4}  
+          <img
+          style="position:absolute; left:0; top:-115px;"
+          src="/images/info/animaçao/fechar.gif"
+          alt="testando"
+          />
+          {:else if roteiro.dd == 6 && roteiro.nxtTxt == 5}  
+            <img
+          style="position:absolute; left:0; top:-115px;"
+          src="/images/info/animaçao/vazamento.gif"
+          alt="testando"
+          />
+          {:else if roteiro.dd == 6 && roteiro.nxtTxt == 7}  
+            <img
+          style="position:absolute; left:0; top:-115px;"
+          src="/images/info/animaçao/removendoCabo.gif"
+          alt="testando"
+          />
+          {:else if roteiro.dd == 6 && roteiro.nxtTxt == 8}  
+            <img
+          style="position:absolute; left:0;"
+          src="/images/info/animaçao/removendoBarril.gif"
+          alt="testando"
+          />
           {/if}
         </ul>
       </div>
       {#if FinalCheck}
+      <div id="fim" style="display: none;">
+        <!--coloca aqui os textos-->
+      </div>
         <div
           id="UID"
           style="display: flex ; background-image: url('/images/seta.gif'); width:65px;"
           on:click={() => {
-            // document.getElementById("empilhaBox").style.display = "none";
-            backToLobbyEpi();
+            document.getElementById("fim").style.display = 'flex'
+            document.getElementById("UID").style.display = 'none'
+             // backToLobbyEpi();
           }}
         />
-      {:else}
+      {:else if roteiro.nxtTxt == 0 && roteiro.dd != 0 && roteiro.dd != 7}
         <div
           id="UID"
-          style="display: none ; background-image: url('/images/seta.gif'); width:65px;"
+          style="display: flex ; background-image: url('/images/seta.gif'); width:65px;"
           on:click={() => {
             lst(7);
           }}

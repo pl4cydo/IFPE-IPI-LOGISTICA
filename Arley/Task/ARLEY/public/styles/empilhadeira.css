@@ -38,7 +38,7 @@ div#Window {
     justify-content: center;
     align-items: center;
     user-select: none; 
-    display: flex;
+    display: none;
     width: 780px;
     height: 520px;
     display: flex;
