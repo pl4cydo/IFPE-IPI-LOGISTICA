@@ -285,7 +285,7 @@
           {:else if roteiro.dd == 1 && roteiro.nxtTxt == 5}
             <img
               style="position: absolute;left:0;"
-              src="/images/info/frapoMelado.png"
+              src="/images/info/frapoMelado2.png"
               alt="frapo"
             />
           {:else if roteiro.dd == 2 && roteiro.nxtTxt == 7}
