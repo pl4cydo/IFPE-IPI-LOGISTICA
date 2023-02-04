@@ -1,4 +1,0 @@
-zoom: 170%
-
-largura tiled = 1,7 x 32 = 54,4
-altura tiled = 1,7 x 32 = 54,4
