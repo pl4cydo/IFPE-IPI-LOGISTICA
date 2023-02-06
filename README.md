@@ -16,23 +16,23 @@ Após o tópico inicial segue a explicação de como testar e usar o jogo.
 
 ## Dustry
 #### Tela Incial
-![](./0 - Principal/Imgs/inicio.png)
+![](./0%20-%20Principal/Imgs/inicio.png)
 
 #### Game
-![](./0 - Principal/Imgs/game.png)
+![](./0%20-%20Principal/Imgs/game.png)
 
 #### Mapa
-![](./0 - Principal/Imgs/mapa.png)
+![](./0%20-%20Principal/Imgs/mapa.png)
 
 #### Epi
-![](./0 - Principal/Imgs/epi.png)
+![](./0%20-%20Principal/Imgs/epi.png)
 
 
 #### Tasks
-![](./0 - Principal/Imgs/taks.png)
+![](./0%20-%20Principal/Imgs/taks.png)
 
 #### Empilhadeira
-![](./0 - Principal/Imgs/empilhadeira.png)
+![](./0%20-%20Principal/Imgs/empilhadeira.png)
 
 
 
